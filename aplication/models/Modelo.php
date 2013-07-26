@@ -5,7 +5,7 @@ class Modelo  extends Valida{
     function Modelo(){
         $this->db = ADONewConnection('mysql');
         $this->db->debug = false;
-        $this->db->Connect('localhost','root','root','EventosITC');
+        $this->db->Connect('localhost','root','','EventosITC');
     }
     
     public function consulta_datos(){
