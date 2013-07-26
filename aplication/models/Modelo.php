@@ -4,13 +4,8 @@ class Modelo extends Conexion{
     public $db;
     
     function Modelo(){
-<<<<<<< HEAD
-        $this->db = ADONewConnection('mysql');
-        $this->db->debug = false;
-        $this->db->Connect('localhost','root','','EventosITC');
-=======
+
         parent::Conexion();
->>>>>>> 99446f53eceaea2b3a614885377f8ff48b909bc3
     }
     
     public function consulta_datos(){
