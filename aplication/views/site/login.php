@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-    include ('../../models/Valida.php');
+    include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
     include ('../../models/Usuario.php');
     include ('../../libs/adodb5/adodb-pager.inc.php');
@@ -63,6 +63,8 @@ session_start();
             $login = new LoginController();
             if(!$login->valida_usuario($_POST['email'], $_POST['password'])){
                 $form->render();
+            }else{
+                header("location: inicio.php");
             }
         }
     }else
