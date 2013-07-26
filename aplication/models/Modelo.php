@@ -1,11 +1,10 @@
 <?php
-class Modelo  extends Valida{
-    private $db;
+class Modelo extends Conexion{
+    
+    public $db;
     
     function Modelo(){
-        $this->db = ADONewConnection('mysql');
-        $this->db->debug = false;
-        $this->db->Connect('localhost','root','root','EventosITC');
+        parent::Conexion();
     }
     
     public function consulta_datos(){

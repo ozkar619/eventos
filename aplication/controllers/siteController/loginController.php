@@ -16,20 +16,19 @@ class LoginController extends Usuario{
             $ps2 = trim(md5($password));
             
             if( $ps1 == $ps2 ){
-                $this->inicia_sesion($rows[0]);
+                return $this->inicia_sesion($rows[0]);
             }else{
                 echo "password no encontrado";  
                 return false;
             }
         }else{
             echo "Email no encontrado";
-            return true;
+            return false;
         }
         
     }
     
     public function inicia_sesion($rows){
-        
         
         $_SESSION['email']=$rows['email'];
         $_SESSION['nombre']=$rows['nombre'];
@@ -39,7 +38,8 @@ class LoginController extends Usuario{
         if(in_array($rows['email'],$this->admins))
                 $_SESSION['admin'] = 'isAdmin';
         
-        header("location: inicio.php");
+        return true;
+        //header("location: inicio.php");
     }
   
     
