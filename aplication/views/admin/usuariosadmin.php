@@ -18,7 +18,7 @@ include("../layouts/header.php");
         $('#example').dataTable( {
             "bProcessing": true,
             "bServerSide": true,
-            "sAjaxSource": "../server_side/scripts/server_processing.php"
+            "sAjaxSource": ".Administrador./server_side/scripts/server_processing.php"
         } );
     } );
 </script>
