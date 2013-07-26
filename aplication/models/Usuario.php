@@ -2,7 +2,7 @@
 
 class Usuario extends Modelo{
     public $nombre_tabla = 'evt_asistentes';
-    public $pk = 'id_asistente serial';
+    public $pk = 'id_asistente';
     
     
     public $atributos = array(

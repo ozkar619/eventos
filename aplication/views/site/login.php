@@ -61,7 +61,9 @@ session_start();
     if ($form->validate()) {
         if(isset($_POST['email'])){
             $login = new LoginController();
-            $login->valida_usuario($_POST['email'], $_POST['password']);
+            if(!$login->valida_usuario($_POST['email'], $_POST['password'])){
+                $form->render();
+            }
         }
     }else
         $form->render();

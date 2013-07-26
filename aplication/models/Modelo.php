@@ -3,9 +3,9 @@ class Modelo  extends Valida{
     private $db;
     
     function Modelo(){
-        $this->db = ADONewConnection('pgsql');
+        $this->db = ADONewConnection('mysql');
         $this->db->debug = false;
-        $this->db->Connect('localhost','postgres','root','generalesITC');
+        $this->db->Connect('localhost','root','root','EventosITC');
     }
     
     public function consulta_datos(){

@@ -1,3 +1,3 @@
 <?php
-	define('BASEURL','http://localhost/prograweb/aplication/');
+	define('BASEURL','http://localhost/eventos/aplication/');
 ?>

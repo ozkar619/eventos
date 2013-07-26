@@ -1,4 +1,4 @@
-<?php include  $_SERVER['DOCUMENT_ROOT'].'/prograweb/aplication/config.ini.php'; ?>
+<?php include  $_SERVER['DOCUMENT_ROOT'].'/eventos/aplication/config.ini.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
   <head>

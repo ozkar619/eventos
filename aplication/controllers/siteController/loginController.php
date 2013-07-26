@@ -18,10 +18,12 @@ class LoginController extends Usuario{
             if( $ps1 == $ps2 ){
                 $this->inicia_sesion($rows[0]);
             }else{
-                echo "password no encontrado";    
+                echo "password no encontrado";  
+                return false;
             }
         }else{
             echo "Email no encontrado";
+            return true;
         }
         
     }
