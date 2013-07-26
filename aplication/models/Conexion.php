@@ -16,7 +16,7 @@ class Conexion {
         $this->db = ADONewConnection('mysql');
         $this->db->debug = false;
 
-        $this->db->Connect('localhost','root','root','EventosITC');
+        $this->db->Connect('localhost','eventos','00eventos','EventosITC');
 
     }
     
