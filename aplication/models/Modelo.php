@@ -4,6 +4,7 @@ class Modelo extends Conexion{
     public $db;
     
     function Modelo(){
+
         parent::Conexion();
     }
     
