@@ -85,13 +85,12 @@
         include("../layouts/header.php"); 
        
 ?>
-    <!-- load Zebra_Form's stylesheet file -->
     <link rel="stylesheet" href="../../libs/zebra_form/public/css/zebra_form.css">
-    <!-- load Zebra_Form's JavaScript file -->
+
     <script src="../../libs/zebra_form/public/javascript/zebra_form.js"></script>
 
 
-    <div class="span6">
+    <div class="span6 offset3">
         <h2>Registro de asistentes.</h2>
         <?php
              $form->render();
