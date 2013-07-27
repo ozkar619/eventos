@@ -2,7 +2,7 @@
 
 class LoginController extends Usuario{
     
-    private $admins = array('oscar@itc.mx','ramon_eduardo14@hotmail.com');
+    private $admins = array('oscar@itc.mx','ramon_eduardo14@hotmail.com','mane@itc.mx');
     
     public function valida_usuario($email,$password){
         //validar
