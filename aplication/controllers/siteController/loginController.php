@@ -31,9 +31,9 @@ class LoginController extends Usuario{
     public function inicia_sesion($rows){
         
         $_SESSION['email']=$rows['email'];
-        $_SESSION['nombre']=$rows['nombre'];
+        $_SESSION['nombre']=$rows['nombre_asistente'];
         $_SESSION['roles']=array('admin','maestro');
-        $_SESSION['id_usuario']='1';
+        $_SESSION['id_usuario'] = $rows['id_asistente'];
         
         if(in_array($rows['email'],$this->admins))
                 $_SESSION['admin'] = 'isAdmin';

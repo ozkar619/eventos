@@ -6,7 +6,7 @@ class Usuario extends Modelo{
     
     
     public $atributos = array(
-                'nombre'=>array(),
+                'nombre_asistente'=>array(),
                 'email'=>array(),
                 'password'=>array(),
                 'apellido_paterno'=>array(),
@@ -16,7 +16,7 @@ class Usuario extends Modelo{
                 'nctr_rfc'=>array()
     );
     
-    private $nombre;
+    private $nombre_asistente;
     private $apellido_paterno;
     private $apellido_materno;
     private $sexo;
@@ -77,10 +77,10 @@ class Usuario extends Modelo{
     }
     
     public function get_nombre(){
-        return $this->nombre;
+        return $this->nombre_asistente;
     } 
     public function set_nombre($valor){
-        $this->nombre = $valor;
+        $this->nombre_asistente = $valor;
     }
     
     

@@ -2,7 +2,12 @@
 session_start();
 include("../layouts/header.php"); 
 ?>
-
+        <br>
+        <pre>
+        <?php 
+            print_r($_SESSION);
+        ?>
+        </pre>
         <?php
             if(isset( $_SESSION['id_usuario'] )):
         ?>        

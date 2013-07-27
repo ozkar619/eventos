@@ -12,8 +12,8 @@
         $form = new Zebra_Form('form','POST','',array());
         $form->language('espanol');
 
-        $form->add('label', 'label_nombre', 'nombre', 'Nombre:');
-        $obj = $form->add('text', 'nombre');
+        $form->add('label', 'label_nombre_asistente', 'nombre_asistente', 'Nombre:');
+        $obj = $form->add('text', 'nombre_asistente');
         $obj->set_rule(array(
             'required'  =>  array('error', 'Nombre es requerido!'),
         ));
