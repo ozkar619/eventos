@@ -11,19 +11,13 @@ $eventos = new adminController();
 $arreglo = $eventos->consulta_eventos($_SESSION['id_usuario']);
 ?>       
 
-<!-- *******************************************************************************************************************************-->
-<!--    REQUIERO AYUDA AQUI  Estas  Hojas de Estilo y JavaScript Son Exclusivas para los DataTables con Bootstrap Espero q se puedan acomodar en el Header ya que yo no pude y se ven mal Aqui GRACIAS :) -->
-<link rel="stylesheet" type="text/css" href="../bootstrap/css/DT_bootstrap.css">
-<script type="text/javascript" charset="utf-8" language="javascript" src="../../libs/DataTables-1.9.4/media/js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="../../libs/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="../bootstrap/js/DT_bootstrap.js"></script>
-<!-- *******************************************************************************************************************************-->
+<link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">
+<script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>libs/DataTables-1.9.4/media/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>libs/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>views/bootstrap/js/DT_bootstrap.js"></script>
 
 
-<!-- Use saltos para q la barra no tapara el menu -->
 <br/><br/>
-<!-- -------------------------------------------- -->
-
 <div class="span12 row-fluid">
 
 
@@ -60,7 +54,7 @@ $arreglo = $eventos->consulta_eventos($_SESSION['id_usuario']);
                         <td><?php echo $arreglo[$key]['contacto'] ?></td>
                         <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?></td>
                         <td><?php echo $arreglo[$key]['informacion'] ?></td>
-                        <td><?php echo $arregloAct[0]['numero_actividades'] ?><a class="btn btn-inverse pull-right" href="<?php echo "adminActivity.php?id_evento=$aux" ?>" type="button"><i class="icon-plus icon-white"></i></a></th>
+                        <td><?php echo $arregloAct[0]['numero_actividades'] ?><a class="btn btn-inverse pull-right" href="<?php echo BASEURL."views/admin/adminActivity.php?id_evento=$aux" ?>" type="button"><i class="icon-plus icon-white"></i></a></td>
                         <td><center><a class="btn  btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
                     </tr>    
                     

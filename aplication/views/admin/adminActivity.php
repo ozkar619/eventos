@@ -12,30 +12,22 @@ $arreglo = $eventos->consulta_actividades($_GET['id_evento']);
 $aux = ($_GET['id_evento']);
 ?>   
 
-<!-- *******************************************************************************************************************************-->
-<!--    REQUIERO AYUDA AQUI  Estas  Hojas de Estilo y JavaScript Son Exclusivas para los DataTables con Bootstrap Espero q se puedan acomodar en el Header ya que yo no pude y se ven mal Aqui GRACIAS :) -->
-<link rel="stylesheet" type="text/css" href="../bootstrap/css/DT_bootstrap.css">
-<script type="text/javascript" charset="utf-8" language="javascript" src="../../libs/DataTables-1.9.4/media/js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="../../libs/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
-<script type="text/javascript" charset="utf-8" language="javascript" src="../bootstrap/js/DT_bootstrap.js"></script>
-<!-- *******************************************************************************************************************************-->
+<link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">
+<script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>libs/DataTables-1.9.4/media/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>libs/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>views/bootstrap/js/DT_bootstrap.js"></script>
 
-
-<!-- Use saltos para q la barra no tapara el menu -->
 <br/><br/>
-<!-- -------------------------------------------- -->
-
 <div class="span12 row-fluid">
 
     <!--------------- Menu De Opciones del Admin No NavBar ---------------->
     <div class="span11">
         <ul class="nav nav-pills pull-right">            
-            <a href="<?php echo "adminEvents.php?id_evento=$aux" ?>" class="btn btn-inverse" type="button"><i class="icon-chevron-left icon-white"></i> Mis Eventos </a>
-            <a href="<?php echo "registroActividades.php?id_evento=$aux" ?>" class="btn btn-inverse " type="button"><i class="icon-plus icon-white"></i> Agregar Actividad</a>            
+            <a href="<?php echo BASEURL."views/admin/adminEvents.php?id_evento=$aux" ?>" class="btn btn-inverse" type="button"><i class="icon-chevron-left icon-white"></i> Mis Eventos </a>
+            <a href="<?php echo BASEURL."views/admin/registroActividades.php?id_evento=$aux" ?>" class="btn btn-inverse " type="button"><i class="icon-plus icon-white"></i> Agregar Actividad</a>            
         </ul>                
     </div>
     <!--------------------------------------------------------------------->
-
 
 
     <!-------- Lista de Actividades ( DataTable con Busqueda ) ------------>
