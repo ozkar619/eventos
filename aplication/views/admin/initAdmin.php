@@ -14,28 +14,12 @@ $arreglo = $eventos->consulta_numero_eventos($_SESSION['id_usuario']);
 <br/><br/>
 <!-- -------------------------------------------- -->
 
-<div class="span11 row-fluid">
-
-    
-    <!--------------- Menu De Opciones del Admin No NavBar ---------------->
-    <div class="span3" >
-        <ul class="nav nav-tabs nav-stacked">
-            <li class="active"><a href="#">Inicio</a></li>
-            <li><a href="./adminEvents.php">Eventos</a></li>
-            <li><a href="./adminConfig.php">Configuracion</a></li>
-            <!--<li><a href="#">Mas Opciones</a></li>-->
-        </ul>
-    </div>
-    <!-- --------------------------------------------------------------- -->
-
-    
+<div class="span11 row-fluid">    
     
     <!-- UI de Presentacion al Administrador -->
-    <div class="span8">
+    <div class="span11">
         <div class="hero-unit">
             <div class="span12">
-                
-                
                 
                 
                 <!------ Aqui podria ir la Imagen del Admin :P -------->
@@ -43,8 +27,7 @@ $arreglo = $eventos->consulta_numero_eventos($_SESSION['id_usuario']);
                     <img src="./../img/user.jpg" class="img-rounded">                
                 </div>
                 <!-- ----------------------------------------------- -->
-                
-                
+                                
                 
                 
                 <!------ Mensajes de Bienvenida y Shalala -------------->
@@ -59,8 +42,7 @@ $arreglo = $eventos->consulta_numero_eventos($_SESSION['id_usuario']);
 
                 </div>
                 <!-- ----------------------------------------------- -->
-            
-                
+                            
                 
             </div>
             <p><?php /* Roll */ echo 'Administrador' ?></p>
