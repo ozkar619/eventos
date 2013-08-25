@@ -5,26 +5,38 @@
     include ('../../models/Actividades.php');
     include ('../../libs/adodb5/adodb-pager.inc.php');
     include ('../../libs/adodb5/adodb.inc.php');
-    include ('../../controllers/adminController/registroActController.php');
-    
-    
-        $id_evento = ($_GET['id_evento']); #-> Obtenemos id_evento que fue enviado por parametro
-        
+    include ('../../controllers/adminController/adminController.php');
+    include ('../../controllers/adminController/actualizaController.php');
+
+        $id_evento = ($_GET['id_evento']); // <- Mandar el id del evento para agregar en la tabla
+        $id_actividad = ($_GET['id_actividad']);
+        $eventos = new adminController();
+        $arreglo = $eventos->edita_actividades($id_actividad);
+
+
+        $datosActividades = array(
+            'id_instructor' => $arreglo[0]['id_instructor'],
+            'nombre_actividad' => $arreglo[0]['nombre_actividad'],
+            'lugar' => $arreglo[0]['lugar'],
+            'precio' => $arreglo[0]['precio'],
+            'fecha_inicio' => $arreglo[0]['fecha_inicio'],
+            'fecha_fin' => $arreglo[0]['fecha_fin'],
+            'hora_inicio' => $arreglo[0]['hora_inicio'],
+            'hora_fin' => $arreglo[0]['hora_fin'],
+            'descripcion' => $arreglo[0]['descripcion'],
+            'imagen' => $arreglo[0]['imagen'],
+        );
+
         //libreria del formulario ----------------------------
         require '../../libs/zebra_form/Zebra_Form.php';
         //definimos el formulario ----------------------------
         $form = new Zebra_Form('form', 'POST', '', array());
         $form->language('espanol');
+        $form->auto_fill($datosActividades);
+
 
 
         //----------------------------------Comienza Form---------------------------------------//
-        # id_evento
-        $form->add('label', 'label_id_evento', 'id_evento', 'ID Evento:');
-        $obj = $form->add('text', 'id_evento');
-        $obj->set_rule(array(
-            'required' => array('error', 'ID es requerido!'),
-        ));
-
         # id_instructor
         $form->add('label', 'label_id_instructor', 'id_instructor', 'ID Instructor:');
         $obj = $form->add('text', 'id_instructor');
@@ -62,7 +74,7 @@
         ));
         $obj->format('Y M, d');
         $obj->direction(1);
-        $form->add('note', 'note_fecha_inicio', 'fecha_inicio', 'Formato de Fecha (AAAA, MM, DD)');
+        $form->add('note', 'note_fecha_inicio', 'fecha_inicio', 'Formato de Fecha (M, D, Y)');
 
         # Fecha fin
         $form->add('label', 'label_fecha_fin', 'fecha_fin', 'Fecha Fin');
@@ -73,7 +85,7 @@
         ));
         $obj->format('Y M, d');
         $obj->direction(1);
-        $form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (AAAA, MM, DD)');
+        $form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (Y, M, d)');
 
         # Hora Inicio
         $form->add('label', 'label_hora_inicio', 'hora_inicio', 'Hora Inicio:');
@@ -126,23 +138,25 @@
         //$form->add('note', 'note_imagen', 'imagen', 'Tu imagen debe tener .jpg, .jpeg, png ó .gif extension, y no mayor de 100Kb!');
         // "submit"
 
-        $form->add('submit', 'btnsubmit', 'Registrar');
-
+        $form->add('submit', 'btnsubmit', 'Actualizar');
         //----------------------------------Termina Form---------------------------------------//
+
 
 
 
         //validamos el formulario -------------------------------
         if ($form->validate()) {
-            $actividad = new RegistroActController();
+            $actividad = new ActualizaController();
             if (isset($_POST)) {
-                if ($actividad->registraActividad($_POST)) {
+                if ($actividad->actualiza_actividad($_POST, $id_actividad)) {
                     header("Location: adminActivity.php?id_evento=$id_evento");
+
                     exit();
                 }
             }
         }
         //--------------------------------------------------------
+        
 
     include("../layouts/header.php");
     ?>
@@ -150,7 +164,7 @@
         <script src="../../libs/zebra_form/public/javascript/zebra_form.js"></script>
 
         <div class="span6 offset3">
-            <h2>Registro de Actividades.</h2>
+            <h2>Actualizacion de Actividades.</h2>
             <?php
                 $form->render();
             ?>

@@ -8,8 +8,8 @@ include ('../../controllers/adminController/adminController.php');
 include ('../layouts/header.php');
 
 $eventos = new adminController();
-$arreglo = $eventos->consulta_actividades($_GET['id_evento']);
-$aux = ($_GET['id_evento']);
+$id_evento = ($_GET['id_evento']); #-> Recibimos Parametro
+$arreglo = $eventos->consulta_actividades($id_evento);
 ?>   
 
 <link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">
@@ -23,8 +23,8 @@ $aux = ($_GET['id_evento']);
     <!--------------- Menu De Opciones del Admin No NavBar ---------------->
     <div class="span11">
         <ul class="nav nav-pills pull-right">            
-            <a href="<?php echo BASEURL."views/admin/adminEvents.php?id_evento=$aux" ?>" class="btn btn-inverse" type="button"><i class="icon-chevron-left icon-white"></i> Mis Eventos </a>
-            <a href="<?php echo BASEURL."views/admin/registroActividades.php?id_evento=$aux" ?>" class="btn btn-inverse " type="button"><i class="icon-plus icon-white"></i> Agregar Actividad</a>            
+            <a href="<?php echo BASEURL . "views/admin/adminEvents.php?id_evento=$id_evento" ?>" class="btn btn-inverse" type="button"><i class="icon-chevron-left icon-white"></i> Mis Eventos </a>
+            <a href="<?php echo BASEURL . "views/admin/registroActividades.php?id_evento=$id_evento" ?>" class="btn btn-inverse " type="button"><i class="icon-plus icon-white"></i> Agregar Actividad</a>            
         </ul>                
     </div>
     <!--------------------------------------------------------------------->
@@ -45,14 +45,18 @@ $aux = ($_GET['id_evento']);
                     <th>Horario</th>
                     <th>Descripcion</th>
                     <!--<th>Imagen</th>-->
-                    <th>Admin</th>
+                    <th>Users</th>
+                    <th>Admin</th>                    
                 </tr>
             </thead>
             <!-- -------------------- -->
 
 
             <tbody>
-                <?php foreach ($arreglo as $key => $value): ?>
+                <?php foreach ($arreglo as $key => $value):
+                    # Obtenemos id_actividad para enviar por parametro junto al id_evento
+                    $id_actividad = $arreglo[$key]['id_actividad']
+                    ?>
 
                     <tr>                            
                         <td><?php echo $arreglo[$key]['nombre_actividad'] ?></td>
@@ -61,8 +65,9 @@ $aux = ($_GET['id_evento']);
                         <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?> </td>                            
                         <td><?php echo $arreglo[$key]['hora_inicio'] ?>  <strong>a</strong>  <?php echo $arreglo[$key]['hora_fin'] ?></td>                            
                         <td><?php echo $arreglo[$key]['descripcion'] ?></td> 
-                        <!--<td><?php // echo $arreglo[$key]['imagen']  ?></td>--> 
-                        <td><center><a class="btn btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
+                        <!--<td><?php // echo $arreglo[$key]['imagen']      ?></td>-->                         
+                        <td><center><a href="<?php echo BASEURL . "views/admin/updateActividades.php?id_evento=$id_evento" ?>" class="btn btn-inverse" type="button"><i class="icon-user icon-white"></i></a></center></td>
+                        <td><center><a href="<?php echo BASEURL . "views/admin/updateActividades.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
                     </tr>                            
 
                 <?php endforeach; ?>
