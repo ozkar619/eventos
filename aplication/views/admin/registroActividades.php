@@ -8,13 +8,27 @@
     include ('../../controllers/adminController/registroActController.php');
     
     
-        $id_evento = ($_GET['id_evento']); #-> Obtenemos id_evento que fue enviado por parametro
+        $id_evento = ($_GET['id_evento']); #-> Obtenemos id_evento que fue enviado por parametro        
+        $datosActividades = array(
+            'id_evento' => $id_evento,
+            'id_instructor' => '',
+            'nombre_actividad' => '',
+            'lugar' => '',
+            'precio' => '',
+            'fecha_inicio' => '',
+            'fecha_fin' => '',
+            'hora_inicio' => '',
+            'hora_fin' => '',
+            'descripcion' => '',
+            'imagen' => '',
+        );
         
         //libreria del formulario ----------------------------
         require '../../libs/zebra_form/Zebra_Form.php';
         //definimos el formulario ----------------------------
         $form = new Zebra_Form('form', 'POST', '', array());
         $form->language('espanol');
+        $form->auto_fill($datosActividades);
 
 
         //----------------------------------Comienza Form---------------------------------------//
@@ -24,7 +38,7 @@
         $obj->set_rule(array(
             'required' => array('error', 'ID es requerido!'),
         ));
-
+    
         # id_instructor
         $form->add('label', 'label_id_instructor', 'id_instructor', 'ID Instructor:');
         $obj = $form->add('text', 'id_instructor');

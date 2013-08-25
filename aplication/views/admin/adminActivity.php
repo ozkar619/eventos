@@ -10,7 +10,8 @@ include ('../layouts/header.php');
 $eventos = new adminController();
 $id_evento = ($_GET['id_evento']); #-> Recibimos Parametro
 $arreglo = $eventos->consulta_actividades($id_evento);
-?>   
+$nombre_evento= $eventos->edita_evento($id_evento)
+?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">
 <script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>libs/DataTables-1.9.4/media/js/jquery.js"></script>
@@ -20,20 +21,19 @@ $arreglo = $eventos->consulta_actividades($id_evento);
 <br/><br/>
 <div class="span12 row-fluid">
 
-    <!--------------- Menu De Opciones del Admin No NavBar ---------------->
-    <div class="span11">
-        <ul class="nav nav-pills pull-right">            
-            <a href="<?php echo BASEURL . "views/admin/adminEvents.php?id_evento=$id_evento" ?>" class="btn btn-inverse" type="button"><i class="icon-chevron-left icon-white"></i> Mis Eventos </a>
-            <a href="<?php echo BASEURL . "views/admin/registroActividades.php?id_evento=$id_evento" ?>" class="btn btn-inverse " type="button"><i class="icon-plus icon-white"></i> Agregar Actividad</a>            
-        </ul>                
-    </div>
-    <!--------------------------------------------------------------------->
-
+    
 
     <!-------- Lista de Actividades ( DataTable con Busqueda ) ------------>
     <div class="span11">
         <table class="table table-striped table-bordered" id="example">            
-            <legend>Mis Actividades</legend><br/>
+            <legend>Actividades de <?php echo $nombre_evento[0]['nombre_evento']?>
+                <!--------------- Menu De Opciones del Admin No NavBar ---------------->
+                <div class="btn-group pull-right">        
+                    <a href="<?php echo BASEURL . "views/admin/adminEvents.php?id_evento=$id_evento" ?>" class="btn " type="button"><i class="icon-chevron-left"></i> Mis Eventos </a>
+                    <a href="<?php echo BASEURL . "views/admin/registroActividades.php?id_evento=$id_evento" ?>" class="btn " type="button"><i class="icon-plus"></i> Agregar Actividad</a>                    
+                </div>
+                <!--------------------------------------------------------------------->
+            </legend><br/>
 
             <!--Encabezado Tabla-->
             <thead>
@@ -46,7 +46,7 @@ $arreglo = $eventos->consulta_actividades($id_evento);
                     <th>Descripcion</th>
                     <!--<th>Imagen</th>-->
                     <th>Users</th>
-                    <th>Admin</th>                    
+                    <th>Edit</th>
                 </tr>
             </thead>
             <!-- -------------------- -->
@@ -66,7 +66,7 @@ $arreglo = $eventos->consulta_actividades($id_evento);
                         <td><?php echo $arreglo[$key]['hora_inicio'] ?>  <strong>a</strong>  <?php echo $arreglo[$key]['hora_fin'] ?></td>                            
                         <td><?php echo $arreglo[$key]['descripcion'] ?></td> 
                         <!--<td><?php // echo $arreglo[$key]['imagen']      ?></td>-->                         
-                        <td><center><a href="<?php echo BASEURL . "views/admin/updateActividades.php?id_evento=$id_evento" ?>" class="btn btn-inverse" type="button"><i class="icon-user icon-white"></i></a></center></td>
+                        <td><center><a href="<?php echo BASEURL . "views/admin/usuarios.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-inverse" type="button"><i class="icon-user icon-white"></i></a></center></td>
                         <td><center><a href="<?php echo BASEURL . "views/admin/updateActividades.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
                     </tr>                            
 

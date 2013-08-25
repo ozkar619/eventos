@@ -8,22 +8,68 @@ include ('../../libs/adodb5/adodb.inc.php');
 include ('../../controllers/adminController/adminController.php');
 
 $admin = new adminController();
+$arreglo = $admin->lista_usuarios($_GET['id_actividad']);
 
 include("../layouts/header.php");
 ?>
+<link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">
+<script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>libs/DataTables-1.9.4/media/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>libs/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>views/bootstrap/js/DT_bootstrap.js"></script>
 
 <div class="span12">
 
     <h2>lista de usuarios.</h2>
-    <div class="btn-group">
-        <button class="btn">Crear usuario</button>
-        <button class="btn">Imprimir</button>
+    
 
+    <!-------- Lista de Usuarios( DataTable con Busqueda ) ------------>
+    <div class="span11">
+        <table class="table table-striped table-bordered" id="example">
+            <legend>Usuarios Registrados [ <?php echo $arreglo[0]['nombre_actividad']?> ]
+                
+                <div class="btn-group pull-right">
+                    <button class="btn">Crear usuario</button>
+                    <button class="btn">Imprimir</button>
+                </div>
+            </legend><br/>
+
+            <!-- Encabezado Tabla -->
+            <thead>
+                <tr>                    
+                    <th>Nombre</th>                    
+                    <th>Apellidos</th>
+                    <th>Edad</th>
+                    <th>Email</th>
+                    <th>Numero Control</th>
+                    <th>Fechas Registro</th>
+                    <th>Pago</th>
+                    <th>Asistio</th>
+                    <th>Id Instructor</th>
+                </tr>
+            </thead>
+            <!-- -------------------- -->
+
+
+            <tbody>
+                <?php foreach ($arreglo as $key => $value) : ?>
+
+                    <tr>                            
+                        <td><?php echo $arreglo[$key]['nombre_asistente'] ?></td>
+                        <td><?php echo $arreglo[$key]['apellido_paterno']?> <?php echo $arreglo[$key]['apellido_materno']?></td>
+                        <td><?php echo $arreglo[$key]['edad'] ?></td>
+                        <td><?php echo $arreglo[$key]['email'] ?> </td>
+                        <td><?php echo $arreglo[$key]['nctrl_rfc'] ?></td>
+                        <td><?php echo $arreglo[$key]['fecha_registro'] ?></td>
+                        <td><?php echo $arreglo[$key]['pago'] ?></td>
+                        <td><?php echo $arreglo[$key]['asistio'] ?></td>
+                        <td><?php echo $arreglo[$key]['id_instructor'] ?></td>                        
+                    </tr>    
+
+                <?php endforeach; ?>
+            </tbody>            
+        </table>
     </div>
-
-    <?php
-    $admin->lista_usuarios();
-    ?>
+    <!------------------------------- Fin Data Table-------------------------------------------------->
     
 </div>
 

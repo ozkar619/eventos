@@ -35,7 +35,7 @@ $arreglo = $eventos->consulta_eventos($_SESSION['id_usuario']);
                     <th>Fechas</th>
                     <th>Descripcion</th>
                     <th>Actividades</th>
-                    <th>Admin</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <!-- -------------------- -->
@@ -52,7 +52,7 @@ $arreglo = $eventos->consulta_eventos($_SESSION['id_usuario']);
                         <td><?php echo $arreglo[$key]['contacto'] ?></td>
                         <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?></td>
                         <td><?php echo $arreglo[$key]['informacion'] ?></td>
-                        <td><?php echo $numero_actividades[0]['numero_actividades'] ?><a class="btn btn-inverse pull-right" href="<?php echo BASEURL . "views/admin/adminActivity.php?id_evento=$id_evento" ?>" type="button"><i class="icon-plus icon-white"></i></a></td>
+                        <td><?php echo $numero_actividades[0]['numero_actividades'] ?><a class="btn btn-inverse pull-right" href="<?php echo BASEURL . "views/admin/adminActivity.php?id_evento=$id_evento" ?>" type="button"><i class="icon-tasks icon-white"></i></a></td>
                         <td><center><a href="<?php echo BASEURL . "views/admin/updateEvento.php?id_evento=$id_evento" ?>" class="btn  btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
                     </tr>    
 

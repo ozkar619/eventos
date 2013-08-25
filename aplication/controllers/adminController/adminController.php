@@ -6,9 +6,35 @@ class AdminController {
         
     }
 
-    public function lista_usuarios() {
+    public function list_users() {
         $usuario = new Usuario();
-        $usuario->show_grid();
+        $sql = ("SELECT * FROM evt_asistentes ");
+        $rs = $usuario->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+    
+    public function lista_usuarios( $id_actividad ) {
+        $usuario = new Usuario();
+        $sql = ("
+            SELECT * 
+            FROM evt_actividades a INNER JOIN evt_asistentes_actividades ac            
+            ON a.id_actividad = ac.id_actividad
+            INNER JOIN evt_asistentes s ON s.id_asistente = ac.id_asistente
+            WHERE  a.id_actividad = ".$id_actividad);
+        $rs = $usuario->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+    
+    public function lista_usuarios_admin( $id_asistente ) {
+        $usuario = new Usuario();
+        $sql = ("
+            
+            ");
+        $rs = $usuario->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
     }
 
     # Funcion que muestras los eventos del administrador con session iniciada
