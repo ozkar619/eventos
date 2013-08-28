@@ -35,18 +35,16 @@ $arreglo = $eventos->consulta_eventos($_SESSION['id_usuario']);
                     <th>Fechas</th>
                     <th>Descripcion</th>
                     <th>Actividades</th>
-                    <th>Admin</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <!-- -------------------- -->
 
 
             <tbody>
-                <?php
-                foreach ($arreglo as $key => $value) :
-                    $aux = $arreglo[$key]["id_evento"]; #--> Mandamos id_evento como param a las Actividades (En Edicion)
-                    $arregloAct = $eventos->consulta_numero_actividades($arreglo[$key]['id_evento']);
-                    ?>
+                <?php foreach ($arreglo as $key => $value) :
+                    $id_evento = $arreglo[$key]["id_evento"]; #--> Mandamos id_evento como param a las Actividades (En Edicion)
+                    $numero_actividades = $eventos->consulta_numero_actividades($id_evento);?>
 
                     <tr>                            
                         <td><?php echo $arreglo[$key]['nombre_evento'] ?></td>
@@ -54,10 +52,10 @@ $arreglo = $eventos->consulta_eventos($_SESSION['id_usuario']);
                         <td><?php echo $arreglo[$key]['contacto'] ?></td>
                         <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?></td>
                         <td><?php echo $arreglo[$key]['informacion'] ?></td>
-                        <td><?php echo $arregloAct[0]['numero_actividades'] ?><a class="btn btn-inverse pull-right" href="<?php echo BASEURL."views/admin/adminActivity.php?id_evento=$aux" ?>" type="button"><i class="icon-plus icon-white"></i></a></td>
-                        <td><center><a class="btn  btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
+                        <td><?php echo $numero_actividades[0]['numero_actividades'] ?><a class="btn btn-inverse pull-right" href="<?php echo BASEURL . "views/admin/adminActivity.php?id_evento=$id_evento" ?>" type="button"><i class="icon-tasks icon-white"></i></a></td>
+                        <td><center><a href="<?php echo BASEURL . "views/admin/updateEvento.php?id_evento=$id_evento" ?>" class="btn  btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
                     </tr>    
-                    
+
                 <?php endforeach; ?>
             </tbody>            
         </table>
