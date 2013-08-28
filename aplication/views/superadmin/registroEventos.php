@@ -7,6 +7,7 @@ include ('../../libs/adodb5/adodb-pager.inc.php');
 include ('../../libs/adodb5/adodb.inc.php');
 include ('../../controllers/superadminController/registroEvtController.php');
 
+
 //libreria del formulario ----------------------------
 require '../../libs/zebra_form/Zebra_Form.php';
 //definimos el formulario ----------------------------
@@ -64,7 +65,7 @@ $obj->direction(1);
 $form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (Y, M, D)');
 
 //imagen
-$form->add('label', 'label_file', 'file', 'Upload an image');
+$form->add('label', 'label_file', 'file', 'Sube una imagen para el evento');
 $obj = $form->add('file', 'file');
 $obj->set_rule(array(
     'upload' => array('../images', ZEBRA_FORM_UPLOAD_RANDOM_NAMES, 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
@@ -76,9 +77,18 @@ $obj->set_rule(array(
 $form->add('submit', 'btnsubmit', 'Registrar');  
 
 //validar el formulario
+// echo "<PRE>";
+//                    print_r($_POST);
+//                    print_r($_FILES);
+//                    echo "</PRE>";
+//                    die();
+
+
 if ($form->validate()){
                 $evento = new RegistroEvtController;
                 if(isset($_POST)){
+                   $_POST['imagen']=$_FILES['file']['name'];
+                   //move_uploaded_file($_FILES["file"]["tmp_name"],"../images/".$_FILES['file']['name']);
                     if($evento->registraEvento($_POST)){
                         header("Location: registroCorrecto.php");
                         exit();
@@ -95,6 +105,7 @@ if ($form->validate()){
 
     <div class="span6 offset3">
         <h2>Registro de eventos.</h2>
+        
         <?php
              $form->render();
         ?>
