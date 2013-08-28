@@ -62,7 +62,7 @@
             'required' => array('error', 'Date is required!'),
             'date' => array('error', 'Date is invalid!'),
         ));
-        $obj->format('Y M, d');
+        $obj->format('Y-m-d');
         $obj->direction(1);
         $form->add('note', 'note_fecha_inicio', 'fecha_inicio', 'Formato de Fecha (M, D, Y)');
 
@@ -73,7 +73,7 @@
             'required' => array('error', 'Date is required!'),
             'date' => array('error', 'Date is invalid!'),
         ));
-        $obj->format('Y M, d');
+        $obj->format('Y-m-d');
         $obj->direction(1);
         $form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (Y, M, d)');
 
