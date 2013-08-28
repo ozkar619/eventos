@@ -32,9 +32,8 @@
 
 
         //----------------------------------Comienza Form---------------------------------------//
-        # id_evento
-        $form->add('label', 'label_id_evento', 'id_evento', 'ID Evento:');
-        $obj = $form->add('text', 'id_evento');
+        # id_evento        
+        $obj = $form->add('hidden', 'id_evento');
         $obj->set_rule(array(
             'required' => array('error', 'ID es requerido!'),
         ));
