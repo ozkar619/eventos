@@ -49,9 +49,9 @@ $obj->set_rule(array(
     'required' => array('error', 'Fecha de inicio es requerido'),
     'date' => array('error', 'Fecha inv&aacute;lida'),
 ));
-$obj->format('Y M, d');
+$obj->format('Y-m-d');
 $obj->direction(1);
-$form->add('note', 'note_fecha_inicio', 'fecha_inicio', 'Formato de Fecha (Y, M, D)');
+$form->add('note', 'note_fecha_inicio', 'fecha_inicio', 'Formato de Fecha (AAAA-MM-DD)');
 
 //fecha de fin
 $form->add('label', 'label_fecha_fin', 'fecha_fin', 'Fecha de fin:');
@@ -60,9 +60,9 @@ $obj->set_rule(array(
     'required' => array('error', 'Fecha de fin es requerido'),
     'date' => array('error', 'Fecha inv&aacute;lida'),
 ));
-$obj->format('Y M, d');
+$obj->format('Y-m-d');
 $obj->direction(1);
-$form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (Y, M, D)');
+$form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (AAAA-MM-DD)');
 
 //imagen
 $form->add('label', 'label_file', 'file', 'Sube una imagen para el evento');
