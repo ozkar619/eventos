@@ -118,24 +118,16 @@
             'required' => array('error', 'Descripcion es requerido!')
         ));
 
-        # imagen
-        $form->add('label', 'label_imagen', 'imagen', 'Imagen:');
-        $obj = $form->add('text', 'imagen');
+       //imagen
+        $form->add('label', 'label_file', 'file', 'Sube una imagen para el evento');
+        $obj = $form->add('file', 'file');
         $obj->set_rule(array(
-            'required' => array('error', 'Imagen es requerido!'),
-        ));
-
-        # Este Boton es para cargar imagenes
-        //$form->add('label', 'label_imagen', 'imagen', 'Imagen de la Actividad');
-        //$obj = $form->add('file', 'imagen');
-        //$obj->set_rule(array(
-        //    // error messages will be sent to a variable called "error", usable in custom templates
-        //    'required' => array('error', 'Se requiere imagen!'),
-        //    'upload' => array('tmp', ZEBRA_FORM_UPLOAD_RANDOM_NAMES, 'error', 'No se Pudo Cargar Imagen!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
-        //    'image' => array('error', 'File must be a jpg, png or gif image!'),
-        //    'filesize' => array(102400, 'error', 'Tu imagen Excede los 100Kb!'),
-        //));
-        //$form->add('note', 'note_imagen', 'imagen', 'Tu imagen debe tener .jpg, .jpeg, png ó .gif extension, y no mayor de 100Kb!');
+            'upload' => array('../images/imgActividades', ZEBRA_FORM_UPLOAD_RANDOM_NAMES, 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
+            'image' => array('error', 'File must be a jpg, png or gif image!'),
+            'filesize' => array(102400, 'error', 'File size must not exceed 100Kb!'),
+        ));       
+        
+        
         // "submit"
 
         $form->add('submit', 'btnsubmit', 'Actualizar');
@@ -148,6 +140,7 @@
         if ($form->validate()) {
             $actividad = new ActualizaController();
             if (isset($_POST)) {
+                $_POST['imagen']=$_FILES['file']['name'];
                 if ($actividad->actualiza_actividad($_POST, $id_actividad)) {
                     header("Location: adminActivity.php?id_evento=$id_evento");
 

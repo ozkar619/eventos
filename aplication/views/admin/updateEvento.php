@@ -2,7 +2,7 @@
     session_start();
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
-    include ('../../models/Actividades.php');
+    include ('../../models/Evento.php');
     include ('../../libs/adodb5/adodb-pager.inc.php');
     include ('../../libs/adodb5/adodb.inc.php');
     include ('../../controllers/adminController/adminController.php');
@@ -84,24 +84,16 @@
             'required' => array('error', 'Descripcion es requerido!')
         ));
 
-        # imagen
-        $form->add('label', 'label_imagen', 'imagen', 'Imagen:');
-        $obj = $form->add('text', 'imagen');
+        //imagen
+        $form->add('label', 'label_file', 'file', 'Sube una imagen para el evento');
+        $obj = $form->add('file', 'file');
         $obj->set_rule(array(
-            'required' => array('error', 'Imagen es requerido!'),
+            'upload' => array('../images/imgEventos', ZEBRA_FORM_UPLOAD_RANDOM_NAMES, 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
+            'image' => array('error', 'File must be a jpg, png or gif image!'),
+            'filesize' => array(102400, 'error', 'File size must not exceed 100Kb!'),
         ));
-
-        # Este Boton es para cargar imagenes
-        //$form->add('label', 'label_imagen', 'imagen', 'Imagen de la Actividad');
-        //$obj = $form->add('file', 'imagen');
-        //$obj->set_rule(array(
-        //    // error messages will be sent to a variable called "error", usable in custom templates
-        //    'required' => array('error', 'Se requiere imagen!'),
-        //    'upload' => array('tmp', ZEBRA_FORM_UPLOAD_RANDOM_NAMES, 'error', 'No se Pudo Cargar Imagen!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
-        //    'image' => array('error', 'File must be a jpg, png or gif image!'),
-        //    'filesize' => array(102400, 'error', 'Tu imagen Excede los 100Kb!'),
-        //));
-        //$form->add('note', 'note_imagen', 'imagen', 'Tu imagen debe tener .jpg, .jpeg, png ó .gif extension, y no mayor de 100Kb!');
+        
+        
         // "submit"
 
         $form->add('submit', 'btnsubmit', 'Actualizar');
@@ -112,9 +104,10 @@
 
         //validamos el formulario -------------------------------
         if ($form->validate()) {
-            $actividad = new ActualizaController();
+            $actEventos = new ActualizaController();
             if (isset($_POST)) {
-                if ($actividad->actualiza_eventos($_POST, $id_evento)) {
+                $_POST['imagen']=$_FILES['file']['name'];
+                if ($actEventos->actualiza_eventos($_POST, $id_evento)) {
                     header("Location: adminEvents.php");
 
                     exit();

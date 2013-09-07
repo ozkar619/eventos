@@ -43,8 +43,7 @@ $nombre_evento= $eventos->edita_evento($id_evento)
                     <th>Precio</th>                    
                     <th>Fechas</th>
                     <th>Horario</th>
-                    <th>Descripcion</th>
-                    <!--<th>Imagen</th>-->
+                    <th>Descripcion</th>                    
                     <th>Users</th>
                     <th>Edit</th>
                 </tr>
@@ -59,13 +58,12 @@ $nombre_evento= $eventos->edita_evento($id_evento)
                     ?>
 
                     <tr>                            
-                        <td><?php echo $arreglo[$key]['nombre_actividad'] ?></td>
+                       <td><?php echo $arreglo[$key]['nombre_actividad'] ?></td>
                         <td><?php echo $arreglo[$key]['lugar'] ?></td>
                         <td><?php echo $arreglo[$key]['precio'] ?></td>
                         <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?> </td>                            
                         <td><?php echo $arreglo[$key]['hora_inicio'] ?>  <strong>a</strong>  <?php echo $arreglo[$key]['hora_fin'] ?></td>                            
-                        <td><?php echo $arreglo[$key]['descripcion'] ?></td> 
-                        <!--<td><?php // echo $arreglo[$key]['imagen']      ?></td>-->                         
+                        <td><?php echo $arreglo[$key]['descripcion'] ?></td>                         
                         <td><center><a href="<?php echo BASEURL . "views/admin/usuarios.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-inverse" type="button"><i class="icon-user icon-white"></i></a></center></td>
                         <td><center><a href="<?php echo BASEURL . "views/admin/updateActividades.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
                     </tr>                            
