@@ -17,5 +17,15 @@ class SuperadminController{
         $arreglo = $rs->GetArray();
         return $arreglo;
     }
+    
+     public function edita_evento($id_evento) {
+        $eventos = new Modelo();
+        $sql = ("SELECT * FROM evt_eventos
+            WHERE id_evento = " . $id_evento);
+
+        $rs = $eventos->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
 }
 ?>

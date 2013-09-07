@@ -3,7 +3,7 @@
 class LoginController extends Usuario{
     
     private $admins = array('oscar@itc.mx','ramon_eduardo14@hotmail.com','mane@itc.mx');
-    
+    private $superadmins = array('ramone.mendozam@gmail.com');//Correo del superadministrador
     public function valida_usuario($email,$password){
         //validar
         $sql = "select * 
@@ -37,7 +37,7 @@ class LoginController extends Usuario{
         
         if(in_array($rows['email'],$this->admins))
                 $_SESSION['admin'] = 'isAdmin';
-        if($rows['email']=='ramone.mendozam@gmail.com') //Correo del superadministrador
+        if(in_array($rows['email'], $this->superadmins)) 
             $_SESSION['superadmin']='isSuperAdmin';
         return true;
         //header("location: inicio.php");

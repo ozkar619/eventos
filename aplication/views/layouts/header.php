@@ -63,7 +63,7 @@
                                   <a tabindex="-1" href="<?php echo BASEURL;?>views/superadmin/usuariossuperadmin.php">Lista de Usuarios</a>
                               </li>
                               <li>
-                                  <a tabindex="-1" href="<?php echo BASEURL;?>views/superadmin/registroTiposUsuario.php">Tipos de Usuario</a>
+                                  <a tabindex="-1" href="<?php echo BASEURL;?>views/superadmin/registroTiposUsuario.php">Registrar Tipos de Usuario</a>
                               </li>
                           </ul>
                       </li>
@@ -76,11 +76,13 @@
                               <li>
                                   <a tabindex="-1" href="<?php echo BASEURL;?>views/superadmin/eventossuperadmin.php">Lista de Eventos</a>
                               </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                          <a tabindex="-1" href="#">Actividades</a>
+                          <ul class="dropdown-menu">
                               <li>
-                                  <a tabindex="-1" href="#">Modificar Evento</a> <!-- En desarrollo -->
-                              </li>
-                              <li>
-                                  <a tabindex="-1" href="#">Eliminar Evento</a> <!-- En desarrollo -->
+                                  <a tabindex="-1" href="<?php echo BASEURL;?>views/superadmin/registroTiposActividad.php">Registrar Tipos de Actividad</a>
                               </li>
                           </ul>
                       </li>
