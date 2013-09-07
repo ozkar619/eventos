@@ -27,8 +27,7 @@ include("../layouts/header.php");
         <table class="table table-striped table-bordered" id="example">
             <legend>Todos los Usuarios Registrados
                 <div class="btn-group pull-right">
-                    <button class="btn">Crear usuario</button>
-                    <button class="btn">Imprimir</button>
+                    <button class="btn" onclick="window.print()">Imprimir</button>
                 </div>
             </legend><br/>
 
