@@ -8,6 +8,7 @@ class Actividades extends Modelo {
     public $atributos = array(
         'id_evento' => array(),
         'id_instructor' => array(),
+        'id_tipo_actividad' => array(),
         'nombre_actividad' => array(),
         'lugar' => array(),
         'precio' => array(),
@@ -21,6 +22,7 @@ class Actividades extends Modelo {
         
     private $id_evento;
     private $id_instructor;
+    private $id_tipo_actividad;
     private $nombre_actividad;
     private $lugar;
     private $precio;
@@ -58,6 +60,14 @@ class Actividades extends Modelo {
     }
     public function set_id_instructor( $valor ) {
         $this->id_instructor = $valor;
+    }
+    
+    # id_tipo_actividad
+    public function get_id_tipo_actividad() {
+        return $this->id_tipo_actividad;
+    }
+    public function set_id_tipo_actividad( $valor ) {
+        $this->id_tipo_actividad = $valor;
     }
     
     # nombre_actividad

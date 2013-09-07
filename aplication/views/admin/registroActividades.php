@@ -12,6 +12,7 @@
         $datosActividades = array(
             'id_evento' => $id_evento,
             'id_instructor' => '',
+            'id_tipo_actividad' => '',
             'nombre_actividad' => '',
             'lugar' => '',
             'precio' => '',
@@ -41,6 +42,13 @@
         # id_instructor
         $form->add('label', 'label_id_instructor', 'id_instructor', 'ID Instructor:');
         $obj = $form->add('text', 'id_instructor');
+        $obj->set_rule(array(
+            'required' => array('error', 'ID es requerido!'),
+        ));
+        
+        # id_instructor
+        $form->add('label', 'label_id_tipo_actividad', 'id_tipo_actividad', 'ID Tipo Actividad:');
+        $obj = $form->add('text', 'id_tipo_actividad');
         $obj->set_rule(array(
             'required' => array('error', 'ID es requerido!'),
         ));

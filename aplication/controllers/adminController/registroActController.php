@@ -10,6 +10,7 @@ class RegistroActController extends Actividades {
         parent::Actividad();
         $this->set_id_evento($valores['id_evento']);
         $this->set_id_instructor($valores['id_instructor']);
+        $this->set_id_tipo_actividad($valores['id_tipo_actividad']); 
         $this->set_nombre_actividad($valores['nombre_actividad']);
         $this->set_lugar($valores['lugar']);
         $this->set_precio($valores['precio']);
