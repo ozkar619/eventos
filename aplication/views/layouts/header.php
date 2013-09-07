@@ -52,6 +52,41 @@
                 </ul>
               </li>
               <?php endif;?>
+              <?php if(isset($_SESSION['superadmin'])):?>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">SuperAdmin<b class="caret"></b></a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                      <li class="dropdown-submenu">
+                          <a tabindex="-1" href="#">Usuarios</a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a tabindex="-1" href="<?php echo BASEURL;?>views/superadmin/usuariossuperadmin.php">Lista de Usuarios</a>
+                              </li>
+                              <li>
+                                  <a tabindex="-1" href="<?php echo BASEURL;?>views/superadmin/registroTiposUsuario.php">Tipos de Usuario</a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li class="dropdown-submenu">
+                          <a tabindex="-1" href="#">Eventos</a>
+                          <ul class="dropdown-menu">
+                              <li>
+                                  <a tabindex="-1" href="<?php echo BASEURL;?>views/superadmin/registroEventos.php">Registrar Evento</a>
+                              </li>
+                              <li>
+                                  <a tabindex="-1" href="<?php echo BASEURL;?>views/superadmin/eventossuperadmin.php">Lista de Eventos</a>
+                              </li>
+                              <li>
+                                  <a tabindex="-1" href="#">Modificar Evento</a> <!-- En desarrollo -->
+                              </li>
+                              <li>
+                                  <a tabindex="-1" href="#">Eliminar Evento</a> <!-- En desarrollo -->
+                              </li>
+                          </ul>
+                      </li>
+                  </ul>
+              </li>
+              <?php endif;?>
             </ul>
             <?php if(!isset($_SESSION['nombre'])):?>  
               <div class="navbar-form pull-right">

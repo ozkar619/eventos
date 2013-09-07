@@ -37,7 +37,8 @@ class LoginController extends Usuario{
         
         if(in_array($rows['email'],$this->admins))
                 $_SESSION['admin'] = 'isAdmin';
-        
+        if($rows['email']=='ramone.mendozam@gmail.com') //Correo del superadministrador
+            $_SESSION['superadmin']='isSuperAdmin';
         return true;
         //header("location: inicio.php");
     }

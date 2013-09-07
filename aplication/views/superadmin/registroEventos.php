@@ -76,14 +76,14 @@ $obj->set_rule(array(
 //submit
 $form->add('submit', 'btnsubmit', 'Registrar');  
 
-//validar el formulario
+
 // echo "<PRE>";
 //                    print_r($_POST);
 //                    print_r($_FILES);
 //                    echo "</PRE>";
 //                    die();
 
-
+//validar el formulario
 if ($form->validate()){
                 $evento = new RegistroEvtController;
                 if(isset($_POST)){
@@ -114,4 +114,3 @@ if ($form->validate()){
     <?php
     include("../layouts/footer.php"); 
     ?>
-?>
