@@ -1,9 +1,9 @@
  body{
-        padding-top: 30px;
-        padding-bottom: 40px;
- }
- 
- #page{
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+#page{
     margin-top: 0px;
     margin-bottom: 0px;
     background: white;
@@ -24,4 +24,41 @@
 
 .navbar-inner{
     background-color: #387038;
+}
+
+
+.format{
+    background-color:red;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+}
+.image{
+    width: 600px;
+    height: 320px;
+}
+
+.azul{
+    background-color: blue;
+}
+
+.rojo{
+    background-color: red;
+}
+
+.negro{
+    background-color: black;
+}
+.justificado{
+    text-align : justify;
+    font-weight: bold;
+}
+.justificado h1{
+    text-align : justify;
+    font-weight: bold;
+}
+
+h2 {
+    background-color: yellow;
 }

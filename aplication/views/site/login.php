@@ -7,7 +7,7 @@ session_start();
     include ('../../libs/adodb5/adodb-pager.inc.php');
     include ('../../libs/adodb5/adodb.inc.php');
     include ('../../controllers/siteController/loginController.php');
-        
+       
     require '../../libs/zebra_form/Zebra_Form.php';
     
     
@@ -45,6 +45,7 @@ session_start();
     // "password"
     $form->add('label', 'label_password', 'password', 'Password');
     $obj = $form->add('password', 'password', '', array('autocomplete' => 'off'));
+    
     $obj->set_rule(array(
         'required'  => array('error', 'Password is required!'),
         'length'    => array(3, 10, 'error', 'The password must have between 6 and 10 characters!'),
@@ -58,6 +59,7 @@ session_start();
     $form->add('submit', 'btnsubmit', 'Iniciar sesion');
     
     // if the form is valid
+    
     if ($form->validate()) {
         if(isset($_POST['email'])){
             $login = new LoginController();
