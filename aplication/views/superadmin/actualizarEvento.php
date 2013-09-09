@@ -1,15 +1,15 @@
-    <?php
-    session_start();
+<?php
+session_start();
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
     include ('../../models/Evento.php');
     include ('../../libs/adodb5/adodb-pager.inc.php');
     include ('../../libs/adodb5/adodb.inc.php');
-    include ('../../controllers/adminController/adminController.php');
-    include ('../../controllers/adminController/actualizaController.php');
+    include ('../../controllers/superadminController/superadminController.php');
+    include ('../../controllers/superadminController/actualizaEvtController.php');
 
         $id_evento = ($_GET['id_evento']); // <- Mandar el id del evento para agregar en la tabla
-        $eventos = new adminController();
+        $eventos = new SuperadminController();
         $arreglo = $eventos->edita_evento($id_evento);
 
 
@@ -104,11 +104,11 @@
 
         //validamos el formulario -------------------------------
         if ($form->validate()) {
-            $actEventos = new ActualizaController();
+            $actEventos = new ActualizaEvtController();
             if (isset($_POST)) {
                 $_POST['imagen']=$_FILES['file']['name'];
                 if ($actEventos->actualiza_eventos($_POST, $id_evento)) {
-                    header("Location: adminEvents.php");
+                    header("Location: eventossuperadmin.php");
 
                     exit();
                 }
@@ -128,6 +128,7 @@
             <?php
                 $form->render();
             ?>
+            <a href="eventossuperadmin.php">Cancelar</a>
         </div>
 
     <?php

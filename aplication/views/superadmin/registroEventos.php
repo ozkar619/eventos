@@ -76,18 +76,18 @@ $obj->set_rule(array(
 //submit
 $form->add('submit', 'btnsubmit', 'Registrar');  
 
-//validar el formulario
+
 // echo "<PRE>";
 //                    print_r($_POST);
 //                    print_r($_FILES);
 //                    echo "</PRE>";
 //                    die();
 
-
+//validar el formulario
 if ($form->validate()){
                 $evento = new RegistroEvtController;
                 if(isset($_POST)){
-                   $_POST['imagen']=$_FILES['file']['name'];
+                   $_POST['imagen']=$_FILES['file']['name']; //Aún tengo problema con el nombre de la imágen, para que sea el mismo en la base de datos y el archivo en la carpeta
                    //move_uploaded_file($_FILES["file"]["tmp_name"],"../images/".$_FILES['file']['name']);
                     if($evento->registraEvento($_POST)){
                         header("Location: registroCorrecto.php");
@@ -114,4 +114,3 @@ if ($form->validate()){
     <?php
     include("../layouts/footer.php"); 
     ?>
-?>

@@ -10,7 +10,7 @@ include ('../layouts/header.php');
 
 $inicio = new InicioControler();
 
-$ruta = "../images/";
+$ruta = "../images/imgEventos/";
 ?>
 
 
@@ -56,6 +56,7 @@ $ruta = "../images/";
                                     <p> <?php echo "Descripcion : " . $arreglo[$key]['informacion'] ?> </p> 
                                     <p> <?php echo "Del " . $arreglo[$key]['fecha_inicio'] . " al " . $arreglo[$key]['fecha_fin'] ?> </p> 
                                     <p> <?php echo "Lugar : " . $arreglo[$key]['lugar'] . "____/____Contacto : " . $arreglo[$key]['contacto'] ?> </p>
+                                    
                                     <form method="POST" action="#">
                                         <tr>
                                             <td> <input type="BUTTON" name="btn2" value="Ver actividades" class = "btn btn-danger"></td>
