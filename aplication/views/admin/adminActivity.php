@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 include ('../../models/Conexion.php');
 include ('../../libs/adodb5/adodb-pager.inc.php');
@@ -6,11 +6,14 @@ include ('../../libs/adodb5/adodb.inc.php');
 include ('../../models/Modelo.php');
 include ('../../controllers/adminController/adminController.php');
 include ('../layouts/header.php');
-
+?><br><br><br>
+    <?php
 $eventos = new adminController();
 $id_evento = ($_GET['id_evento']); #-> Recibimos Parametro
 $arreglo = $eventos->consulta_actividades($id_evento);
-$nombre_evento= $eventos->edita_evento($id_evento)
+$nombre_evento= $eventos->edita_evento($id_evento);
+$llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
+//$llave = 5
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">
@@ -20,8 +23,10 @@ $nombre_evento= $eventos->edita_evento($id_evento)
 
 <br/><br/>
 <div class="span12 row-fluid">
-
     
+    
+    <?php # Validando Lista de Eventos
+    if($llave[0]['id_asistente'] == $_SESSION['id_usuario']) :?>
 
     <!-------- Lista de Actividades ( DataTable con Busqueda ) ------------>
     <div class="span11">
@@ -73,6 +78,10 @@ $nombre_evento= $eventos->edita_evento($id_evento)
         </table>
     </div>
     <!------------------------------- Fin Data Table-------------------------------------------------->
-
+    
+    <?php # Denegando Lista de Eventos
+    endif; if($llave[0]['id_asistente'] != $_SESSION['id_usuario'])
+        die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+    ?>
 </div>
 <?php include '../layouts/footer.php'; ?>   
