@@ -65,10 +65,11 @@ $obj->direction(1);
 $form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (AAAA-MM-DD)');
 
 //imagen
+$_SESSION['nombre_img']=md5(rand(0, 500));
 $form->add('label', 'label_file', 'file', 'Sube una imagen para el evento');
 $obj = $form->add('file', 'file');
 $obj->set_rule(array(
-    'upload' => array('../images', ZEBRA_FORM_UPLOAD_RANDOM_NAMES, 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
+    'upload' => array('../images/imgEventos', $_SESSION['nombre_img'], 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
     'image' => array('error', 'File must be a jpg, png or gif image!'),
     'filesize' => array(102400, 'error', 'File size must not exceed 100Kb!'),
 ));
@@ -87,7 +88,7 @@ $form->add('submit', 'btnsubmit', 'Registrar');
 if ($form->validate()){
                 $evento = new RegistroEvtController;
                 if(isset($_POST)){
-                   $_POST['imagen']=$_FILES['file']['name']; //Aún tengo problema con el nombre de la imágen, para que sea el mismo en la base de datos y el archivo en la carpeta
+                   $_POST['imagen']=$_SESSION['nombre_img'].$_FILES['file']['name']; //Aún tengo problema con el nombre de la imágen, para que sea el mismo en la base de datos y el archivo en la carpeta
                    //move_uploaded_file($_FILES["file"]["tmp_name"],"../images/".$_FILES['file']['name']);
                     if($evento->registraEvento($_POST)){
                         header("Location: registroCorrecto.php");
