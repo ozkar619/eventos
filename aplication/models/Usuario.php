@@ -88,7 +88,11 @@ class Usuario extends Modelo{
         return $this->email;
     } 
     public function set_email($valor){
+        
+        $rs = $this->consulta_sql("select * from evt_asistentes where email = '$valor'");
+        $rows = $rs->GetArray();
         $this->email = $valor;
+        
     } 
     
     

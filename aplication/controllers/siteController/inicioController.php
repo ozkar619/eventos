@@ -1,6 +1,6 @@
 <?php
 
-class InicioControler extends Evento {
+class InicioControler extends Evento{
 
     public function muestra_eventos($eventos = 0) {
         //$eventos -> controla el total de eventos que se quieren mostrar
@@ -12,7 +12,7 @@ class InicioControler extends Evento {
             $sql = "SELECT * FROM " . $this->nombre_tabla .
                     " where fecha_fin > " . "'" . "$hoy" . "'" . " order by fecha_fin asc limit " . $eventos;
         }
-
+        
         $rs = $this->consulta_sql($sql);
         $rows = $rs->GetArray();
         return $rows;
