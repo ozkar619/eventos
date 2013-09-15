@@ -7,7 +7,7 @@ class InicioControler extends Evento {
         $hoy = date("Y-m-d");
         if ($eventos == 0) {//muestra todos los eventos por haber  
             $sql = "SELECT * FROM " . $this->nombre_tabla .
-                    " where fecha_fin > " . "'" . "$hoy" . "'";
+                    " where fecha_fin > " . "'" . "$hoy" . "'". " order by fecha_fin asc";
         } else {//smuestra los "$eventos" eventos mas proximos a terminarse 
             $sql = "SELECT * FROM " . $this->nombre_tabla .
                     " where fecha_fin > " . "'" . "$hoy" . "'" . " order by fecha_fin asc limit " . $eventos;
@@ -40,6 +40,12 @@ class InicioControler extends Evento {
         $rows = $rs->GetArray();
         $cant = $rows[0];
         return ($cant[0]);
+    }
+    
+    public function regresa_evento($id){
+        $sql= "SELECT * FROM evt_eventos where id_evento = "+$id;
+        $rs = $this->consulta_sql($sql);
+        return $rs->GetArray();
     }
 
 }

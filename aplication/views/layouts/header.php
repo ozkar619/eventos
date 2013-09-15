@@ -14,6 +14,7 @@
     <link href="../bootstrap/css/aplication.css" rel="stylesheet">
     
     <script src="../bootstrap/js/jquery.js"></script>
+    <script src="../bootstrap/js/inicio.js"></script>
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     
   </head>
@@ -130,3 +131,4 @@
 
 <div class="container" id="page">
     
+        
