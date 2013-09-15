@@ -6,14 +6,13 @@ include ('../../libs/adodb5/adodb.inc.php');
 include ('../../models/Modelo.php');
 include ('../../controllers/adminController/adminController.php');
 include ('../layouts/header.php');
-?><br><br><br>
-    <?php
+
 $eventos = new adminController();
 $id_evento = ($_GET['id_evento']); #-> Recibimos Parametro
 $arreglo = $eventos->consulta_actividades($id_evento);
 $nombre_evento= $eventos->edita_evento($id_evento);
 $llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
-//$llave = 5
+
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">

@@ -2,10 +2,12 @@
 
 class AdminController {
 
-    function AdminController() {
+    function AdminController() { 
         
     }
 
+    # Ver Lista de Asistentes  # <--- Modificar para Staff
+    
     public function list_users() {
         $usuario = new Usuario();
         $sql = ("SELECT * FROM evt_asistentes ");
@@ -13,6 +15,8 @@ class AdminController {
         $arreglo = $rs->GetArray();
         return $arreglo;
     }
+    
+    # Lista de Usuarios registrados en una actividad especifica
     
     public function lista_usuarios( $id_actividad ) {
         $usuario = new Usuario();
@@ -27,7 +31,9 @@ class AdminController {
         return $arreglo;
     }
     
-    public function lista_usuarios_admin( $id_asistente ) {
+    # Lista de usuarios del Staff de cada Actividad
+    
+    public function lista_usuarios_Staff( $id_asistente ) {
         $usuario = new Usuario();
         $sql = ("
             
@@ -72,7 +78,7 @@ class AdminController {
         return $arreglo;
     }
 
-    #-> Funcion que Muestra en el Zebra Form los Datos Al formulario del Evento Seleccionado
+    # Funcion que Muestra en el Zebra Form los Datos Al formulario del Evento Seleccionado
 
     public function edita_evento($id_evento) {
         $eventos = new Modelo();
@@ -106,19 +112,30 @@ class AdminController {
         return $arreglo;
     }
     
-    # Funcio que Valida las entradas en los id's 
+    # Funcion que Valida las entradas en los id's de Eventos
+    
     public function valida_eventos( $id_evento, $nombre_asistente){
         $eventos = new Modelo();        
         $sql = ("SELECT ea.id_asistente
                 FROM evt_eventos_admin ea inner join evt_asistentes a 
                 ON ea.id_asistente = a.id_asistente
-                WHERE ea.id_evento = ".$id_evento." AND a.nombre_asistente = '".$nombre_asistente."'");        
-        
+                WHERE ea.id_evento = ".$id_evento." AND a.nombre_asistente = '".$nombre_asistente."'");                
         $rs = $eventos->consulta_sql($sql);
         $arreglo = $rs->GetArray();        
         return $arreglo;
-        
-        
+    }
+    
+    # Funcion que Valida las entradas en los id's de Actividades
+    
+    public function valida_actividades($id_evento, $nombre_asistente, $id_actividad){
+        $eventos = new Modelo();        
+        $sql = ("SELECT ea.id_asistente
+                FROM evt_eventos_admin ea inner join evt_asistentes a 
+                ON ea.id_asistente = a.id_asistente inner join evt_actividades ac on ac.id_evento = ea.id_evento
+                WHERE ea.id_evento = ".$id_evento." AND a.nombre_asistente = '".$nombre_asistente."'  and ac.id_actividad = ".$id_actividad.";");                
+        $rs = $eventos->consulta_sql($sql);
+        $arreglo = $rs->GetArray();        
+        return $arreglo;
     }
 
 }
