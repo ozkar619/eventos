@@ -8,7 +8,11 @@ include ('../../libs/adodb5/adodb.inc.php');
 include ('../../controllers/adminController/adminController.php');
 
 $admin = new adminController();
-$arreglo = $admin->lista_usuarios($_GET['id_actividad']);
+$id_actividad = $_GET['id_actividad'];
+$id_evento = $_GET['id_evento'];
+$arreglo = $admin->lista_usuarios($id_actividad);
+
+$llave = $admin->valida_actividades($id_evento ,$_SESSION['nombre'], $id_actividad);
 
 include("../layouts/header.php");
 ?>
@@ -19,6 +23,9 @@ include("../layouts/header.php");
 
 <div class="span12">
 
+    <?php # Validando Lista de Eventos
+    if($llave[0]['id_asistente'] == $_SESSION['id_usuario']) :?>
+    
     <h2>lista de usuarios.</h2>
     
 
@@ -71,8 +78,10 @@ include("../layouts/header.php");
     </div>
     <!------------------------------- Fin Data Table-------------------------------------------------->
     
+    <?php # Denegando Lista de Eventos
+    endif; if($llave[0]['id_asistente'] != $_SESSION['id_usuario'])
+        die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+    ?>
+    
 </div>
-
-<?php
-include("../layouts/footer.php");
-?>
+<?php include("../layouts/footer.php"); ?>

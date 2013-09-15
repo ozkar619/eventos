@@ -11,7 +11,7 @@
         $id_evento = ($_GET['id_evento']); // <- Mandar el id del evento para agregar en la tabla
         $eventos = new adminController();
         $arreglo = $eventos->edita_evento($id_evento);
-
+        
 
         $datosActividades = array(
             'nombre_evento' => $arreglo[0]['nombre_evento'],
@@ -85,10 +85,11 @@
         ));
 
         //imagen
+        $_SESSION['nombre_img']=md5(rand(0, 500));
         $form->add('label', 'label_file', 'file', 'Sube una imagen para el evento');
         $obj = $form->add('file', 'file');
         $obj->set_rule(array(
-            'upload' => array('../images/imgEventos', ZEBRA_FORM_UPLOAD_RANDOM_NAMES, 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
+            'upload' => array('../images/imgEventos', $_SESSION['nombre_img'], 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
             'image' => array('error', 'File must be a jpg, png or gif image!'),
             'filesize' => array(102400, 'error', 'File size must not exceed 100Kb!'),
         ));
@@ -99,14 +100,14 @@
         $form->add('submit', 'btnsubmit', 'Actualizar');
 
         //----------------------------------Termina Form---------------------------------------//
-
+               
 
 
         //validamos el formulario -------------------------------
         if ($form->validate()) {
             $actEventos = new ActualizaController();
             if (isset($_POST)) {
-                $_POST['imagen']=$_FILES['file']['name'];
+                $_POST['imagen']=$_SESSION['nombre_img'].$_FILES['file']['name']; 
                 if ($actEventos->actualiza_eventos($_POST, $id_evento)) {
                     header("Location: adminEvents.php");
 
@@ -119,6 +120,7 @@
         
 
     include("../layouts/header.php");
+    $llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
     ?>
         <link rel="stylesheet" href="../../libs/zebra_form/public/css/zebra_form.css">
         <script src="../../libs/zebra_form/public/javascript/zebra_form.js"></script>
@@ -126,7 +128,11 @@
         <div class="span6 offset3">
             <h2>Actualizacion de Eventos.</h2>
             <?php
-                $form->render();
+            if($llave[0]['id_asistente'] == $_SESSION['id_usuario']){
+                $form->render();            
+            } else {
+                die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+            }
             ?>
         </div>
 
