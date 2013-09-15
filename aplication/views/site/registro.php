@@ -30,11 +30,18 @@
             'required' => array('error', 'Apellido es requerido!')
         ));
         
-        $form->add('label', 'label_sexo', 'sexo', 'Sexo:');
-        $obj = $form->add('text', 'sexo');
-        $obj->set_rule(array(
-            'required' => array('error', 'Sexo es requerido!')
+                             
+        $form->add('label', 'label_genero', 'genero', 'Genero:');
+        $obj = $form->add('select', 'genero', '', array());
+        $obj->add_options(array(
+            'M'=>'Masculino',
+            'F'=>'Femenino',
         ));
+        $obj->set_rule(array(
+            'required' => array('error', 'Genero es requerido')
+        ));
+        //------------
+        
         
         $form->add('label', 'label_edad', 'edad', 'Edad:');
         $obj = $form->add('text', 'edad');
@@ -48,7 +55,7 @@
             'email'     => array('error', 'Email no valido!')
         ));
         
-        $form->add('note', 'note_email', 'email', 'mensajjjjjjje', 
+        $form->add('note', 'note_email', 'email', '', 
                 array('style'=>''));
         
         $form->add('label', 'label_password', 'password', 'Contraseña:');
@@ -72,7 +79,7 @@
         // "submit"
         $form->add('submit', 'btnsubmit', 'Registrar');      
     
-    //validamos el formulario -------------------------------
+        //validamos el formulario -------------------------------
         if ($form->validate()){
             echo hola;
                 $usuario = new RegistroController();
@@ -92,7 +99,7 @@
 
 
     <div class="span6 offset3">
-        <h2>Registro de asistentes.</h2>
+        <h2>Registro de usuario.</h2>
         <?php
              $form->render();
         ?>

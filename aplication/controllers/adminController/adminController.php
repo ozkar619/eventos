@@ -105,6 +105,21 @@ class AdminController {
         $arreglo = $rs->GetArray();
         return $arreglo;
     }
+    
+    # Funcio que Valida las entradas en los id's 
+    public function valida_eventos( $id_evento, $nombre_asistente){
+        $eventos = new Modelo();        
+        $sql = ("SELECT ea.id_asistente
+                FROM evt_eventos_admin ea inner join evt_asistentes a 
+                ON ea.id_asistente = a.id_asistente
+                WHERE ea.id_evento = ".$id_evento." AND a.nombre_asistente = '".$nombre_asistente."'");        
+        
+        $rs = $eventos->consulta_sql($sql);
+        $arreglo = $rs->GetArray();        
+        return $arreglo;
+        
+        
+    }
 
 }
 
