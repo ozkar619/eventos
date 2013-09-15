@@ -1,7 +1,15 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+class actividadesController extends Actividades{
+    
+    public function regresa_acti($id_evento){
+        $sql = "select * from ".$this->nombre_tabla." where id_evento = ".$id_evento;
+    }
+    
+    
+    
+}
+
+
+
 ?>

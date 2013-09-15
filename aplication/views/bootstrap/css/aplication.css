@@ -43,17 +43,7 @@
     width: 260px;
     height: 130px;
 }
-.azul{
-    background-color: blue;
-}
 
-.rojo{
-    background-color: red;
-}
-
-.negro{
-    background-color: black;
-}
 .justificado{
     text-align : justify;
     font-weight: bold;
@@ -73,4 +63,22 @@ padding-left:10px;
 .padding2
 {
 padding-top:40px;
+}
+
+.rosa{
+    background-color: pink;
+}
+.blanco{
+    background-color: white;
+}
+.azul{
+    background-color: blue;
+}
+
+.rojo{
+    background-color: red;
+}
+
+.negro{
+    background-color: black;
 }
