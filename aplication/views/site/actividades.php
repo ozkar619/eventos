@@ -61,8 +61,14 @@ $actividad = $acti->regresa_actividad($id_eve, $tipo);
     <div class="row-fluid">
         <div class="span10 offset1">
             <?php foreach ($actividad as $key => $value) : ?>
+           
                 <div class="accordion-group">
-                    <div class="accordion-heading">
+                     <?php if($key%2 == 1):?>
+            <div class="accordion-heading color1">
+            <?php else :?>
+                <div class="accordion-heading color">
+            <?php endif;?>
+                    
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="<?php echo "#" . $actividad[$key]['id_actividad']; ?>">
                             <h4><?php echo $actividad[$key]['nombre_actividad'] ?></h4>
                         </a>
@@ -76,7 +82,6 @@ $actividad = $acti->regresa_actividad($id_eve, $tipo);
                                 <p> <?php echo "Del " . $actividad[$key]['fecha_inicio'] . " al " . $actividad[$key]['fecha_fin'] ?> </p> 
                                 <p> <?php echo "Horarios de :" . $actividad[$key]['hora_inicio'] . " a " . $actividad[$key]['hora_fin'] ?> </p> 
                                 <p> <?php echo "Precio : $ " . $actividad[$key]['precio'] ?> </p> 
-                                <p> <?php echo $ruta . $actividad[$key]['imagen'] ?></p> 
                                 </p>
                             </div>                    
                             <div class="span3 rojo">

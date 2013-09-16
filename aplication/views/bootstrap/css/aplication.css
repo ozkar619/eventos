@@ -66,8 +66,12 @@ padding-left:10px;
 padding-top:40px;
 }
 
-.rosa{
-    background-color: pink;
+.color{
+    background-color: #d9edf7;
+}
+
+.color1{
+    background-color: #ECFFB3;
 }
 .blanco{
     background-color: white;
