@@ -14,7 +14,7 @@ $ruta = "../images/imgEventos/";
 <div class="padding2 row">
     <div id = "myCarousel" class = "carousel slide span8 offset2">
         <div class = "carousel-inner">
-            <?php $arreglo = $inicio->muestra_eventos(3); ?>
+            <?php $arreglo = $inicio->muestra_eventos(4); ?>
             <?php foreach ($arreglo as $key => $value) : ?>
                 <?php if ($key == 1): ?>
                     <div class = "item active"> 
@@ -28,17 +28,13 @@ $ruta = "../images/imgEventos/";
                             <p> <?php echo "Del " . $arreglo[$key]['fecha_inicio'] . " al " . $arreglo[$key]['fecha_fin'] ?> </p> 
                             <p> <?php echo "Lugar : " . $arreglo[$key]['lugar'] . "____/____Contacto : " . $arreglo[$key]['contacto'] ?> </p>
 
-                            <form method="POST" ACTION="actividades.php" target="_blank">
-                                <tr>
-                                    <td>  <input type="submit" name="btn" value="Ver actividades!!!!" class = "btn btn-warning"></td>
-                                <input type= "hidden" name="id_eve" value= "<?php echo $arreglo[$key]['id_evento'] ?>">
-                                <input type= "hidden" name="imagen" value= "<?php echo $arreglo[$key]['imagen'] ?>">
-                                <input type= "hidden" name="nombre" value= "<?php echo $arreglo[$key]['nombre_evento'] ?>">
+                            <tr>
+                                <td><a href="actividades.php?<?php echo 'id_eve=' . $arreglo[$key]['id_evento'] . '&tipo=0' ?>" role="button" class="btn btn-warning" data-toggle="modal" >Actividades »</a>  </td>               
+
                                 <?php if (!isset($_SESSION['id_usuario'])): ?>   
                                     <td> <h5><span class="label label-important">Registrate o inicia sesion para unirte al evento</span></h5></td>
                                 <?php endif ?> 
-                                </tr>
-                            </form>
+                            </tr>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -73,18 +69,21 @@ $ruta = "../images/imgEventos/";
                     <h5><?php echo $arreglo[$key]['nombre_evento'] ?></h5>
                     <img class="image2" src="<?php echo $ruta . $arreglo[$key]['imagen'] ?>"/> 
                     <?php $nom = $arreglo[$key]['nombre_evento']; ?>
-                    <form method="POST" ACTION="actividades.php" target="_blank">
-                        <tr>
-                            <td>  <input type="submit" name="btn" value="Ver actividades!!!!" class = "btn btn-warning" ></td>
-                            <td><a role="button"  class="btn" data-toggle="modal" onclick="func_modal('<?php echo $nom ?>', '<?php echo $lugar ?>', '<?php echo $f_i ?>', '<?php echo $f_f ?>', '<?php echo $cont ?>', '<?php echo $inf ?>')" >Detalles »</a>  </td>             
-                        <input type= "hidden" name="id_eve" value= "<?php  echo $arreglo[$key]['id_evento'] ?>">
-                        <input type= "hidden" name="imagen" value= "<?php  echo $arreglo[$key]['imagen'] ?>">
-                        <input type= "hidden" name="nombre" value= "<?php  echo $arreglo[$key]['nombre_evento'] ?>">
-                        <?php /* if (!isset($_SESSION['id_usuario'])): */ ?>   
-                        <!--<h5><span class="label label-important">Registrate o inicia sesion para unirte al evento</span></h5>-->
+                    <!--<form method="GET" ACTION="actividades.php?<?php echo 'id_eve=' . $arreglo[$key]['id_evento'] . '&tipo=0' ?>" target="_blank">-->
+                    <tr>
+
+
+
+                        <td><a href="actividades.php?<?php echo 'id_eve=' . $arreglo[$key]['id_evento'] . '&tipo=0' ?>" role="button" class="btn btn-primary" data-toggle="modal" >Actividades »</a>  </td>               
+                        <td><a role="button"  class="btn" data-toggle="modal" onclick="func_modal('<?php echo $nom ?>', '<?php echo $lugar ?>', '<?php echo $f_i ?>', '<?php echo $f_f ?>', '<?php echo $cont ?>', '<?php echo $inf ?>')" >Detalles »</a>  </td>             
+    <!--                        <input type= "hidden" name="id_eve" value= "<?php //  echo $arreglo[$key]['id_evento']     ?>">
+                    <input type= "hidden" name="imagen" value= "<?php // echo $arreglo[$key]['imagen']     ?>">
+                    <input type= "hidden" name="nombre" value= "<?php //echo $arreglo[$key]['nombre_evento']     ?>">
+                        <?php /* if (!isset($_SESSION['id_usuario'])): */ ?>   -->
+                    <!--<h5><span class="label label-important">Registrate o inicia sesion para unirte al evento</span></h5>-->
                         <?php /* endif */ ?>
-                        </tr>
-                    </form>
+                    </tr>
+                    <!--</form>-->
                 </div>
                 <?php $control++; ?>
                 <?php if ($control === 3): ?>  
