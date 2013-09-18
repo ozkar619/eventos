@@ -33,7 +33,7 @@ class InicioControler extends Evento{
         return $this->consulta_sql($sql);
     }
 
-    public function checa_registro($id_usuario, $id_evento) {
+    public function checa_registro_duplicado($id_usuario, $id_evento) {
         $sql = "SELECT COUNT(*) FROM evt_eventos_admin 
                 WHERE id_evento = " . $id_evento . " and " . "id_asistente = " . $id_usuario ;
         $rs = $this->consulta_sql($sql);

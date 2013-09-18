@@ -1,83 +1,78 @@
 <?php
-class Modelo extends Conexion{
-    
+
+class Modelo extends Conexion {
+
     public $db;
-    
-    function Modelo(){
+
+    function Modelo() {
 
         parent::Conexion();
     }
-    
-    public function consulta_datos(){
-        $rs = $this->db->Execute('SELECT * from '.$this->nombre_tabla);
-        $this->get_error($rs,'Error en consulta datos');
+
+    public function consulta_datos() {
+        $rs = $this->db->Execute('SELECT * from ' . $this->nombre_tabla);
+        $this->get_error($rs, 'Error en consulta datos');
         return $rs;
     }
-    
-    public function consulta_sql($sql){
+
+    public function consulta_sql($sql) {
         $rs = $this->db->Execute($sql);
-        $this->get_error($rs,'Error en consulta datos');
+        $this->get_error($rs, 'Error en consulta datos');
         return $rs;
     }
-    
-    
-    public function inserta($rs){
-        $sql_insert = $this->db->GetInsertSQL($this->nombre_tabla,$rs);
-        return $this->get_error($this->db->Execute($sql_insert),'Error en Modelo.inserta');
+
+    public function inserta($rs) {
+        $sql_insert = $this->db->GetInsertSQL($this->nombre_tabla, $rs);
+        return $this->get_error($this->db->Execute($sql_insert), 'Error en Modelo.inserta');
     }
-    
-    public function get_error($result,$tipo_error){
-        if($result === false){
-            die('Redireccionar a la pagina de error '.$tipo_error);
+
+    public function get_error($result, $tipo_error) {
+        if ($result === false) {
+            die('Redireccionar a la pagina de error ' . $tipo_error);
             return false;
-        }else{
+        } else {
             return true;
         }
     }
-    
-    public function show_grid($select = '*',$where = ' ',$num = '10'){
-        $sql = "SELECT ".$select." 
-                FROM ".$this->nombre_tabla." 
-                ".$where;
-        $grid = new ADODB_Pager($this->db,$sql);
-        $grid->Render($rows_per_page=$num);
+
+    public function show_grid($select = '*', $where = ' ', $num = '10') {
+        $sql = "SELECT " . $select . " 
+                FROM " . $this->nombre_tabla . " 
+                " . $where;
+        $grid = new ADODB_Pager($this->db, $sql);
+        $grid->Render($rows_per_page = $num);
     }
-    
-    public function actualiza($id){
-        if(is_integer($id)){
-            $sql = "SELECT * FROM  ".$this->nombre_tabla." 
-                WHERE id = ".$id; 
-            
+
+    public function actualiza($id) {
+        if (is_integer($id)) {
+            $sql = "SELECT * FROM  " . $this->nombre_tabla . " 
+                WHERE id = " . $id;
+
             $record = $this->db->Execute($sql);
             $rs = array();
             $rs['nombre'] = 'PEDROOOOOOO';
             $rs['email'] = 'pedroo@nnnnn.mmm';
             $rs['password'] = '0000000';
-            
-            $sql_update = $this->db->GetUpdateSQL($record,$rs);
-            $this->get_error($this->db->Execute($sql_update),'Error al actualizar');
-        }else{
+
+            $sql_update = $this->db->GetUpdateSQL($record, $rs);
+            $this->get_error($this->db->Execute($sql_update), 'Error al actualizar');
+        } else {
             die('OJO ');
         }
     }
-    
+
     //Tarea hacer una funcion que elimine por ID 
-    public function elimina($where = 'null'){
-       
-        if($id == 'null')
-            $sql = "DELETE FROM ".$this->nombre_tabla;
+    public function elimina($where = 'null') {
+
+        if ($id == 'null')
+            $sql = "DELETE FROM " . $this->nombre_tabla;
         else
-            $sql = "DELETE FROM ".$this->nombre_tabla."
-                    WHERE ".$where;
-        
+            $sql = "DELETE FROM " . $this->nombre_tabla . "
+                    WHERE " . $where;
+
         $this->get_error($this->db->Execute($sql), "Error al eliminar");
-        
     }
-    
-    
-    
-    
-    
+
 }
 ?>
 

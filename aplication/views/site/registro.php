@@ -81,7 +81,6 @@
     
         //validamos el formulario -------------------------------
         if ($form->validate()){
-            echo hola;
                 $usuario = new RegistroController();
                 if(isset($_POST)){
                     if($usuario->registraUsuario($_POST)){

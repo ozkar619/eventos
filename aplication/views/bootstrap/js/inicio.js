@@ -1,5 +1,4 @@
 
-//,f_i,f_f,cont,info
 function func_modal(nom,lugar,f_i,f_f,cont,info)
 {
     document.getElementById("nombre").innerHTML = (nom);
@@ -8,6 +7,14 @@ function func_modal(nom,lugar,f_i,f_f,cont,info)
     document.getElementById("lugar").innerHTML = ("Lugar :"+lugar);
     document.getElementById("contacto").innerHTML =("Contacto :" + cont);
     $('#myModal').modal({
+        show: true
+    })
+}
+
+function modal_reg_act_usu()
+{
+    document.getElementById("mensaje1").innerHTML = ("Registro corresto!!!!1");
+    $('#modal_reg_act_usu').modal({
         show: true
     })
 }

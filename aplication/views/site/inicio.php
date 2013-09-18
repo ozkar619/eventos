@@ -31,7 +31,7 @@ $ruta = "../images/imgEventos/";
                             <tr>
                                 <td><a href="actividades.php?<?php echo 'id_eve=' . $arreglo[$key]['id_evento'] . '&tipo=0' ?>" role="button" class="btn btn-warning" data-toggle="modal" >Actividades »</a>  </td>               
 
-                                <?php if (!isset($_SESSION['id_usuario'])): ?>   
+                                <?php if (!isset($_SESSION['id_usuario'])): ?>  
                                     <td> <h5><span class="label label-important">Registrate o inicia sesion para unirte al evento</span></h5></td>
                                 <?php endif ?> 
                             </tr>
@@ -70,7 +70,7 @@ $ruta = "../images/imgEventos/";
                     <img class="image2" src="<?php echo $ruta . $arreglo[$key]['imagen'] ?>"/> 
                     <?php $nom = $arreglo[$key]['nombre_evento']; ?>
                     <tr>
-                        <td><a href="actividades.php?<?php echo 'id_eve=' . $arreglo[$key]['id_evento'] . '&tipo=0' ?>" role="button" class="btn btn-primary" data-toggle="modal" >Actividades »</a>  </td>               
+                        <td><a href="actividades.php?<?php echo 'id_eve=' . $arreglo[$key]['id_evento'] . '&tipo=0' ?>" role="button" class="btn btn-primary" data-toggle="modal" >Ver actividades »</a>  </td>               
                         <td><a role="button"  class="btn" data-toggle="modal" onclick="func_modal('<?php echo $nom ?>', '<?php echo $lugar ?>', '<?php echo $f_i ?>', '<?php echo $f_f ?>', '<?php echo $cont ?>', '<?php echo $inf ?>')" >Detalles »</a>  </td>             
                     </tr>
                 </div>
