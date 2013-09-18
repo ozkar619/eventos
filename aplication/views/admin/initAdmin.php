@@ -43,7 +43,7 @@ $arreglo = $eventos->consulta_numero_eventos($_SESSION['id_usuario']);
         </div>
     </div>
     <!------------------------- Fin UI del Admin ------------------------------------------------->
-
+    
 </div>
 
 <?php include '../layouts/footer.php'; ?>

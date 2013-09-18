@@ -19,7 +19,8 @@ $arreglo = $eventos->consulta_eventos($_SESSION['id_usuario']);
 
 <br/><br/>
 <div class="span12 row-fluid">
-
+    
+    <h2>Lista de Eventos</h2>
 
     <!-------- Lista de Eventos( DataTable con Busqueda ) ------------>
     <div class="span11">
@@ -29,13 +30,14 @@ $arreglo = $eventos->consulta_eventos($_SESSION['id_usuario']);
             <!-- Encabezado Tabla -->
             <thead>
                 <tr>                    
+                    <th><center>*</center></th>
                     <th>Nombre</th>                    
                     <th>Lugar</th>
                     <th>Contacto</th>                    
                     <th>Fechas</th>
-                    <th>Descripcion</th>
+                    <th>Descripcion</th>                    
                     <th>Actividades</th>
-                    <th>Edit</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <!-- -------------------- -->
@@ -46,16 +48,16 @@ $arreglo = $eventos->consulta_eventos($_SESSION['id_usuario']);
                     $id_evento = $arreglo[$key]["id_evento"]; #--> Mandamos id_evento como param a las Actividades (En Edicion)
                     $numero_actividades = $eventos->consulta_numero_actividades($id_evento);?>
 
-                    <tr>                            
+                    <tr>    
+                        <td><center><a class="btn btn-mini" href="#" type="button"><i class="icon-picture"></i></a></center></td>
                         <td><?php echo $arreglo[$key]['nombre_evento'] ?></td>
                         <td><?php echo $arreglo[$key]['lugar'] ?></td>
                         <td><?php echo $arreglo[$key]['contacto'] ?></td>
                         <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?></td>
-                        <td><?php echo $arreglo[$key]['informacion'] ?></td>                        
-                        <td><?php echo $numero_actividades[0]['numero_actividades'] ?><a class="btn btn-inverse pull-right" href="<?php echo BASEURL . "views/admin/adminActivity.php?id_evento=$id_evento" ?>" type="button"><i class="icon-tasks icon-white"></i></a></td>
-                        <td><center><a href="<?php echo BASEURL . "views/admin/updateEvento.php?id_evento=$id_evento" ?>" class="btn  btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
-                    </tr>    
-
+                        <td><?php echo $arreglo[$key]['informacion'] ?></td>                                                
+                        <td><center><a class="btn btn-mini" href="<?php echo BASEURL . "views/admin/adminActivity.php?id_evento=$id_evento" ?>" type="button"><?php echo $numero_actividades[0]['numero_actividades'] ?>.  <i class="icon-eye-open"></i></a></center></td>
+                        <td><center><a href="<?php echo BASEURL . "views/admin/updateEvento.php?id_evento=$id_evento" ?>" class="btn btn-mini " type="button"><i class="icon-edit"></i></a></center></td>                        
+                    </tr>  
                 <?php endforeach; ?>
             </tbody>            
         </table>

@@ -23,6 +23,7 @@ $llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
 <br/><br/>
 <div class="span12 row-fluid">
     
+    <h2>Lista de Actividades</h2>
     
     <?php # Validando Lista de Eventos
     if($llave[0]['id_asistente'] == $_SESSION['id_usuario']) :?>
@@ -30,7 +31,7 @@ $llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
     <!-------- Lista de Actividades ( DataTable con Busqueda ) ------------>
     <div class="span11">
         <table class="table table-striped table-bordered" id="example">            
-            <legend>Actividades de <?php echo $nombre_evento[0]['nombre_evento']?>
+            <legend>Actividad [ <?php echo $nombre_evento[0]['nombre_evento']?> ]
                 <!--------------- Menu De Opciones del Admin No NavBar ---------------->
                 <div class="btn-group pull-right">        
                     <a href="<?php echo BASEURL . "views/admin/adminEvents.php?id_evento=$id_evento" ?>" class="btn " type="button"><i class="icon-chevron-left"></i> Mis Eventos </a>
@@ -41,7 +42,8 @@ $llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
 
             <!--Encabezado Tabla-->
             <thead>
-                <tr>                    
+                <tr>
+                    <th><center>*</center></th>
                     <th>Nombre</th>
                     <th>Lugar</th>
                     <th>Precio</th>                    
@@ -50,6 +52,7 @@ $llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
                     <th>Descripcion</th>                    
                     <th>Users</th>
                     <th>Edit</th>
+                    <th>Borrar</th>
                 </tr>
             </thead>
             <!-- -------------------- -->
@@ -61,15 +64,17 @@ $llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
                     $id_actividad = $arreglo[$key]['id_actividad']
                     ?>
 
-                    <tr>                            
-                       <td><?php echo $arreglo[$key]['nombre_actividad'] ?></td>
+                    <tr>                 
+                        <td><center><a class="btn btn-mini" href="#" type="button"><i class="icon-picture"></i></a></center></td>
+                        <td><?php echo $arreglo[$key]['nombre_actividad'] ?></td>
                         <td><?php echo $arreglo[$key]['lugar'] ?></td>
                         <td><?php echo $arreglo[$key]['precio'] ?></td>
                         <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?> </td>                            
                         <td><?php echo $arreglo[$key]['hora_inicio'] ?>  <strong>a</strong>  <?php echo $arreglo[$key]['hora_fin'] ?></td>                            
-                        <td><?php echo $arreglo[$key]['descripcion'] ?></td>                         
-                        <td><center><a href="<?php echo BASEURL . "views/admin/usuarios.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-inverse" type="button"><i class="icon-user icon-white"></i></a></center></td>
-                        <td><center><a href="<?php echo BASEURL . "views/admin/updateActividades.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
+                        <td><?php echo $arreglo[$key]['descripcion'] ?></td>
+                        <td><center><a href="<?php echo BASEURL . "views/admin/usuarios.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-user"></i></a></center></td>
+                        <td><center><a href="<?php echo BASEURL . "views/admin/updateActividades.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a></center></td>
+                        <td><center><a class="btn btn-mini btn-danger" href="#" type="button"><i class="icon-remove icon-white"></i></a></center></td>
                     </tr>                            
 
                 <?php endforeach; ?>

@@ -10,7 +10,10 @@ include ('../../controllers/adminController/adminController.php');
 $admin = new adminController();
 $arreglo = $admin->list_users();
 
+
+
 include("../layouts/header.php");
+
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">
 <script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>libs/DataTables-1.9.4/media/js/jquery.js"></script>
@@ -19,29 +22,30 @@ include("../layouts/header.php");
 
 <div class="span12">
 
-    <h2>lista de Usuarios.</h2>
+    <h2>Equipo Staff.</h2>
     
 
     <!-------- Lista de Usuarios( DataTable con Busqueda ) ------------>
     <div class="span11">
         <table class="table table-striped table-bordered" id="example">
-            <legend>Todos los Usuarios Registrados
+            <legend>Lista de Usuarios
                 <div class="btn-group pull-right">
-                    <button class="btn">Crear usuario</button>
+                    <button class="btn">Agregar Usuario</button>
                     <button class="btn">Imprimir</button>
                 </div>
             </legend><br/>
 
             <!-- Encabezado Tabla -->
             <thead>
-                <tr>
+                <tr>                    
                     <th>ID</th>
                     <th>Nombre</th>                    
                     <th>Apellidos</th>
                     <th>Genero</th>
                     <th>Edad</th>
                     <th>Email</th>
-                    <th>NoCtrol</th>                    
+                    <th>NoCtrol</th>
+                    <th><center>Borrar</center></th>                    
                 </tr>
             </thead>
             <!-- -------------------- -->
@@ -57,7 +61,8 @@ include("../layouts/header.php");
                         <td><?php echo $arreglo[$key]['genero'] ?></td>
                         <td><?php echo $arreglo[$key]['edad'] ?> </td>
                         <td><?php echo $arreglo[$key]['email'] ?></td>
-                        <td><?php echo $arreglo[$key]['nctrl_rfc'] ?></td>                        
+                        <td><?php echo $arreglo[$key]['nctrl_rfc'] ?></td>            
+                        <td><center><a class="btn btn-mini btn-danger" href="#" type="button"><i class="icon-remove icon-white"></i></a></center></td>
                     </tr>    
 
                 <?php endforeach; ?>

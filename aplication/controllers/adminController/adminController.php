@@ -94,8 +94,8 @@ class AdminController {
 
     public function consulta_actividades($id_evento) {
         $eventos = new Modelo();
-        $sql = ("SELECT * FROM evt_actividades 
-            WHERE id_evento = " . $id_evento);
+        $sql = (" SELECT * FROM evt_actividades 
+            WHERE id_evento = " .$id_evento );
         $rs = $eventos->consulta_sql($sql);
         $arreglo = $rs->GetArray();
         return $arreglo;
@@ -137,6 +137,35 @@ class AdminController {
         $arreglo = $rs->GetArray();        
         return $arreglo;
     }
+    
+    # Funcion para ver en resgistro actividades a los Instructores y mandar por id
+    
+    public function consulta_instructores ( $where = ";" ){
+        $eventos = new Modelo();
+        $sql = (" SELECT * FROM evt_asistentes " .$where);
+        $rs = $eventos->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+    
+    # Funcion para ver los tipos de actividades
+    
+    public function consulta_tipos_actividades (){
+        $eventos = new Modelo();
+        $sql = (" SELECT * FROM evt_tipos_actividades");
+        $rs = $eventos->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+    
+    # Funcion para eliminar por ID
+    
+    public function deleteBut_id ( $nombre_tabla, $where ){
+        $eventos = new Modelo();
+        $sql = (" DELETE FROM ".$nombre_tabla. " WHERE ".$where);
+        $eventos->consulta_sql($sql);
+    }
+           
 
 }
 

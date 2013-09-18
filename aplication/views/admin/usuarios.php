@@ -35,15 +35,15 @@ include("../layouts/header.php");
             <legend>Usuarios Registrados [ <?php echo $arreglo[0]['nombre_actividad']?> ]
                 
                 <div class="btn-group pull-right">
-                    <button class="btn">Crear usuario</button>
-                    <button class="btn">Imprimir</button>
+                    <a href="<? echo BASEURL."views/admin/adminActivity.php?id_evento=$id_evento" ?>" class="btn"><i class="icon-chevron-left"></i> Actividades</a>                
+                    <a href="" class="btn">Imprimir</a>
                 </div>
             </legend><br/>
 
             <!-- Encabezado Tabla -->
             <thead>
                 <tr>                    
-                    <th>Nombre</th>                    
+                    <th>Nombre</th>
                     <th>Apellidos</th>
                     <th>Edad</th>
                     <th>Email</th>
@@ -52,6 +52,7 @@ include("../layouts/header.php");
                     <th>Pago</th>
                     <th>Asistio</th>
                     <th>Id Instructor</th>
+                    <th><center>Borrar</center></th>
                 </tr>
             </thead>
             <!-- -------------------- -->
@@ -60,7 +61,7 @@ include("../layouts/header.php");
             <tbody>
                 <?php foreach ($arreglo as $key => $value) : ?>
 
-                    <tr>                            
+                    <tr>                        
                         <td><?php echo $arreglo[$key]['nombre_asistente'] ?></td>
                         <td><?php echo $arreglo[$key]['apellido_paterno']?> <?php echo $arreglo[$key]['apellido_materno']?></td>
                         <td><?php echo $arreglo[$key]['edad'] ?></td>
@@ -70,6 +71,7 @@ include("../layouts/header.php");
                         <td><?php echo $arreglo[$key]['pago'] ?></td>
                         <td><?php echo $arreglo[$key]['asistio'] ?></td>
                         <td><?php echo $arreglo[$key]['id_instructor'] ?></td>                        
+                        <td><center><a class="btn btn-mini btn-danger" href="#" type="button"><i class="icon-remove icon-white"></i></a></center></td>
                     </tr>    
 
                 <?php endforeach; ?>

@@ -9,7 +9,9 @@
     include ('../../controllers/adminController/adminController.php');
     
         $eventos = new adminController();
-        $id_evento = ($_GET['id_evento']); #-> Obtenemos id_evento que fue enviado por parametro        
+        $instructor = $eventos->consulta_instructores();
+        $tipos_actividades = $eventos->consulta_tipos_actividades();
+        $id_evento = ($_GET['id_evento']); #-> Obtenemos id_evento que fue enviado por parametro                
         $datosActividades = array(
             'id_evento' => $id_evento,
             'id_instructor' => '',
@@ -40,16 +42,32 @@
             'required' => array('error', 'ID es requerido!'),
         ));
     
-        # id_instructor
-        $form->add('label', 'label_id_instructor', 'id_instructor', 'ID Instructor:');
-        $obj = $form->add('text', 'id_instructor');
+        # Instructor
+        $form->add('label', 'label_id_instructor', 'id_instructor', 'Instructor:');
+        $obj = $form->add('select', 'id_instructor');
+        $obj->add_options(array(
+            #---------------------------------------------------------------------------------------
+            #                       No Puedo Meterlo en un arreglo :(                        
+            $instructor[0]['id_asistente'] => $instructor[0]['nombre_asistente'],
+            $instructor[1]['id_asistente'] => $instructor[1]['nombre_asistente'],
+            $instructor[2]['id_asistente'] => $instructor[2]['nombre_asistente'],
+            $instructor[3]['id_asistente'] => $instructor[3]['nombre_asistente'],            
+            #---------------------------------------------------------------------------------------
+        ));
         $obj->set_rule(array(
             'required' => array('error', 'ID es requerido!'),
         ));
         
-        # id_instructor
-        $form->add('label', 'label_id_tipo_actividad', 'id_tipo_actividad', 'ID Tipo Actividad:');
-        $obj = $form->add('text', 'id_tipo_actividad');
+        # Tipos de Actividades
+        $form->add('label', 'label_id_tipo_actividad', 'id_tipo_actividad', 'Tipo Actividad:');
+        $obj = $form->add('select', 'id_tipo_actividad');
+        $obj->add_options(array(
+            #---------------------------------------------------------------------------------------
+            #                       No Puedo Meterlo en un arreglo :(            
+            $tipos_actividades[0]['id_tipo_actividad'] => $tipos_actividades[0]['tipo_actividad'],
+            $tipos_actividades[1]['id_tipo_actividad'] => $tipos_actividades[1]['tipo_actividad'],
+            #---------------------------------------------------------------------------------------
+        ));
         $obj->set_rule(array(
             'required' => array('error', 'ID es requerido!'),
         ));
