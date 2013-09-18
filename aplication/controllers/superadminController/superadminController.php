@@ -27,5 +27,10 @@ class SuperadminController{
         $arreglo = $rs->GetArray();
         return $arreglo;
     }
+    public function elimina_evento($id_evento){
+        $evento=new Evento();
+        $where="id_evento=".$id_evento;
+        $evento->elimina($where);
+    }
 }
 ?>

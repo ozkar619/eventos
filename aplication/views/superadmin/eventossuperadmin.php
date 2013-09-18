@@ -45,6 +45,7 @@ include("../layouts/header.php");
                     <th>Fecha de fin</th>
                     <th>Modificar</th>
                     <th>Eliminar</th>
+                    <th>Administrador</th>
                 </tr>
             </thead>
             <!-- -------------------- -->
@@ -63,7 +64,8 @@ include("../layouts/header.php");
                         <td><?php echo $arreglo[$key]['fecha_inicio'] ?></td>
                         <td><?php echo $arreglo[$key]['fecha_fin'] ?></td>
                         <td><center><a href="<?php echo BASEURL . "views/superadmin/actualizarEvento.php?id_evento=$id_evento" ?>" class="btn  btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
-                        <td><center><a href="#" class="btn  btn-inverse" type="button"><i class="icon-minus-sign icon-white"></i></a></center></td>
+                        <td><center><a href="<?php echo BASEURL . "views/superadmin/eliminaEvento.php?id_evento=$id_evento" ?>" class="btn  btn-inverse" type="button"><i class="icon-minus-sign icon-white"></i></a></center></td>
+                        <td><center><a href="#" class="btn btn-inverse" type="button"><i class="icon-user icon-white"></i></a></center></td>
                     </tr>    
 
                 <?php endforeach; ?>
