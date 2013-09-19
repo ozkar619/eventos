@@ -168,7 +168,7 @@
             if (isset($_POST)) {
                 $_POST['imagen']=$_SESSION['nombre_img'].$_FILES['file']['name']; 
                 if ($actividad->registraActividad($_POST)) {
-                    header("Location: adminActivity.php?id_evento=$id_evento");
+                    header("Location: Actividades.php?id_evento=$id_evento");
                     exit();
                 }
             }

@@ -31,7 +31,7 @@ include("../layouts/header.php");
             <legend>Lista de Usuarios
                 <div class="btn-group pull-right">
                     <button class="btn">Agregar Usuario</button>
-                    <button class="btn">Imprimir</button>
+                    <button class="btn" onclick="window.print()">Imprimir</button>
                 </div>
             </legend><br/>
 

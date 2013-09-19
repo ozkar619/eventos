@@ -2,30 +2,27 @@
     session_start();
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
-    include ('../../models/Actividades.php');
+    include ('../../models/Evento.php');
     include ('../../libs/adodb5/adodb-pager.inc.php');
     include ('../../libs/adodb5/adodb.inc.php');
     include ('../../controllers/adminController/adminController.php');
     include ('../../controllers/adminController/actualizaController.php');
 
         $id_evento = ($_GET['id_evento']); // <- Mandar el id del evento para agregar en la tabla
-        $id_actividad = ($_GET['id_actividad']);
         $eventos = new adminController();
-        $arreglo = $eventos->edita_actividades($id_actividad);
-
+        $arreglo = $eventos->edita_evento($id_evento);
+        
 
         $datosActividades = array(
-            'id_instructor' => $arreglo[0]['id_instructor'],
-            'nombre_actividad' => $arreglo[0]['nombre_actividad'],
+            'nombre_evento' => $arreglo[0]['nombre_evento'],
             'lugar' => $arreglo[0]['lugar'],
-            'precio' => $arreglo[0]['precio'],
+            'contacto' => $arreglo[0]['contacto'],
             'fecha_inicio' => $arreglo[0]['fecha_inicio'],
             'fecha_fin' => $arreglo[0]['fecha_fin'],
-            'hora_inicio' => $arreglo[0]['hora_inicio'],
-            'hora_fin' => $arreglo[0]['hora_fin'],
-            'descripcion' => $arreglo[0]['descripcion'],
+            'informacion' => $arreglo[0]['informacion'],
             'imagen' => $arreglo[0]['imagen'],
         );
+
 
         //libreria del formulario ----------------------------
         require '../../libs/zebra_form/Zebra_Form.php';
@@ -37,32 +34,25 @@
 
 
         //----------------------------------Comienza Form---------------------------------------//
-        # id_instructor
-        $form->add('label', 'label_id_instructor', 'id_instructor', 'ID Instructor:');
-        $obj = $form->add('text', 'id_instructor');
+        # nombre_evento
+        $form->add('label', 'label_nombre_evento', 'nombre_evento', 'Nombre del Evento: ');
+        $obj = $form->add('text', 'nombre_evento');
         $obj->set_rule(array(
-            'required' => array('error', 'ID es requerido!'),
+            'required' => array('error', 'Nombre del Evento es requerido!'),
         ));
 
-        # nombre_actividad
-        $form->add('label', 'label_nombre_actividad', 'nombre_actividad', 'Nombre Actividad:');
-        $obj = $form->add('text', 'nombre_actividad');
-        $obj->set_rule(array(
-            'required' => array('error', 'Nombre es requerido!'),
-        ));
-
-        # lugar
-        $form->add('label', 'label_lugar', 'lugar', 'Lugar:');
+        # Lugar
+        $form->add('label', 'label_lugar', 'lugar', 'Lugar: ');
         $obj = $form->add('text', 'lugar');
         $obj->set_rule(array(
-            'required' => array('error', 'Lugar es requerido!')
+            'required' => array('error', 'Lugar es requerido!'),
         ));
 
-        # Precio
-        $form->add('label', 'label_precio', 'precio', 'Precio:');
-        $obj = $form->add('text', 'precio');
+        # Contacto
+        $form->add('label', 'label_contacto', 'contacto', 'Contacto:');
+        $obj = $form->add('text', 'contacto');
         $obj->set_rule(array(
-            'required' => array('error', 'Precio es requerido!')
+            'required' => array('error', 'Contacto es requerido!'),
         ));
 
         # Fecha Inicio
@@ -87,82 +77,59 @@
         $obj->direction(1);
         $form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (Y, M, d)');
 
-        # Hora Inicio
-        $form->add('label', 'label_hora_inicio', 'hora_inicio', 'Hora Inicio:');
-        $obj = $form->add('time', 'hora_inicio', '', array(
-            'format' => 'hm',
-            'hours' => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23),
-            'minutes' => array(00, 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59),
-                ));
-
-        $obj->set_rule(array(
-            'required' => array('error', 'Time is required!'),
-        ));
-
-        # Hora Fin
-        $form->add('label', 'label_hora_fin', 'hora_fin', 'Hora Fin:');
-        $obj = $form->add('time', 'hora_fin', '', array(
-            'format' => 'hm',
-            'hours' => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23),
-            'minutes' => array(00, 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59),
-                ));
-
-        $obj->set_rule(array(
-            'required' => array('error', 'Time is required!'),
-        ));
-
         # Descripcion
-        $form->add('label', 'label_descripcion', 'descripcion', 'Descripcion:');
-        $obj = $form->add('textarea', 'descripcion');
+        $form->add('label', 'label_informacion', 'informacion', 'Descripcion:');
+        $obj = $form->add('textarea', 'informacion');
         $obj->set_rule(array(
             'required' => array('error', 'Descripcion es requerido!')
         ));
 
-       //imagen
+        //imagen
         $_SESSION['nombre_img']=md5(rand(0, 500));
         $form->add('label', 'label_file', 'file', 'Sube una imagen para el evento');
         $obj = $form->add('file', 'file');
         $obj->set_rule(array(
-            'upload' => array('../images/imgActividades', $_SESSION['nombre_img'], 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
+            'upload' => array('../images/imgEventos', $_SESSION['nombre_img'], 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
             'image' => array('error', 'File must be a jpg, png or gif image!'),
             'filesize' => array(102400, 'error', 'File size must not exceed 100Kb!'),
-        ));       
+        ));
         
         
         // "submit"
 
         $form->add('submit', 'btnsubmit', 'Actualizar');
+
         //----------------------------------Termina Form---------------------------------------//
-
-
+               
 
 
         //validamos el formulario -------------------------------
         if ($form->validate()) {
-            $actividad = new ActualizaController();
+            $actEventos = new ActualizaController();
             if (isset($_POST)) {
                 $_POST['imagen']=$_SESSION['nombre_img'].$_FILES['file']['name']; 
-                if ($actividad->actualiza_actividad($_POST, $id_actividad)) {
-                    header("Location: adminActivity.php?id_evento=$id_evento");
+                if ($actEventos->actualiza_eventos($_POST, $id_evento)) {
+                    header("Location: Eventos.php");
 
                     exit();
                 }
             }
         }
-        //--------------------------------------------------------
+        //-------------------------------------------------------
+        
         
 
     include("../layouts/header.php");
-    $llave = $eventos->valida_actividades($id_evento, $_SESSION['nombre'], $id_actividad)
+    $llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
     ?>
         <link rel="stylesheet" href="../../libs/zebra_form/public/css/zebra_form.css">
         <script src="../../libs/zebra_form/public/javascript/zebra_form.js"></script>
 
         <div class="span6 offset3">
-            <h2>Actualizacion de Actividades.</h2>
+            <h2>Actualizacion de Eventos.</h2>
             <?php
             if($llave[0]['id_asistente'] == $_SESSION['id_usuario']){
-                $form->render();
+                $form->render();            
             } else {
                 die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
             }

@@ -34,8 +34,8 @@ $llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
             <legend>Actividad [ <?php echo $nombre_evento[0]['nombre_evento']?> ]
                 <!--------------- Menu De Opciones del Admin No NavBar ---------------->
                 <div class="btn-group pull-right">        
-                    <a href="<?php echo BASEURL . "views/admin/adminEvents.php?id_evento=$id_evento" ?>" class="btn " type="button"><i class="icon-chevron-left"></i> Mis Eventos </a>
-                    <a href="<?php echo BASEURL . "views/admin/registroActividades.php?id_evento=$id_evento" ?>" class="btn " type="button"><i class="icon-plus"></i> Agregar Actividad</a>                    
+                    <a href="<?php echo BASEURL . "views/admin/Eventos.php?id_evento=$id_evento" ?>" class="btn " type="button"><i class="icon-chevron-left"></i> Mis Eventos </a>
+                    <a href="<?php echo BASEURL . "views/admin/RegActividades.php?id_evento=$id_evento" ?>" class="btn " type="button"><i class="icon-plus"></i> Agregar Actividad</a>                    
                 </div>
                 <!--------------------------------------------------------------------->
             </legend><br/>
@@ -73,7 +73,7 @@ $llave = $eventos->valida_eventos($id_evento, $_SESSION['nombre']);
                         <td><?php echo $arreglo[$key]['hora_inicio'] ?>  <strong>a</strong>  <?php echo $arreglo[$key]['hora_fin'] ?></td>                            
                         <td><?php echo $arreglo[$key]['descripcion'] ?></td>
                         <td><center><a href="<?php echo BASEURL . "views/admin/usuarios.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-user"></i></a></center></td>
-                        <td><center><a href="<?php echo BASEURL . "views/admin/updateActividades.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a></center></td>
+                        <td><center><a href="<?php echo BASEURL . "views/admin/ActActividades.php?id_evento=$id_evento&id_actividad=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a></center></td>
                         <td><center><a class="btn btn-mini btn-danger" href="#" type="button"><i class="icon-remove icon-white"></i></a></center></td>
                     </tr>                            
 

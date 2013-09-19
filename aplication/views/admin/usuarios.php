@@ -35,8 +35,8 @@ include("../layouts/header.php");
             <legend>Usuarios Registrados [ <?php echo $arreglo[0]['nombre_actividad']?> ]
                 
                 <div class="btn-group pull-right">
-                    <a href="<? echo BASEURL."views/admin/adminActivity.php?id_evento=$id_evento" ?>" class="btn"><i class="icon-chevron-left"></i> Actividades</a>                
-                    <a href="" class="btn">Imprimir</a>
+                    <a href="<? echo BASEURL."views/admin/Actividades.php?id_evento=$id_evento" ?>" class="btn"><i class="icon-chevron-left"></i> Actividades</a>                
+                    <a href="" class="btn" onclick="window.print()">Imprimir</a>
                 </div>
             </legend><br/>
 

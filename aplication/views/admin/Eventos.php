@@ -55,8 +55,8 @@ $arreglo = $eventos->consulta_eventos($_SESSION['id_usuario']);
                         <td><?php echo $arreglo[$key]['contacto'] ?></td>
                         <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?></td>
                         <td><?php echo $arreglo[$key]['informacion'] ?></td>                                                
-                        <td><center><a class="btn btn-mini" href="<?php echo BASEURL . "views/admin/adminActivity.php?id_evento=$id_evento" ?>" type="button"><?php echo $numero_actividades[0]['numero_actividades'] ?>.  <i class="icon-eye-open"></i></a></center></td>
-                        <td><center><a href="<?php echo BASEURL . "views/admin/updateEvento.php?id_evento=$id_evento" ?>" class="btn btn-mini " type="button"><i class="icon-edit"></i></a></center></td>                        
+                        <td><center><a class="btn btn-mini" href="<?php echo BASEURL . "views/admin/Actividades.php?id_evento=$id_evento" ?>" type="button"><?php echo $numero_actividades[0]['numero_actividades'] ?>.  <i class="icon-eye-open"></i></a></center></td>
+                        <td><center><a href="<?php echo BASEURL . "views/admin/ActEvento.php?id_evento=$id_evento" ?>" class="btn btn-mini " type="button"><i class="icon-edit"></i></a></center></td>                        
                     </tr>  
                 <?php endforeach; ?>
             </tbody>            
