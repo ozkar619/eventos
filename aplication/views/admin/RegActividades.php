@@ -9,9 +9,9 @@
     include ('../../controllers/adminController/adminController.php');
     
         $eventos = new adminController();
-        $instructor = $eventos->consulta_instructores();
+        $instructor = $eventos->list_users();
         $tipos_actividades = $eventos->consulta_tipos_actividades();
-        $id_evento = ($_GET['id_evento']); #-> Obtenemos id_evento que fue enviado por parametro                
+        $id_evento = ($_GET['evt']); #-> Obtenemos id_evento que fue enviado por parametro                
         $datosActividades = array(
             'id_evento' => $id_evento,
             'id_instructor' => '',
@@ -168,7 +168,7 @@
             if (isset($_POST)) {
                 $_POST['imagen']=$_SESSION['nombre_img'].$_FILES['file']['name']; 
                 if ($actividad->registraActividad($_POST)) {
-                    header("Location: Actividades.php?id_evento=$id_evento");
+                    header("Location: Actividades.php?evt=$id_evento");
                     exit();
                 }
             }
@@ -181,6 +181,7 @@
         <link rel="stylesheet" href="../../libs/zebra_form/public/css/zebra_form.css">
         <script src="../../libs/zebra_form/public/javascript/zebra_form.js"></script>
 
+        <br/>
         <div class="span6 offset3">
             <h2>Registro de Actividades.</h2>
             <?php

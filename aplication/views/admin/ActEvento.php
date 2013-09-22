@@ -8,7 +8,7 @@
     include ('../../controllers/adminController/adminController.php');
     include ('../../controllers/adminController/actualizaController.php');
 
-        $id_evento = ($_GET['id_evento']); // <- Mandar el id del evento para agregar en la tabla
+        $id_evento = ($_GET['evt']);
         $eventos = new adminController();
         $arreglo = $eventos->edita_evento($id_evento);
         
@@ -125,6 +125,7 @@
         <link rel="stylesheet" href="../../libs/zebra_form/public/css/zebra_form.css">
         <script src="../../libs/zebra_form/public/javascript/zebra_form.js"></script>
 
+        <br/>
         <div class="span6 offset3">
             <h2>Actualizacion de Eventos.</h2>
             <?php
