@@ -1,4 +1,4 @@
- body{
+body{
     padding-top: 30px;
     padding-bottom: 40px;
 }
@@ -56,15 +56,16 @@
 
 .padding
 {
-padding-top:5px;
-padding-bottom:5px;
-padding-right:10px;
-padding-left:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:10px;
+    padding-left:10px;
 }
 .padding2
 {
-padding-top:40px;
+    padding-top:40px;
 }
+
 
 .color{
     background-color: #d9edf7;
@@ -86,4 +87,20 @@ padding-top:40px;
 
 .negro{
     background-color: black;
+}
+
+.fondo{
+    background-image: url('../../images/fondo_inicio2.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0% 100%;
+    background-size: cover;
+}
+
+.fondo_pantalla{
+    background-image: url('../../images/fondo.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0% 100%;
+    background-size: cover;
 }

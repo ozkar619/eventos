@@ -14,8 +14,8 @@
         <link href="../bootstrap/css/aplication.css" rel="stylesheet">
         <script src="../bootstrap/js/jquery.js"></script>
         <script src="../bootstrap/js/bootstrap.min.js"></script>
-        <script src="../bootstrap/js/inicio.js"></script>
-
+        <script src="../bootstrap/js/actividades.js"></script>
+        
     </head>
     <body>
 
@@ -128,5 +128,5 @@
             </div>
         </div>
 
-        <div class="container" id="page">
+        <div class="container fondo_pantalla" id="page">
 

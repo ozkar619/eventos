@@ -1,6 +1,6 @@
 <?php
 
-class asistente_actividadedController extends Asistentes_Actividades {
+class asistente_actividadesController extends Asistentes_Actividades {
 
     public function regresa_actividad($id_evento, $id_tipo) {
         if ($id_tipo == 0) {//si es cero regresa todas las actividades
@@ -49,17 +49,34 @@ class asistente_actividadedController extends Asistentes_Actividades {
         }
         return true;
     }
-    public function checa_cruce_horario($valores){
-        
+
+    public function checa_cruce_horario($valores) {
+        $sql = "select  ea.fecha_inicio, ea.fecha_fin, ea.hora_inicio, ea.hora_fin from evt_actividades ea join evt_asistentes_actividades eaa
+                 on ea.id_actividad = eaa.id_actividad where eaa.id_asistente = " . $valores['id_usuario'];
+        $rs = $this->consulta_sql($sql);
+        $rows = $rs->GetArray();
+
+        foreach ($rows as $key => $value) {
+            if ((strtotime($valores['fecha_inicio']) >= strtotime($rows[$key]['fecha_inicio']) && strtotime($valores['fecha_inicio']) <= strtotime($rows[$key]['fecha_fin'])) ||
+                    (strtotime($valores['fecha_fin']) >= strtotime($rows[$key]['fecha_inicio']) && strtotime($valores['fecha_fin']) <= strtotime($rows[$key]['fecha_fin']))) {
+                if (!$valores['hora_inicio'] >= strtotime($rows[$key]['hora_fin']) || !$valores['hora_fin'] <= strtotime($rows[$key]['hora_inicio'])) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
-
-
-    
 
     public function registraUsuario_actividad($valores) {
         parent::Asistentes_Actividades();
-        if(!$this->checa_registro_duplicado($valores)){
-            return false;
+
+        if (!$this->checa_registro_duplicado($valores)) {
+            return 2;
+        } else {
+            if (!$this->checa_cruce_horario($valores)) {
+                return 3;
+            }
         }
 
         if ($valores['precio'] == 0) {
@@ -71,7 +88,11 @@ class asistente_actividadedController extends Asistentes_Actividades {
         $this->set_id_actividad($valores['id_actividad']);
         $this->set_fecha_registro(date("Y-m-d"));
         $this->set_asistio(0);
-        return $this->inserta($this->get_atributos());
+        if ($this->inserta($this->get_atributos())) {
+            return 1;
+        } else {
+            return 4;
+        }
     }
 
 }
