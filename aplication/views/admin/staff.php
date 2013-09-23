@@ -23,7 +23,7 @@
         <!-------- Lista de Usuarios( DataTable con Busqueda ) ------------>
         <div class="span11">
             <table class="table table-striped table-bordered" id="example">
-                <legend>Lista de Usuarios
+                <legend>Lista de Usuarios [<strong>Aun no lista</strong>]
                     <div class="btn-group pull-right">
                         <a href="<?php echo BASEURL . "views/admin/Usuarios.php" ?>" class="btn " type="button"><i class="icon-plus"></i> Agregar Usuario </a>
                         <button class="btn" onclick="window.print()">Imprimir</button>
