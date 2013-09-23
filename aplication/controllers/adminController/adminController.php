@@ -15,7 +15,37 @@ class AdminController {
         $arreglo = $rs->GetArray();
         return $arreglo;
     }
+    
+    # Ver lista de Usuarios del Staff
+    
+    public function staff(){
+        $usuario = new Modelo();
+        $sql=("");
+        $rs = $usuario->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
 
+    # Inserta Asistentes Tipos de Usuarios
+    public function inserta_asistentes_tipos_usuarios( $rs ){
+        $usuario = new Modelo();
+        $sql=("");
+        $rs = $usuario->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+
+    #Consulta el Id del Asistente Tipo de Usuario de Manera Especifica
+    
+    public function consulta_id_AsistenteTipoUsuario( $id_asistente, $id_tipoUsuario ){
+        $usuario = new Modelo();
+        $sql = ("SELECT * FROM evt_asistentes_tipos_usuarios 
+            WHERE  id_asistente = " . $id_asistente. " AND id_tipo_usuario = ".$id_tipoUsuario );
+        $rs = $usuario->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+    
     # Lista de Usuarios registrados en una actividad especifica
 
     public function lista_usuarios($id_actividad) {
@@ -32,7 +62,7 @@ class AdminController {
 
     # Funcion que muestras los eventos del administrador con session iniciada
 
-    public function consulta_eventos($id_asistente) {
+    public function consulta_eventos_admin($id_asistente) {
         $eventos = new Modelo();
         $sql = ("SELECT * FROM evt_eventos e
                     INNER JOIN evt_eventos_admin a ON e.id_evento = a.id_evento
@@ -106,6 +136,16 @@ class AdminController {
     public function consulta_tipos_actividades() {
         $eventos = new Modelo();
         $sql = (" SELECT * FROM evt_tipos_actividades");
+        $rs = $eventos->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+    
+    # Consulta tipos de Usuarios
+    
+    public function consulta_tipos_usuarios( $where = ";" ){
+        $eventos = new Modelo();
+        $sql = (" SELECT * FROM evt_tipos_usuarios ".$where);                
         $rs = $eventos->consulta_sql($sql);
         $arreglo = $rs->GetArray();
         return $arreglo;
