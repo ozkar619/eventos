@@ -14,8 +14,8 @@
         <link href="../bootstrap/css/aplication.css" rel="stylesheet">
         <script src="../bootstrap/js/jquery.js"></script>
         <script src="../bootstrap/js/bootstrap.min.js"></script>
-        <script src="../bootstrap/js/inicio.js"></script>
-
+        <script src="../bootstrap/js/actividades.js"></script>
+        
     </head>
     <body>
 
@@ -77,6 +77,9 @@
                                                 <li>
                                                     <a tabindex="-1" href="<?php echo BASEURL; ?>views/superadmin/eventossuperadmin.php">Lista de Eventos</a>
                                                 </li>
+                                                <li>
+                                                    <a tabindex="-1" href="<?php echo BASEURL; ?>views/superadmin/adminssuperadmin.php">Administradores</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <li class="dropdown-submenu">
@@ -128,5 +131,5 @@
             </div>
         </div>
 
-        <div class="container" id="page">
+        <div class="container fondo_pantalla" id="page">
 

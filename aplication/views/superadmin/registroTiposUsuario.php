@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(!isset($_SESSION['superadmin']))
+    header ("Location: ../site/inicio.php");
 include ('../../models/Conexion.php');
 include ('../../models/Modelo.php');
 include ('../../models/Tipo_Usuario.php');

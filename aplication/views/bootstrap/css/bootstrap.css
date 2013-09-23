@@ -5152,10 +5152,10 @@ to {
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 15px;
+    padding: 5px;
     background: gainsboro;
     background: rgba(0, 0, 0, 0.1);
-    opacity: 0.6;
+    opacity: 0.8;
 }
 .carousel-caption h4,
 .carousel-caption p {
