@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(!isset($_SESSION['superadmin']))
+    header ("Location: ../site/inicio.php");
 include ('../../models/Conexion.php');
 include ('../../models/Modelo.php');
 include ('../../models/Usuario.php');
@@ -48,7 +50,9 @@ include("../layouts/header.php");
 
 
             <tbody>
-                <?php foreach ($arreglo as $key => $value) : ?>
+                <?php foreach ($arreglo as $key => $value) : 
+                    $id_asistente = $arreglo[$key]["id_asistente"];
+                    ?>
 
                     <tr>                            
                         <td><?php echo $arreglo[$key]['id_asistente'] ?></td>
@@ -58,7 +62,8 @@ include("../layouts/header.php");
                         <td><?php echo $arreglo[$key]['edad'] ?> </td>
                         <td><?php echo $arreglo[$key]['email'] ?></td>
                         <td><?php echo $arreglo[$key]['nctrl_rfc'] ?></td>
-                        <td><form method="POST" action="registroAsistentesTiposUsuario.php"><input name="id_asistente" type="hidden" value="<?php echo $arreglo[$key]['id_asistente'];?>"/><input type="submit" value="editar"/></form></td>
+                        <td><center><a href="<?php echo BASEURL . "views/superadmin/registroAsistentesTiposUsuario.php?id_asistente=$id_asistente" ?>" class="btn  btn-inverse" type="button"><i class="icon-user icon-white"></i></a></center></td>
+<!--                        <td><form method="POST" action="registroAsistentesTiposUsuario.php"><input name="id_asistente" type="hidden" value="<?php // echo $arreglo[$key]['id_asistente'];?>"/><input type="submit" value="editar"/></form></td>-->
                     </tr>    
 
                 <?php endforeach; ?>

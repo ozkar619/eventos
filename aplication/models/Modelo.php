@@ -61,16 +61,15 @@ class Modelo extends Conexion {
         }
     }
 
-    //Tarea hacer una funcion que elimine por ID 
     public function elimina($where = 'null') {
 
-        if ($id == 'null')
+        if ($where == 'null')
             $sql = "DELETE FROM " . $this->nombre_tabla;
         else
             $sql = "DELETE FROM " . $this->nombre_tabla . "
                     WHERE " . $where;
 
-        $this->get_error($this->db->Execute($sql), "Error al eliminar");
+        return $this->get_error($this->db->Execute($sql), "Error al eliminar");
     }
 
 }

@@ -1,5 +1,7 @@
 <?php
 session_start();
+if(!isset($_SESSION['superadmin']))
+    header ("Location: ../site/inicio.php");
 include ('../../models/Conexion.php');
 include ('../../models/Modelo.php');
 include ('../../models/Evento.php');
@@ -21,7 +23,7 @@ include("../layouts/header.php");
 <div class="span12">
 
     <h2>lista de Eventos.</h2>
-    
+
 
     <!-------- Lista de Eventos( DataTable con Busqueda ) ------------>
     <div class="span11">
@@ -45,33 +47,38 @@ include("../layouts/header.php");
                     <th>Fecha de fin</th>
                     <th>Modificar</th>
                     <th>Eliminar</th>
+                    <th>Administrador</th>
+                    <th>Tipos de usuario</th>
                 </tr>
             </thead>
             <!-- -------------------- -->
 
 
             <tbody>
-                <?php foreach ($arreglo as $key => $value) : 
-                $id_evento = $arreglo[$key]["id_evento"];
-                ?>
+                <?php
+                foreach ($arreglo as $key => $value) :
+                    $id_evento = $arreglo[$key]["id_evento"];
+                    ?>
                     <tr>                            
                         <td><?php echo $arreglo[$key]['id_evento'] ?></td>
                         <td><?php echo $arreglo[$key]['nombre_evento'] ?></td>
-                        <td><?php echo $arreglo[$key]['contacto']?></td>
+                        <td><?php echo $arreglo[$key]['contacto'] ?></td>
                         <td><?php echo $arreglo[$key]['lugar'] ?></td>
                         <td><?php echo $arreglo[$key]['informacion'] ?> </td>
                         <td><?php echo $arreglo[$key]['fecha_inicio'] ?></td>
                         <td><?php echo $arreglo[$key]['fecha_fin'] ?></td>
                         <td><center><a href="<?php echo BASEURL . "views/superadmin/actualizarEvento.php?id_evento=$id_evento" ?>" class="btn  btn-inverse" type="button"><i class="icon-edit icon-white"></i></a></center></td>
-                        <td><center><a href="#" class="btn  btn-inverse" type="button"><i class="icon-minus-sign icon-white"></i></a></center></td>
-                    </tr>    
+                        <td><center><a href="<?php echo BASEURL . "views/superadmin/eliminaEvento.php?id_evento=$id_evento" ?>" class="btn  btn-inverse" type="button"><i class="icon-remove icon-white"></i></a></center></td>
+                        <td><center><a href="<?php echo BASEURL . "views/superadmin/registroAdminEventos.php?id_evento=$id_evento" ?>" class="btn btn-inverse" type="button"><i class="icon-user icon-white"></i></a></center></td>
+                        <td><center><a href="<?php echo BASEURL . "views/superadmin/registroEventosTiposUsuario.php?id_evento=$id_evento" ?>" class="btn btn-inverse" type="button"><i class="icon-plus-sign icon-white"></i></a></center></td>
+                </tr>    
 
-                <?php endforeach; ?>
+<?php endforeach; ?>
             </tbody>            
         </table>
     </div>
     <!------------------------------- Fin Data Table-------------------------------------------------->
-    
+
 </div>
 
 <?php

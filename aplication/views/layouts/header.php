@@ -45,11 +45,11 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administrar<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo BASEURL; ?>views/admin/usuariosadmin.php">Usuarios</a></li>
-                                        <li><a href="<?php echo BASEURL; ?>views/admin/adminEvents.php">Eventos</a></li>
+                                        <!--<li><a href="<?php echo BASEURL; ?>views/admin/adminConfig.php">Cuenta</a></li>-->
+                                        <li><a href="<?php echo BASEURL; ?>views/admin/Eventos.php">Eventos</a></li>
                                         <li class="divider"></li>
-                                        <li class="nav-header">Configuracion</li>
-                                        <li><a href="<?php echo BASEURL; ?>views/admin/adminConfig.php">Cuenta</a></li>
+                                        <li class="nav-header">Equipo</li>
+                                        <li><a href="<?php echo BASEURL; ?>views/admin/staff.php">STAFF</a></li>
                                     </ul>
                                 </li>
                             <?php endif; ?>
@@ -76,6 +76,9 @@
                                                 </li>
                                                 <li>
                                                     <a tabindex="-1" href="<?php echo BASEURL; ?>views/superadmin/eventossuperadmin.php">Lista de Eventos</a>
+                                                </li>
+                                                <li>
+                                                    <a tabindex="-1" href="<?php echo BASEURL; ?>views/superadmin/adminssuperadmin.php">Administradores</a>
                                                 </li>
                                             </ul>
                                         </li>
