@@ -47,9 +47,9 @@
                                     <ul class="dropdown-menu">
                                         <!--<li><a href="<?php echo BASEURL; ?>views/admin/adminConfig.php">Cuenta</a></li>-->
                                         <li><a href="<?php echo BASEURL; ?>views/admin/Eventos.php">Eventos</a></li>
-                                        <li class="divider"></li>
-                                        <li class="nav-header">Equipo</li>
-                                        <li><a href="<?php echo BASEURL; ?>views/admin/staff.php">STAFF</a></li>
+                                        <!--<li class="divider"></li>-->
+                                        <!--<li class="nav-header">Equipo</li>-->
+                                        <!--<li><a href="<?php // echo BASEURL; ?>views/admin/staff.php">STAFF</a></li>-->
                                     </ul>
                                 </li>
                             <?php endif; ?>

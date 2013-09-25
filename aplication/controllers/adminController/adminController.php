@@ -18,9 +18,14 @@ class AdminController {
     
     # Ver lista de Usuarios del Staff
     
-    public function staff(){
+    public function staff( $id_evento ){
         $usuario = new Modelo();
-        $sql=("");
+        $sql=(" SELECT DISTINCT (a.nombre_asistente), a.nctrl_rfc, a.apellido_paterno, a.apellido_materno, a.email, e.nombre_evento
+            FROM evt_asistentes a
+            INNER JOIN evt_asistentes_tipos_usuarios atu ON a.id_asistente = atu.id_asistente
+            INNER JOIN evt_eventos_tipos_usuarios etu ON etu.id_asistente_tipo_usuario = atu.id_asistente_tipo_usuario
+            INNER JOIN evt_eventos e ON etu.id_evento = e.id_evento
+            WHERE etu.id_evento = ".$id_evento);
         $rs = $usuario->consulta_sql($sql);
         $arreglo = $rs->GetArray();
         return $arreglo;

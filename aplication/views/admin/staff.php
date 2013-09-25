@@ -6,8 +6,10 @@
     include ('../../controllers/adminController/adminController.php');
     include("../layouts/header.php");
 
+    $id_evento = $_GET['evt'];
+   
     $admin = new adminController();
-    $arreglo = $admin->list_users();
+    $arreglo = $admin->staff($id_evento);
     ?>
 
     <link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">
@@ -23,9 +25,10 @@
         <!-------- Lista de Usuarios( DataTable con Busqueda ) ------------>
         <div class="span11">
             <table class="table table-striped table-bordered" id="example">
-                <legend>Lista de Usuarios [<strong>Aun no lista</strong>]
+                <legend>Lista de Usuarios
                     <div class="btn-group pull-right">
-                        <a href="<?php echo BASEURL . "views/admin/Usuarios.php" ?>" class="btn " type="button"><i class="icon-plus"></i> Agregar Usuario </a>
+                        <a href="<?php echo BASEURL . "views/admin/Eventos.php"?>" class="btn " type="button"><i class="icon-chevron-left"></i> Mis Eventos </a>
+                        <a href="<?php echo BASEURL . "views/admin/Usuarios.php?evt=".$id_evento ?>" class="btn " type="button"><i class="icon-plus"></i> Agregar Usuario </a>
                         <button class="btn" onclick="window.print()">Imprimir</button>
                     </div>
                 </legend><br/>
@@ -49,14 +52,9 @@
                         <tr>
                             <td><?php echo $arreglo[$key]['nctrl_rfc'] ?></td>            
                             <td><?php echo $arreglo[$key]['nombre_asistente'] ?></td>
-                            <td><?php echo $arreglo[$key]['apellido_paterno'] ?> <?php echo $arreglo[$key]['apellido_materno'] ?></td>                            
+                            <td><?php echo $arreglo[$key]['apellido_paterno'] ?> <?php // echo $arreglo[$key]['apellido_materno'] ?></td>                            
                             <td><?php echo $arreglo[$key]['email'] ?></td>
-                            <td>
-                                <?php 
-                                    $var = $arreglo[$key][''];
-                                    echo 'nombre_staff' 
-                                ?>
-                            </td>
+                            <td><?php echo $arreglo[$key]['nombre_evento']?></td>
                             <td><center><a class="btn btn-mini btn-danger" href="#" type="button"><i class="icon-remove icon-white"></i></a></center></td>
                         </tr>    
 

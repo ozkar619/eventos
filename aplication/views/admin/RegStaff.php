@@ -12,6 +12,7 @@
     
     $admin = new AdminController();
     $arreglo = $admin->consulta_eventos_admin($_SESSION['id_usuario']);    
+    $id_evento = $_GET['evt'];
     $id_asistente = $_GET['usr'];
     $usuario = $admin->list_users("WHERE id_asistente = ".$id_asistente);
 ?>
@@ -25,7 +26,7 @@
                 <?php endforeach;?>
             </p>
             <br/><br/><input class="btn btn-large btn-success" type="submit" value="Asignar"/>
-            <a href="staff.php" class="btn btn-large btn-primary" type="button" > Regresar </a>
+            <a href="<?php echo "staff.php?evt=".$id_evento?>" class="btn btn-large btn-primary" type="button" > Regresar </a>
         </form>            
     
 
@@ -55,7 +56,7 @@ if ( (isset($_POST['id_evento'])) && (isset($_POST['id_evento'])== $arreglo[$key
     );
     $evtsTiposUsrs->registra_StaffEvento($valores);
     echo "<br/> Asignado Correctamente<br/>";    
-    ?> <a href="<?php echo "staff.php"?>" type="button" class="btn btn-link" >  Regresar al Staff</a> <?php
+    ?> <a href="<?php echo "staff.php?evt=".$id_evento?>" type="button" class="btn btn-link" >  Regresar al Staff</a> <?php
 } else {
     
 }

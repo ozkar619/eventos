@@ -6,6 +6,7 @@
     include ('../../controllers/adminController/adminController.php');
     include("../layouts/header.php");
 
+    $id_evento = $_GET['evt'];
     $admin = new adminController();
     $arreglo = $admin->list_users();
     ?>
@@ -25,7 +26,7 @@
             <table class="table table-striped table-bordered" id="example">
                 <legend>Asignacion de Equipo <strong>STAFF</strong>
                     <div class="btn-group pull-right">
-                        <a href="<?php echo BASEURL . "views/admin/staff.php" ?>" class="btn " type="button"><i class="icon-chevron-left"></i> Regresar al STAFF </a>
+                        <a href="<?php echo BASEURL . "views/admin/staff.php?evt=".$id_evento ?>" class="btn " type="button"><i class="icon-chevron-left"></i> Regresar al STAFF </a>
                     </div>
                 </legend><br/>
 
@@ -58,7 +59,7 @@
                             <td><?php echo $arreglo[$key]['edad'] ?> </td>
                             <td><?php echo $arreglo[$key]['email'] ?></td>
                             <td><?php echo $arreglo[$key]['nctrl_rfc'] ?></td>            
-                            <td><center><a href="<?php echo BASEURL . "views/admin/RegStaff.php?usr=$id_asistente" ?>"  class="btn btn-mini btn-success" type="button"><i class="icon-plus-sign icon-white"></i></a></center></td>
+                            <td><center><a href="<?php echo BASEURL . "views/admin/RegStaff.php?usr=".$id_asistente."&evt=".$id_evento ?>"  class="btn btn-mini btn-success" type="button"><i class="icon-plus-sign icon-white"></i></a></center></td>
                         </tr>    
 
                     <?php endforeach; ?>
