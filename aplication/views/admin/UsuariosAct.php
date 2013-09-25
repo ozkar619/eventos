@@ -70,7 +70,7 @@
                                 <td><?php echo $arreglo[$key]['fecha_registro'] ?></td>
                                 <td><?php echo $arreglo[$key]['pago'] ?></td>
                                 <td><?php echo $arreglo[$key]['asistio'] ?></td>
-                                <td><center><a href="<?php echo BASEURL . "views/admin/ActActividades.php?evt=$id_evento&act=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a></center></td>
+                                <td><center><a href="<?php echo '#' ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a></center></td>
                                 <td><center><a class="btn btn-mini btn-danger" href="<?php echo BASEURL . "views/admin/EliminaUsr.php?act=$id_actividad&evt=$id_evento&usr=$id_usuario" ?>" type="button"><i class="icon-remove icon-white"></i></a></center></td>                        
                             </tr>    
 

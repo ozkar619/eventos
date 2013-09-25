@@ -11,7 +11,7 @@ class Usuario extends Modelo{
                 'password'=>array(),
                 'apellido_paterno'=>array(),
                 'apellido_materno'=>array(),
-                'sexo'=>array(),
+                'genero'=>array(),
                 'edad'=>array(),
                 'nctr_rfc'=>array()
     );
@@ -19,7 +19,7 @@ class Usuario extends Modelo{
     private $nombre_asistente;
     private $apellido_paterno;
     private $apellido_materno;
-    private $sexo;
+    private $genero;
     private $edad;
     private $email;
     private $password;
@@ -54,11 +54,11 @@ class Usuario extends Modelo{
     }
     
     
-    public function get_sexo(){
-        return $this->sexo;
+    public function get_genero(){
+        return $this->genero;
     } 
-    public function set_sexo($valor){
-        $this->sexo = $valor;
+    public function set_genero($valor){
+        $this->genero = $valor;
     }
     
     
