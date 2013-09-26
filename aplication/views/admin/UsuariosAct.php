@@ -29,6 +29,7 @@
 
             <h2>lista de usuarios.</h2>
 
+            <?php if (count($arreglo) > 0) :?>
             <!-------- Lista de Usuarios( DataTable con Busqueda ) ------------>
             <div class="span11">
                 <table class="table table-striped table-bordered" id="example">
@@ -79,6 +80,9 @@
                 </table>
             </div>
             <!------------------------------- Fin Data Table-------------------------------------------------->
+            <?php endif;                if (count($arreglo) < 0) {
+                echo "No Hay Usuarios Registrados aun";
+            }?>
 
             <?php # Denegando Lista de Eventos
                 endif; if ($llave[0]['id_asistente'] != $_SESSION['id_usuario'])

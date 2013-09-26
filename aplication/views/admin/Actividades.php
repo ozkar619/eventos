@@ -63,12 +63,14 @@
                         <?php foreach ($arreglo as $key => $value): 
                             $id_actividad = $arreglo[$key]['id_actividad'];
                             $imagen = $arreglo[$key]['imagen']; 
+                            $id_instructor = $arreglo[$key]['id_instructor'];
+                            $instructor = $eventos->list_users("WHERE id_asistente = ".$id_instructor)
                             ?>
                             
                             <tr>                 
                                 <td><center><a href="#<?php echo $arreglo[$key]['id_actividad'] ?>" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-picture"></i></a></center></td>
                                 <td><?php echo $arreglo[$key]['nombre_actividad'] ?></td>
-                                <td><?php echo '.l.' ?></td>
+                                <td><?php echo $instructor[0]['nombre_asistente'] ?> <?php echo $instructor[0]['apellido_paterno'] ?> <?php echo $instructor[0]['apellido_materno'] ?></td>
                                 <td><?php echo $arreglo[$key]['lugar'] ?></td>
                                 <td><?php echo $arreglo[$key]['precio'] ?></td>
                                 <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?> </td>                            

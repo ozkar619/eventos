@@ -7,7 +7,7 @@
     include ('../layouts/header.php');
 
     $eventos = new adminController();
-    $arreglo = $eventos->consulta_eventos_admin($_SESSION['id_usuario']);
+    $arreglo = $eventos->consulta_eventos_admin("a.id_asistente = ".$_SESSION['id_usuario']);
 ?>       
 
     <link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">

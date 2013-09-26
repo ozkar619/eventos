@@ -47,7 +47,10 @@
                 <!-- -------------------- -->
 
                 <tbody>
-                    <?php foreach ($arreglo as $key => $value) : ?>
+                    <?php foreach ($arreglo as $key => $value) : 
+                        $id_asistente_tipo_usuario = $arreglo[$key]['id_asistente_tipo_usuario'];
+                        $nombre_asistente = $arreglo[$key]['nombre_asistente'];
+                        ?>
 
                         <tr>
                             <td><?php echo $arreglo[$key]['nctrl_rfc'] ?></td>            
@@ -55,7 +58,7 @@
                             <td><?php echo $arreglo[$key]['apellido_paterno'] ?> <?php // echo $arreglo[$key]['apellido_materno'] ?></td>                            
                             <td><?php echo $arreglo[$key]['email'] ?></td>
                             <td><?php echo $arreglo[$key]['nombre_evento']?></td>
-                            <td><center><a class="btn btn-mini btn-danger" href="#" type="button"><i class="icon-remove icon-white"></i></a></center></td>
+                            <td><center><a class="btn btn-mini btn-danger" href="<?php echo BASEURL . "views/admin/EliminaStf.php?evt=".$id_evento."&atu=".$id_asistente_tipo_usuario."&usr=".$nombre_asistente ?>" type="button"><i class="icon-remove icon-white"></i></a></center></td>
                         </tr>    
 
                     <?php endforeach; ?>

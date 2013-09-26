@@ -20,7 +20,7 @@ class AdminController {
     
     public function staff( $id_evento ){
         $usuario = new Modelo();
-        $sql=(" SELECT DISTINCT (a.nombre_asistente), a.nctrl_rfc, a.apellido_paterno, a.apellido_materno, a.email, e.nombre_evento
+        $sql=(" SELECT DISTINCT (a.nombre_asistente), atu.id_asistente_tipo_usuario, a.nctrl_rfc, a.apellido_paterno, a.apellido_materno, a.email, e.nombre_evento
             FROM evt_asistentes a
             INNER JOIN evt_asistentes_tipos_usuarios atu ON a.id_asistente = atu.id_asistente
             INNER JOIN evt_eventos_tipos_usuarios etu ON etu.id_asistente_tipo_usuario = atu.id_asistente_tipo_usuario
@@ -61,19 +61,21 @@ class AdminController {
             INNER JOIN evt_asistentes s ON s.id_asistente = ac.id_asistente
             WHERE  a.id_actividad = " . $id_actividad);
         $rs = $usuario->consulta_sql($sql);
+//        die("<pre>".$sql."</pre>");
         $arreglo = $rs->GetArray();
         return $arreglo;
     }
 
     # Funcion que muestras los eventos del administrador con session iniciada
 
-    public function consulta_eventos_admin($id_asistente) {
+    public function consulta_eventos_admin( $and ) {
         $eventos = new Modelo();
-        $sql = ("SELECT * FROM evt_eventos e
-                    INNER JOIN evt_eventos_admin a ON e.id_evento = a.id_evento
-                    WHERE a.id_asistente = " . $id_asistente);
+        $sql = ("SELECT *
+            FROM evt_eventos e
+                    INNER JOIN evt_eventos_admin a ON e.id_evento = a.id_evento AND ".$and );
         $rs = $eventos->consulta_sql($sql);
         $arreglo = $rs->GetArray();
+//        die("<pre>".$sql."</pre>");
         return $arreglo;
     }
 

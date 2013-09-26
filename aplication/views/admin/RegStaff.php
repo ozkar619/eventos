@@ -10,10 +10,10 @@
     include ('../../controllers/adminController/registroStaff_Evento.php');
     include ("../layouts/header.php");
     
-    $admin = new AdminController();
-    $arreglo = $admin->consulta_eventos_admin($_SESSION['id_usuario']);    
+    $admin = new AdminController();    
     $id_evento = $_GET['evt'];
     $id_asistente = $_GET['usr'];
+    $arreglo = $admin->consulta_eventos_admin("a.id_asistente = ".$_SESSION['id_usuario']." AND e.id_evento = ".$id_evento);    
     $usuario = $admin->list_users("WHERE id_asistente = ".$id_asistente);
 ?>
     <br/><br/>        

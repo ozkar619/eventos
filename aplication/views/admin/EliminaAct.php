@@ -2,7 +2,6 @@
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
     include ('../../models/Actividades.php');
-
     include ('../../libs/adodb5/adodb-pager.inc.php');
     include ('../../libs/adodb5/adodb.inc.php');
     include ('../../controllers/adminController/adminController.php');
@@ -29,8 +28,8 @@
     
     <form method="POST">
         <input type="radio" name="confirm" value="si" checked="checked"/> [ <strong><?php echo $datos_actividad[0]['nombre_actividad']." - Usuarios Inscritos (".count($total_usr).") " ?> </strong>]        
-        <br/><br/><input class="btn btn-large btn-success" type="submit" value="Eliminar"/>
-        <a href="<?php echo "Actividades.php?evt=$id_evento"?>" class="btn btn-large btn-primary" type="button" > Regresar </a>
+        <br/><br/><input class="btn btn-large btn-success" type="submit" value="Si,Eliminar"/>
+        <a href="<?php echo "Actividades.php?evt=$id_evento"?>" class="btn btn-large btn-primary" type="button" > No,Regresar </a>
     </form>  
         <?php if ((isset($_POST['confirm'])) && ($_POST['confirm']=="si") ) : 
                         
