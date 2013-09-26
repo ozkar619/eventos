@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Eventos Itcelaya</title>
+        <title>Eventos ITCelaya</title>
+        <link rel="shortcut icon" href="../images/tecno.ico">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap -->
