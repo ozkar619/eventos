@@ -8,6 +8,12 @@ include ('../../models/Asistentes_Actividades.php');
 include ('../../controllers/siteController/asistente_actividadesController.php');
 include ('../layouts/header.php');
 
+if ((is_int($_GET['id_eve'])) || (is_int($_GET['tipo']))) {
+   header('Location:inicio.php');
+   exit(); 
+}
+
+
 $acti = new asistente_actividadesController();
 $ruta = "../images/imgActividades/";
 
@@ -25,9 +31,10 @@ $actividad = $acti->regresa_actividad($id_eve, $tipo);
     <?php if (isset($_POST['id_usuario'])) : ?>
         <?php $opc = $acti->registraUsuario_actividad($_POST)?>
             <script languaje="javascript">
-                alerta(<?php echo $opc ?>);
+                $(document).ready(function(){
+                   modal_reg_act_usu(<?php echo $opc; ?>); 
+                });  
             </script>
-       
     <?php endif; ?>    
 <?php endif; ?>
 <div class="row-fluid">
@@ -50,7 +57,7 @@ $actividad = $acti->regresa_actividad($id_eve, $tipo);
 
                     <div class="well">
                         <ul class="nav nav-list">
-                            <li><h5><?php echo "ACTIVIDADES DE $evento"?></h5></li>
+                            <li><h5><?php echo "ACTIVIDADES"?></h5></li>
                             <?php foreach ($tip_act as $key => $value) : ?>
                             <li class="nav-header"><a href="actividades.php?id_eve=<?php echo $id_eve ?>&tipo=<?php echo $tip_act[$key]['id_tipo_actividad'] ?>"><span class="icon-hand-right"></span><?php echo $tip_act[$key]['tipo_actividad'] ?></a></li>
                                 <?php $act = $acti->regresa_actividad($id_eve, $tip_act[$key]['id_tipo_actividad']) ?>
@@ -141,9 +148,12 @@ $actividad = $acti->regresa_actividad($id_eve, $tipo);
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <div class="row">
-                <h1><div class = "spann2" id = "mensaje1" ></div></h1>
+                <h3><div class = "spann2" id = "mensaje1" ></div></h3>
             </div>
         </div>
     </div>
+    
+    
+    
     <?php include('../layouts/footer.php');
     ?>

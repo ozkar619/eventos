@@ -74,20 +74,7 @@ body{
 .color1{
     background-color: #ECFFB3;
 }
-.blanco{
-    background-color: white;
-}
-.azul{
-    background-color: blue;
-}
 
-.rojo{
-    background-color: red;
-}
-
-.negro{
-    background-color: black;
-}
 
 .fondo{
     background-image: url('../../images/fondo_inicio2.jpg');
@@ -103,4 +90,8 @@ body{
     background-attachment: fixed;
     background-position: 0% 100%;
     background-size: cover;
+}
+
+.formato{
+    font-size:1;
 }

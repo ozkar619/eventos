@@ -1,18 +1,25 @@
 
 function modal_reg_act_usu(opc)
 {
-    if (opc == 1) {
-        document.getElementById("mensaje1").innerHTML = "Registro corresto!!!!1";
-        $('#modal_reg_act_usu').modal({
-            show: true
-        });
-    } else {
-        document.getElementById("mensaje1").innerHTML = "Registro incorrecto || ya estas inscrito!!!!1";
-        $('#modal_reg_act_usu').modal({
-            show: true
-        });
+    switch (opc) {
+        case 1:
+            $msj = "Registro correcto";
+            break;
+        case 2:
+            $msj = "Registro INCORRECTO!!!!!!!, Ya estas registrado";
+            break;
+        case 3:
+            $msj = "Registro INCORRECTO!!!!!!!,  Cruce de horarios";
+            break;
+        default:
+            $msj = "Registro INCORRECTO!!!!!!!,  consultar al administrador";
+            break;
     }
 
+    document.getElementById("mensaje1").innerHTML = $msj;
+    $('#modal_reg_act_usu').modal({
+        show: true
+    });
 }
 function alerta(opc) {
     switch (opc) {
