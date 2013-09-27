@@ -15,7 +15,42 @@ class AdminController {
         $arreglo = $rs->GetArray();
         return $arreglo;
     }
+    
+    # Ver lista de Usuarios del Staff
+    
+    public function staff( $id_evento ){
+        $usuario = new Modelo();
+        $sql=(" SELECT DISTINCT (a.nombre_asistente), atu.id_asistente_tipo_usuario, a.nctrl_rfc, a.apellido_paterno, a.apellido_materno, a.email, e.nombre_evento
+            FROM evt_asistentes a
+            INNER JOIN evt_asistentes_tipos_usuarios atu ON a.id_asistente = atu.id_asistente
+            INNER JOIN evt_eventos_tipos_usuarios etu ON etu.id_asistente_tipo_usuario = atu.id_asistente_tipo_usuario
+            INNER JOIN evt_eventos e ON etu.id_evento = e.id_evento
+            WHERE etu.id_evento = ".$id_evento);
+        $rs = $usuario->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
 
+    # Inserta Asistentes Tipos de Usuarios
+    public function inserta_asistentes_tipos_usuarios( $rs ){
+        $usuario = new Modelo();
+        $sql=("");
+        $rs = $usuario->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+
+    #Consulta el Id del Asistente Tipo de Usuario de Manera Especifica
+    
+    public function consulta_id_AsistenteTipoUsuario( $id_asistente, $id_tipoUsuario ){
+        $usuario = new Modelo();
+        $sql = ("SELECT * FROM evt_asistentes_tipos_usuarios 
+            WHERE  id_asistente = " . $id_asistente. " AND id_tipo_usuario = ".$id_tipoUsuario );
+        $rs = $usuario->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+    
     # Lista de Usuarios registrados en una actividad especifica
 
     public function lista_usuarios($id_actividad) {
@@ -26,19 +61,21 @@ class AdminController {
             INNER JOIN evt_asistentes s ON s.id_asistente = ac.id_asistente
             WHERE  a.id_actividad = " . $id_actividad);
         $rs = $usuario->consulta_sql($sql);
+//        die("<pre>".$sql."</pre>");
         $arreglo = $rs->GetArray();
         return $arreglo;
     }
 
     # Funcion que muestras los eventos del administrador con session iniciada
 
-    public function consulta_eventos($id_asistente) {
+    public function consulta_eventos_admin( $and ) {
         $eventos = new Modelo();
-        $sql = ("SELECT * FROM evt_eventos e
-                    INNER JOIN evt_eventos_admin a ON e.id_evento = a.id_evento
-                    WHERE a.id_asistente = " . $id_asistente);
+        $sql = ("SELECT *
+            FROM evt_eventos e
+                    INNER JOIN evt_eventos_admin a ON e.id_evento = a.id_evento AND ".$and );
         $rs = $eventos->consulta_sql($sql);
         $arreglo = $rs->GetArray();
+//        die("<pre>".$sql."</pre>");
         return $arreglo;
     }
 
@@ -106,6 +143,16 @@ class AdminController {
     public function consulta_tipos_actividades() {
         $eventos = new Modelo();
         $sql = (" SELECT * FROM evt_tipos_actividades");
+        $rs = $eventos->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+    
+    # Consulta tipos de Usuarios
+    
+    public function consulta_tipos_usuarios( $where = ";" ){
+        $eventos = new Modelo();
+        $sql = (" SELECT * FROM evt_tipos_usuarios ".$where);                
         $rs = $eventos->consulta_sql($sql);
         $arreglo = $rs->GetArray();
         return $arreglo;

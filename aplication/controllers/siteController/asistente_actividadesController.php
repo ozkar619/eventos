@@ -1,4 +1,4 @@
-<?php
+<?php ####
 
 class asistente_actividadesController extends Asistentes_Actividades {
 

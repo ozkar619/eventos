@@ -2,7 +2,6 @@
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
     include ('../../models/Actividades.php');
-
     include ('../../libs/adodb5/adodb-pager.inc.php');
     include ('../../libs/adodb5/adodb.inc.php');
     include ('../../controllers/adminController/adminController.php');
@@ -25,12 +24,12 @@
     
 <br/><br/>
 <div class="hero-unit">
-    <strong>¿ Relamente Deseas Eliminar esta actividad y todos sus Usuarios Registrados ?</strong>
-    <br><br>
+    <legend><strong>¿ Relamente Deseas Eliminar esta actividad y todos sus Usuarios Registrados ?</strong></legend>
+    
     <form method="POST">
-        <input type="radio" name="confirm" value="si" checked="checked"/> [ <strong><?php echo $datos_actividad[0]['nombre_actividad']." - Usuarios Inscritos (".count($total_usr).") " ?> </strong>]
-        <br/>------------------------------------------------------------------<br>        
-        <br/><br/><input class="btn btn-large btn-success" type="submit" value="Eliminar"/>
+        <input type="radio" name="confirm" value="si" checked="checked"/> [ <strong><?php echo $datos_actividad[0]['nombre_actividad']." - Usuarios Inscritos (".count($total_usr).") " ?> </strong>]        
+        <br/><br/><input class="btn btn-large btn-success" type="submit" value="Si,Eliminar"/>
+        <a href="<?php echo "Actividades.php?evt=$id_evento"?>" class="btn btn-large btn-primary" type="button" > No,Regresar </a>
     </form>  
         <?php if ((isset($_POST['confirm'])) && ($_POST['confirm']=="si") ) : 
                         
@@ -43,8 +42,7 @@
             echo 'Eliminado Correctamente<br/>';
             #----------------------------------------------------            
         ?> 
-        <a href="<?php echo "Actividades.php?evt=$id_evento"?>" type="button" class="btn btn-link" >  Regresar a Usuarios</a> 
-        <?php endif; if ( !((isset($_POST['confirm'])) && ($_POST['confirm']=="si") )) :?> 
-            <a href="<?php echo "Actividades.php?evt=$id_evento"?>" type="button" class="btn btn-link" > Regresar</a> 
-        <?php endif; include ('../layouts/footer.php'); ?>
+        <a href="<?php echo "Actividades.php?evt=$id_evento"?>" type="button" class="btn btn-link" >  Regresar a Actividades</a> 
+        <?php endif; if ( !((isset($_POST['confirm'])) && ($_POST['confirm']=="si") )) : endif; 
+        include ('../layouts/footer.php'); ?>
 </div>

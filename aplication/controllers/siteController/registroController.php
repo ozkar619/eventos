@@ -12,7 +12,7 @@ class RegistroController extends Usuario{
             $this->set_password($valores['password']);
             $this->set_apellido_materno($valores['apellido_materno']);
             $this->set_apellido_paterno($valores['apellido_paterno']);
-            $this->set_sexo($valores['sexo']);
+            $this->set_genero($valores['genero']);
             $this->set_edad($valores['edad']);
             $this->set_nctr_rfc('');
             return $this->inserta($this->get_atributos());

@@ -63,18 +63,20 @@
                         <?php foreach ($arreglo as $key => $value): 
                             $id_actividad = $arreglo[$key]['id_actividad'];
                             $imagen = $arreglo[$key]['imagen']; 
+                            $id_instructor = $arreglo[$key]['id_instructor'];
+                            $instructor = $eventos->list_users("WHERE id_asistente = ".$id_instructor)
                             ?>
                             
                             <tr>                 
                                 <td><center><a href="#<?php echo $arreglo[$key]['id_actividad'] ?>" role="button" class="btn btn-mini" data-toggle="modal"><i class="icon-picture"></i></a></center></td>
                                 <td><?php echo $arreglo[$key]['nombre_actividad'] ?></td>
-                                <td><?php echo '.l.' ?></td>
+                                <td><?php echo $instructor[0]['nombre_asistente'] ?> <?php echo $instructor[0]['apellido_paterno'] ?> <?php echo $instructor[0]['apellido_materno'] ?></td>
                                 <td><?php echo $arreglo[$key]['lugar'] ?></td>
                                 <td><?php echo $arreglo[$key]['precio'] ?></td>
                                 <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?> </td>                            
                                 <td><?php echo $arreglo[$key]['hora_inicio'] ?>  <strong>a</strong>  <?php echo $arreglo[$key]['hora_fin'] ?></td>                            
                                 <td><?php echo $arreglo[$key]['descripcion'] ?></td>
-                                <td><center><a href="<?php echo BASEURL . "views/admin/usuarios.php?evt=$id_evento&act=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-user"></i></a></center></td>
+                                <td><center><a href="<?php echo BASEURL . "views/admin/UsuariosAct.php?evt=$id_evento&act=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-user"></i></a></center></td>
                                 <td><center><a href="<?php echo BASEURL . "views/admin/ActActividades.php?evt=$id_evento&act=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a></center></td>
                                 <td><center><a class="btn btn-mini btn-danger" href="<?php echo BASEURL . "views/admin/EliminaAct.php?act=$id_actividad&evt=$id_evento" ?>" type="button"><i class="icon-remove icon-white"></i></a></center></td>
                             </tr>                            

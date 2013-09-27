@@ -1,16 +1,21 @@
 <?php
-class Eventos_Tipos_Usuarios extends Modelo{
+
+class Eventos_Tipos_Usuarios extends Modelo {
+    
     public $nombre_tabla="evt_eventos_tipos_usuarios";
     public $pk="id_evento_tipo_usuario";
+    
     public $atributos=array(
-        'id_evento'=>array(),
-        'id_tipo_usuario'=>array()
+        'id_evento'       => array(),
+        'id_tipo_usuario' => array(),
+        'id_asistente_tipo_usuario' => array(),
     );
     
     private $id_evento;
     private $id_tipo_usuario;
-    
-    function Eventos_Tipos_Usuarios(){
+    private $id_asistente_tipo_usuario;
+            
+    function Eventos_Tipos_Usuarios (){
         parent::Modelo();
     }
     
@@ -35,5 +40,16 @@ class Eventos_Tipos_Usuarios extends Modelo{
     public function set_id_tipo_usuario($valor){
         $this->id_tipo_usuario=$valor;
     }
+    
+    public function get_id_asistente_tipo_usuario(){
+        return $this->id_asistente_tipo_usuario;
+    }
+    public function set_id_asistente_tipo_usuario($valor){
+        $this->id_asistente_tipo_usuario=$valor;
+    }
+    
+    
 }
+
+
 ?>

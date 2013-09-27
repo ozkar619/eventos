@@ -125,6 +125,7 @@
         'upload' => array('../images/imgActividades', $_SESSION['nombre_img'], 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
         'image' => array('error', 'File must be a jpg, png or gif image!'),
         'filesize' => array(102400, 'error', 'File size must not exceed 100Kb!'),
+        'required' => array('error', 'Se Requiere de una Imagen!')
     ));
 
 
