@@ -10,12 +10,11 @@ include ('../layouts/header.php');
 
 if (isset($_SESSION['id_usuario']) && ($_GET['opc'] == 0 || $_GET['opc'] == 1 )) {
     $asist = new asistenteController();
-    echo $_GET['opc'];
     $actividades = $asist->regresa_actividades_usuario($_SESSION['id_usuario'], $_GET['opc']);
     $nombre = $asist->regresa_nombre($_SESSION['id_usuario']);
 } else {
-    header('Location:inicio.php');
-    exit();
+//    header('Location:inicio.php');
+//    exit();
     //ojo  no puedo reedireccionar
 }
 ?>
@@ -27,13 +26,6 @@ if (isset($_SESSION['id_usuario']) && ($_GET['opc'] == 0 || $_GET['opc'] == 1 ))
     </script>   
 <?php endif; ?>
 
-<?php
-if (isset($_POST['id_a'])) {
-    $asist->baja_actividad($_POST['id_u'], $_POST['id_a']);
-    header('Location:asistente.php?opc=' . $_GET['opc']);
-    exit();
-}
-?>
 
 <script src="../bootstrap/js/asistente.js"></script>
 
@@ -124,7 +116,7 @@ if (isset($_POST['id_a'])) {
             <input type="hidden" id="id_a" name="id_a" >
             <input type="submit" id="id_aa" name="id_aa" value="SI">          
         </form>
-        <input type="submit" value="NO"> 
+        <input type="submit" id="id_aa" name="id_aa" value="NO">  
     </div>
 </div>
 
@@ -134,5 +126,13 @@ if (isset($_POST['id_a'])) {
         <h2><div>BAJA EXITOSA</div></h2> 
     </div>
 </div>
+
+<?php
+if (isset($_POST['id_a'])) {
+    $asist->baja_actividad($_POST['id_u'], $_POST['id_a']);
+//    header('Location:asistente.php?opc=' . $_GET['opc']);
+//    exit();
+}
+?>
 
 <?php include ('../layouts/footer.php'); ?>         

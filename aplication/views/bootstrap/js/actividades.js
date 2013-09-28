@@ -11,6 +11,9 @@ function modal_reg_act_usu(opc)
         case 3:
             $msj = "Registro INCORRECTO!!!!!!!,  Cruce de horarios";
             break;
+        case 4:
+            $msj = "Registro INCORRECTO!!!!!!!,  Ya no hay cupo";
+            break;
         default:
             $msj = "Registro INCORRECTO!!!!!!!,  consultar al administrador";
             break;
@@ -20,20 +23,4 @@ function modal_reg_act_usu(opc)
     $('#modal_reg_act_usu').modal({
         show: true
     });
-}
-function alerta(opc) {
-    switch (opc) {
-        case 1:
-            alert("Registro correcto");
-            break;
-        case 2:
-            alert("Registro INCORRECTO!!!!!!!, Ya estas registrado");
-            break;
-        case 3:
-            alert("Registro INCORRECTO!!!!!!!,  Cruce de horarios");
-            break;
-            defaul:
-                    alert("Registro INCORRECTO!!!!!!!,  consultar al administrador");
-            break;
-    }
 }

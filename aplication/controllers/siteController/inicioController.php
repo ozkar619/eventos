@@ -7,10 +7,10 @@ class InicioControler extends Evento{
         $hoy = date("Y-m-d");
         if ($eventos == 0) {//muestra todos los eventos por haber  
             $sql = "SELECT * FROM " . $this->nombre_tabla .
-                    " where fecha_fin > " . "'" . "$hoy" . "'". " order by fecha_fin asc";
+                    " where fecha_fin >= " . "'" . "$hoy" . "'". " order by fecha_fin asc";
         } else {//smuestra los "$eventos" eventos mas proximos a terminarse 
             $sql = "SELECT * FROM " . $this->nombre_tabla .
-                    " where fecha_fin > " . "'" . "$hoy" . "'" . " order by fecha_fin asc limit " . $eventos;
+                    " where fecha_fin >= " . "'" . "$hoy" . "'" . " order by fecha_fin asc limit " . $eventos;
         }
         
         $rs = $this->consulta_sql($sql);
