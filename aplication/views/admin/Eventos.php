@@ -69,7 +69,7 @@
                                 <h3 id="myModalLabel"><?php echo "<center>[" . $arreglo[$key]['nombre_evento'] . "]</center>"; ?></h3>
                             </div>
                             <div class="modal-body">
-                                <center><img src="<? echo BASEURL . "views/images/imgEventos/$imagen" ?>" /></center>
+                                <center><img src="<? echo BASEURL . "views/images/imgEventos/".$imagen ?>" /></center>
                             </div>
                             <div class="modal-footer">
                                 <center><p>Instituto Tecnologico de Celaya</p></center>
