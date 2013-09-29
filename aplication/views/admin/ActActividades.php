@@ -9,15 +9,25 @@
 
     $id_evento = ($_GET['evt']); // <- Mandar el id del evento para agregar en la tabla
     $id_actividad = ($_GET['act']);
+    $id_usuario = $_GET['usr'];
     $eventos = new adminController();
     $arreglo = $eventos->edita_actividades($id_actividad);
-
-
+    
+    $rs3 = $eventos->consulta_tipos_usuarios("WHERE tipo = 'instructor'");
+    $id_tipo_usuario = $rs3[0]['id_tipo_usuario'];
+    $instructor = $eventos->instructo($id_tipo_usuario." AND a.id_asistente = ".$id_usuario);
+    
+    if (count($instructor)!=0) {
+        $id_ins = $instructor[0]['nombre_asistente'];
+    } else {
+        $id_ins = '';
+    }
+    
     if (count($arreglo)!=0) {
     
 
     $datosActividades = array(
-        'id_instructor' => $arreglo[0]['id_instructor'],
+        'id_instructor' => $id_ins,
         'nombre_actividad' => $arreglo[0]['nombre_actividad'],
         'lugar' => $arreglo[0]['lugar'],
         'precio' => $arreglo[0]['precio'],
@@ -44,6 +54,14 @@
     # id_instructor
     $form->add('label', 'label_id_instructor', 'id_instructor', 'ID Instructor:');
     $obj = $form->add('text', 'id_instructor');
+//    $obj->add_options(array(
+//            #---------------------------------------------------------------------------------------
+//            #                       No Puedo Meterlo en un arreglo :(                        
+////            $instructor[0]['id_asistente'] => $instructor[0]['nombre_asistente'],
+////            $instructor[1]['id_asistente'] => $instructor[1]['nombre_asistente'],
+//                      
+//            #---------------------------------------------------------------------------------------
+//        ));
     $obj->set_rule(array(
         'required' => array('error', 'ID es requerido!'),
     ));

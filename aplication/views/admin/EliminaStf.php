@@ -34,7 +34,7 @@
         
         
         <br/><br/><input class="btn btn-large btn-success" type="submit" value="Si, Eliminar"/>
-        <a href="<?php echo "staff?evt=$id_evento"?>" class="btn btn-large btn-primary" type="button" > No, Regresar </a>
+        <a href="<?php echo "staff?evt=".$id_evento ?>" class="btn btn-large btn-primary" type="button" > No, Regresar </a>
     </form>  
 
     
@@ -42,7 +42,7 @@
         $admin = new AdminController();    
         $admin->elimina("evt_eventos_tipos_usuarios", "id_asistente_tipo_usuario =".$id_asistente_tipo_usuario." AND id_evento =". $id_evento);
         echo 'Eliminado Correctamente<br/>';
-        ?> <a href="<?php echo "staff.php?evt=$id_evento"?>" type="button" class="btn btn-link" >  Regresar a Staff</a> <?php
+        ?> <a href="<?php echo "staff.php?evt=".$id_evento ?>" type="button" class="btn btn-link" >  Regresar a STAFF</a> <?php
     }    
                      
             

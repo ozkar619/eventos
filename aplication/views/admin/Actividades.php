@@ -35,7 +35,7 @@
                         <!--------------- Menu De Opciones del Admin No NavBar ---------------->
                         <div class="btn-group pull-right">        
                             <a href="<?php echo BASEURL . "views/admin/Eventos.php" ?>" class="btn " type="button"><i class="icon-chevron-left"></i> Mis Eventos </a>
-                            <a href="<?php echo BASEURL . "views/admin/RegActividades.php?evt=$id_evento" ?>" class="btn " type="button"><i class="icon-plus"></i> Agregar Actividad</a>                    
+                            <a href="<?php echo BASEURL . "views/admin/RegActividades.php?evt=".$id_evento ?>" class="btn " type="button"><i class="icon-plus"></i> Agregar Actividad</a>
                         </div>
                         <!--------------------------------------------------------------------->
                     </legend><br/>
@@ -78,9 +78,9 @@
                                 <td><?php echo $arreglo[$key]['hora_inicio'] ?>  <strong>a</strong>  <?php echo $arreglo[$key]['hora_fin'] ?></td>                            
                                 <td><?php echo $arreglo[$key]['capacidad'] ?></td>
                                 <td><?php echo $arreglo[$key]['descripcion'] ?></td>
-                                <td><center><a href="<?php echo BASEURL . "views/admin/UsuariosAct.php?evt=$id_evento&act=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-user"></i></a></center></td>
-                                <td><center><a href="<?php echo BASEURL . "views/admin/ActActividades.php?evt=$id_evento&act=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a></center></td>
-                                <td><center><a class="btn btn-mini btn-danger" href="<?php echo BASEURL . "views/admin/EliminaAct.php?act=$id_actividad&evt=$id_evento" ?>" type="button"><i class="icon-remove icon-white"></i></a></center></td>
+                                <td><center><a href="<?php echo BASEURL . "views/admin/UsuariosAct.php?evt=".$id_evento."&act=".$id_actividad ?>" class="btn btn-mini" type="button"><i class="icon-user"></i></a></center></td>
+                                <td><center><a href="<?php echo BASEURL . "views/admin/ActActividades.php?evt=".$id_evento."&act=".$id_actividad."&usr=".$id_instructor ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a></center></td>
+                                <td><center><a class="btn btn-mini btn-danger" href="<?php echo BASEURL . "views/admin/EliminaAct.php?act=".$id_actividad."&evt=".$id_evento ?>" type="button"><i class="icon-remove icon-white"></i></a></center></td>
                             </tr>                            
 
                             

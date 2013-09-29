@@ -44,8 +44,8 @@
           </strong>]
         
         
-        <br/><br/><input class="btn btn-large btn-success" type="submit" value="Si,Eliminar"/>
-        <a href="<?php echo "UsuariosAct.php?evt=$id_evento&act=$id_actividad"?>" class="btn btn-large btn-primary" type="button" > No,Regresar </a>
+        <br/><br/><input class="btn btn-large btn-success" type="submit" value="Si, Eliminar"/>
+        <a href="<?php echo "UsuariosAct.php?evt=".$id_evento."&act=".$id_actividad ?>" class="btn btn-large btn-primary" type="button" > No, Regresar </a>
     </form>        
         <?php
             if ((isset($_POST['confirm'])) && ($_POST['confirm']=="si") ) :
@@ -54,7 +54,7 @@
                 $id = $id_asis;
                 $admin->elimina($nombre_tabla, $id);                
                 echo 'Eliminado Correctamente<br/>';
-                ?> <a href="<?php echo "UsuariosAct.php?evt=$id_evento&act=$id_actividad"?>" type="button" class="btn btn-link" >  Regresar a Usuarios</a> <?php
+                ?> <a href="<?php echo "UsuariosAct.php?evt=".$id_evento."&act=".$id_actividad ?>" type="button" class="btn btn-link" >  Regresar a Usuarios</a> <?php
             
             endif; if ( !((isset($_POST['confirm'])) && ($_POST['confirm']=="si") )) :?> 
         <?php endif; include ('../layouts/footer.php'); ?>    

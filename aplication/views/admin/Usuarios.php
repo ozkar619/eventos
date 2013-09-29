@@ -4,7 +4,7 @@
     include ('../../libs/adodb5/adodb-pager.inc.php');
     include ('../../libs/adodb5/adodb.inc.php');
     include ('../../controllers/adminController/adminController.php');
-    include("../layouts/header.php");
+    include ("../layouts/header.php");
 
     $id_evento = $_GET['evt'];
     $admin = new adminController();

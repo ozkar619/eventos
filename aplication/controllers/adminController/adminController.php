@@ -168,6 +168,18 @@ class AdminController {
     }
     
     
+    public function instructo( $id_tipo_usuario ) {
+        $evento = new Modelo();
+        $sql = ("
+            SELECT * 
+            FROM evt_asistentes_tipos_usuarios atu
+            INNER JOIN evt_asistentes a ON a.id_asistente = atu.id_asistente
+            WHERE atu.id_tipo_usuario = ".$id_tipo_usuario);
+        $rs = $evento->consulta_sql($sql);        
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+
+    }
 }
 
 ?>

@@ -9,7 +9,13 @@
     include ('../../controllers/adminController/adminController.php');
     
         $eventos = new adminController();
-        $instructor = $eventos->list_users();
+        
+        
+        $rs3 = $eventos->consulta_tipos_usuarios("WHERE tipo = 'instructor'");
+        $id_tipo_usuario = $rs3[0]['id_tipo_usuario'];
+        
+        $instructor = $eventos->instructo($id_tipo_usuario);
+        
         $tipos_actividades = $eventos->consulta_tipos_actividades();
         $id_evento = ($_GET['evt']); #-> Obtenemos id_evento que fue enviado por parametro                
         $datosActividades = array(
@@ -19,7 +25,7 @@
             'nombre_actividad' => '',
             'lugar' => '',
             'precio' => '',
-            'fecha_inicio' => '',
+            'fecha_inicioimagen ' => '',
             'fecha_fin' => '',
             'hora_inicio' => '',
             'hora_fin' => '',
@@ -50,8 +56,8 @@
             #---------------------------------------------------------------------------------------
             #                       No Puedo Meterlo en un arreglo :(                        
             $instructor[0]['id_asistente'] => $instructor[0]['nombre_asistente'],
-            $instructor[1]['id_asistente'] => $instructor[1]['nombre_asistente'],
-          
+//            $instructor[1]['id_asistente'] => $instructor[1]['nombre_asistente'],
+                      
             #---------------------------------------------------------------------------------------
         ));
         $obj->set_rule(array(
@@ -176,7 +182,7 @@
             if (isset($_POST)) {
                 $_POST['imagen']=$_SESSION['nombre_img'].$_FILES['file']['name']; 
                 if ($actividad->registraActividad($_POST)) {
-                    header("Location: Actividades.php?evt=$id_evento");
+                    header("Location: Actividades.php?evt=".$id_evento);
                     exit();
                 }
             }
