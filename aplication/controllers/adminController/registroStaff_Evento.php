@@ -1,4 +1,4 @@
-<?php
+<?php // ADMINISTRADOR
 
 class registroStaff_EventoController extends Eventos_Tipos_Usuarios {
 

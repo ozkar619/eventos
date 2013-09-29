@@ -1,4 +1,4 @@
-    <?php session_start();
+    <?php session_start(); // ADMINISTRADOR
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
     include ('../../libs/adodb5/adodb-pager.inc.php');
@@ -10,8 +10,11 @@
    
     $admin = new adminController();
     $arreglo = $admin->staff($id_evento);
-    ?>
+    $llave = $admin->valida_eventos($id_evento, $_SESSION['nombre']);
+            
+    if(count($llave)!=0 && $llave[0]['id_asistente'] == $_SESSION['id_usuario']) : ?>
 
+   
     <link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">
     <script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>libs/DataTables-1.9.4/media/js/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" language="javascript" src="<?php echo BASEURL; ?>libs/DataTables-1.9.4/media/js/jquery.dataTables.js"></script>
@@ -67,6 +70,14 @@
         </div>
         <!------------------------------- Fin Data Table-------------------------------------------------->
 
-    </div>
+    </div>    
 
-    <?php include("../layouts/footer.php"); ?>
+    <?php endif; 
+ if (count($llave) == 0) {
+     die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+ }
+    else if ($llave[0]['id_asistente'] != $_SESSION['id_usuario']){
+         die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+    }
+ 
+    include("../layouts/footer.php"); ?>

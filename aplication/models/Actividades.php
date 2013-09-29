@@ -18,6 +18,7 @@ class Actividades extends Modelo {
         'hora_inicio' => array(),
         'hora_fin' => array(),
         'imagen' => array(),
+        'capacidad' => array()
     );
         
     private $id_evento;
@@ -32,6 +33,7 @@ class Actividades extends Modelo {
     private $hora_inicio;
     private $hora_fin;
     private $imagen;
+    private $capacidad;
 
     function Actividad() {
         parent::Modelo();
@@ -140,6 +142,14 @@ class Actividades extends Modelo {
     }
     public function set_imagen( $valor ) {
         $this->imagen = $valor;
+    }
+    
+    # capacidad
+    public function get_capacidad() {
+        return $this->capacidad;
+    }
+    public function set_capacidad( $valor ) {
+        $this->capacidad= $valor;
     }
     
 }

@@ -1,4 +1,4 @@
-    <?php session_start();
+    <?php session_start(); // ADMINISTRADOR
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
     include ('../../libs/adodb5/adodb-pager.inc.php');
@@ -9,6 +9,10 @@
     $id_evento = $_GET['evt'];
     $admin = new adminController();
     $arreglo = $admin->list_users();
+    
+    $llave = $admin->valida_eventos($id_evento, $_SESSION['nombre']);
+    
+    
     ?>
 
     <link rel="stylesheet" type="text/css" href="<?php echo BASEURL; ?>views/bootstrap/css/DT_bootstrap.css">
@@ -18,6 +22,8 @@
 
     <br/><br/>
     <div class="span12">
+        
+        <?php if ( count($llave)!=0 && $llave[0]['id_asistente'] == $_SESSION['id_usuario']) :?>
 
         <h2>Lista de Usuarios.</h2>
 
@@ -67,6 +73,16 @@
             </table>
         </div>
         <!------------------------------- Fin Data Table-------------------------------------------------->
+        
+        <?php # Denegando Lista de Eventos
+                endif; 
+                if (count($llave) == 0) {
+                    die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+                } else
+                if ($llave[0]['id_asistente'] != $_SESSION['id_usuario']){                    
+                    die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+                }                    
+            ?>
 
     </div>
 

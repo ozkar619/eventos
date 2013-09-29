@@ -1,4 +1,5 @@
-<?php
+<?php // ADMINISTRADOR
+
 class registroUsrStaff_Controller extends Asistente_Tipo_Usuario {
 
     function registroUsrStaff_Controller() {        

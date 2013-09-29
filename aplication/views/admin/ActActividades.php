@@ -1,4 +1,4 @@
-    <?php session_start();
+    <?php session_start(); // ADMINISTRADOR
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
     include ('../../models/Actividades.php');
@@ -13,6 +13,9 @@
     $arreglo = $eventos->edita_actividades($id_actividad);
 
 
+    if (count($arreglo)!=0) {
+    
+
     $datosActividades = array(
         'id_instructor' => $arreglo[0]['id_instructor'],
         'nombre_actividad' => $arreglo[0]['nombre_actividad'],
@@ -22,18 +25,20 @@
         'fecha_fin' => $arreglo[0]['fecha_fin'],
         'hora_inicio' => $arreglo[0]['hora_inicio'],
         'hora_fin' => $arreglo[0]['hora_fin'],
+        'capacidad' => $arreglo[0]['capacidad'],
         'descripcion' => $arreglo[0]['descripcion'],
         'imagen' => $arreglo[0]['imagen'],
     );
-
+    }
     
 //libreria del formulario ----------------------------
     require '../../libs/zebra_form/Zebra_Form.php';
     //definimos el formulario ----------------------------
     $form = new Zebra_Form('form', 'POST', '', array());
     $form->language('espanol');
+    if (count($arreglo)!=0) {
     $form->auto_fill($datosActividades);
-
+    }
 
     //----------------------------------Comienza Form---------------------------------------//
     # id_instructor
@@ -109,6 +114,12 @@
     $obj->set_rule(array(
         'required' => array('error', 'Time is required!'),
     ));
+    
+    $form->add('label', 'label_capacidad', 'capacidad', 'Capacidad:');
+    $obj = $form->add('text', 'capacidad');
+    $obj->set_rule(array(
+        'required' => array('error', 'Capacidad de la Actividad es requerido!')
+    ));
 
     # Descripcion
     $form->add('label', 'label_descripcion', 'descripcion', 'Descripcion:');
@@ -156,9 +167,10 @@
         <script src="../../libs/zebra_form/public/javascript/zebra_form.js"></script><br/>
 
         <div class="span6 offset3">
-            <h2>Actualizacion de Actividades.</h2>
+            
                 <?php
-                if ($llave[0]['id_asistente'] == $_SESSION['id_usuario']) {
+                if (count($llave)!=0 && $llave[0]['id_asistente'] == $_SESSION['id_usuario']) {
+                    echo "<h2>Actualizacion de Actividades.</h2>";
                     $form->render();
                 } else {
                     die('<br/><h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');

@@ -1,4 +1,4 @@
-    <?php session_start();
+    <?php session_start(); // ADMINISTRADOR
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
     include ('../../models/Usuario.php');
@@ -24,17 +24,22 @@
     <div class="span12">
 
         <?php # Validando Lista de Eventos
-        if ($llave[0]['id_asistente'] == $_SESSION['id_usuario']) :
+        if (count($llave)!=0 && $llave[0]['id_asistente'] == $_SESSION['id_usuario']) :
             ?>
 
             <h2>lista de usuarios.</h2>
 
-            <?php if (count($arreglo) > 0) :?>
+            
             <!-------- Lista de Usuarios( DataTable con Busqueda ) ------------>
             <div class="span11">
                 <table class="table table-striped table-bordered" id="example">
-                    <legend>Usuarios Registrados [ <?php echo $arreglo[0]['nombre_actividad'] ?> ]
-
+                    <legend>Usuarios Registrados [ <?php                    
+                    if (count($arreglo) > 0) {
+                        echo $arreglo[0]['nombre_actividad'];
+                    } else {
+                        echo '';
+                    }?> ]
+                    
                         <div class="btn-group pull-right">
                             <a href="<? echo BASEURL . "views/admin/Actividades.php?evt=$id_evento" ?>" class="btn"><i class="icon-chevron-left"></i> Actividades</a>                
                             <a href="" class="btn" onclick="window.print()">Imprimir</a>
@@ -51,8 +56,7 @@
                             <th>Numero Control</th>
                             <th>Fechas Registro</th>
                             <th>Pago</th>
-                            <th>Asistio</th>
-                            <th><center>Editar</center></th>
+                            <th>Asistio</th>                            
                             <th><center>Borrar</center></th>
                         </tr>
                     </thead>
@@ -60,8 +64,14 @@
 
 
                     <tbody>
-                        <?php foreach ($arreglo as $key => $value) : $id_usuario = $arreglo[$key]['id_asistente']; ?>
-                        
+                        <?php foreach ($arreglo as $key => $value) : 
+                            $id_usuario = $arreglo[$key]['id_asistente']; 
+                            $id_asistente_evento = $arreglo[$key]['id_asistente_evento'];
+                            $id_asistente = $arreglo[$key]['id_asistente'];
+                            $asistio = $arreglo[$key]['asistio'];
+                            $pago = $arreglo[$key]['pago'];
+                            ?>
+
                             <tr>                        
                                 <td><?php echo $arreglo[$key]['nombre_asistente'] ?></td>
                                 <td><?php echo $arreglo[$key]['apellido_paterno'] ?> <?php echo $arreglo[$key]['apellido_materno'] ?></td>
@@ -69,23 +79,36 @@
                                 <td><?php echo $arreglo[$key]['email'] ?> </td>
                                 <td><?php echo $arreglo[$key]['nctrl_rfc'] ?></td>
                                 <td><?php echo $arreglo[$key]['fecha_registro'] ?></td>
-                                <td><?php echo $arreglo[$key]['pago'] ?></td>
-                                <td><?php echo $arreglo[$key]['asistio'] ?></td>
-                                <td><center><a href="<?php echo '#' ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a></center></td>
+                                <td>
+                                    <?php if ($arreglo[$key]['pago'] == 0) : $identificador="pago" ?>
+                                        <center><a href="<?php echo "ActAsistentes.php?aev=".$id_asistente_evento."&act=".$id_actividad."&asis=".$id_asistente."&stt=".$pago."&evt=".$id_evento."&id=".$identificador?>" class="btn btn-mini btn-danger" name="confirm" type="button"> NO <i class=" icon-thumbs-down icon-white"></i></a></center>
+                                    <?php endif; if ($arreglo[$key]['pago'] != 0) : $identificador="pago" ?>
+                                        <center><a href="<?php echo "ActAsistentes.php?aev=".$id_asistente_evento."&act=".$id_actividad."&asis=".$id_asistente."&stt=".$pago."&evt=".$id_evento."&id=".$identificador?>" class="btn btn-mini btn-success " name="confirm" type="button"> SI <i class=" icon-thumbs-up icon-white"></i></a></center>
+                                    <?php endif;?>
+                                </td>
+                                <td>
+                                    <?php if ($arreglo[$key]['asistio'] == 0) : $identificador="asistio"?>
+                                        <center><a href="<?php echo "ActAsistentes.php?aev=".$id_asistente_evento."&act=".$id_actividad."&asis=".$id_asistente."&stt=".$asistio."&evt=".$id_evento."&id=".$identificador?>" class="btn btn-mini btn-danger" name="confirm" type="button"> NO <i class=" icon-thumbs-down icon-white"></i></a></center>
+                                    <?php endif; if ($arreglo[$key]['asistio'] != 0) : $identificador="asistio"?>
+                                        <center><a href="<?php echo "ActAsistentes.php?aev=".$id_asistente_evento."&act=".$id_actividad."&asis=".$id_asistente."&stt=".$asistio."&evt=".$id_evento."&id=".$identificador?>" class="btn btn-mini btn-success " name="confirm" type="button"> SI <i class=" icon-thumbs-up icon-white"></i></a></center>
+                                    <?php endif;?>
+                                </td>
                                 <td><center><a class="btn btn-mini btn-danger" href="<?php echo BASEURL . "views/admin/EliminaUsr.php?act=$id_actividad&evt=$id_evento&usr=$id_usuario" ?>" type="button"><i class="icon-remove icon-white"></i></a></center></td>                        
                             </tr>    
-
+                            
                         <?php endforeach; ?>
                     </tbody>            
                 </table>
             </div>
-            <!------------------------------- Fin Data Table-------------------------------------------------->
-            <?php endif;                if (count($arreglo) < 0) {
-                echo "No Hay Usuarios Registrados aun";
-            }?>
+            <!------------------------------- Fin Data Table-------------------------------------------------->            
 
             <?php # Denegando Lista de Eventos
-                endif; if ($llave[0]['id_asistente'] != $_SESSION['id_usuario'])
+            
+                endif; 
+                if (count($llave)==0) {
+                    die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+                } else
+                if ($llave[0]['id_asistente'] != $_SESSION['id_usuario'])
                     die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
             ?>
 

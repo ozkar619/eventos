@@ -1,4 +1,4 @@
-    <?php
+    <?php // ADMINISTRADOR
     session_start();
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
@@ -23,6 +23,7 @@
             'fecha_fin' => '',
             'hora_inicio' => '',
             'hora_fin' => '',
+            'capacidad' => '',
             'descripcion' => '',
             'imagen' => '',
         );
@@ -139,6 +140,13 @@
             'required' => array('error', 'Time is required!'),
         ));
 
+        # nombre_actividad
+        $form->add('label', 'label_capacidad', 'capacidad', 'capacidad:');
+        $obj = $form->add('text', 'capacidad');
+        $obj->set_rule(array(
+            'required' => array('error', 'Capacidad de la Actividad es requerido!'),
+        ));
+        
         # Descripcion
         $form->add('label', 'label_descripcion', 'descripcion', 'Descripcion:');
         $obj = $form->add('textarea', 'descripcion');
@@ -154,6 +162,7 @@
             'upload' => array('../images/imgActividades', $_SESSION['nombre_img'], 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
             'image' => array('error', 'File must be a jpg, png or gif image!'),
             'filesize' => array(102400, 'error', 'File size must not exceed 100Kb!'),
+            'required' => array('error', 'Se requiere una Imagen de Actividad!')
         ));       
 
         $form->add('submit', 'btnsubmit', 'Registrar');
@@ -183,9 +192,10 @@
 
         <br/>
         <div class="span6 offset3">
-            <h2>Registro de Actividades.</h2>
+            
             <?php
-            if($llave[0]['id_asistente'] == $_SESSION['id_usuario']){
+            if(count($llave)!=0 && $llave[0]['id_asistente'] == $_SESSION['id_usuario']){
+                echo "<h2>Registro de Actividades.</h2>";
                 $form->render();
             } else {
                 die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');

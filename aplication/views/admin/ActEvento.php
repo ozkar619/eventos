@@ -1,4 +1,4 @@
-    <?php
+    <?php // ADMINISTRADOR
     session_start();
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
@@ -12,6 +12,9 @@
         $eventos = new adminController();
         $arreglo = $eventos->edita_evento($id_evento);
         
+        
+        if (count($arreglo) != 0) {
+    
 
         $datosActividades = array(
             'nombre_evento' => $arreglo[0]['nombre_evento'],
@@ -22,16 +25,17 @@
             'informacion' => $arreglo[0]['informacion'],
             'imagen' => $arreglo[0]['imagen'],
         );
-
+        }
 
         //libreria del formulario ----------------------------
         require '../../libs/zebra_form/Zebra_Form.php';
         //definimos el formulario ----------------------------
         $form = new Zebra_Form('form', 'POST', '', array());
         $form->language('espanol');
+        if (count($arreglo) != 0) {
         $form->auto_fill($datosActividades);
-
-
+        }
+        
 
         //----------------------------------Comienza Form---------------------------------------//
         # nombre_evento
@@ -59,7 +63,7 @@
         $form->add('label', 'label_fecha_inicio', 'fecha_inicio', 'Fecha Inicio');
         $obj = $form->add('date', 'fecha_inicio');
         $obj->set_rule(array(
-            'required' => array('error', 'Date is required!'),
+            'required' => array('error', 'El evento requiere fecha de inicio!'),
             'date' => array('error', 'Date is invalid!'),
         ));
         $obj->format('Y-m-d');
@@ -70,7 +74,7 @@
         $form->add('label', 'label_fecha_fin', 'fecha_fin', 'Fecha Fin');
         $obj = $form->add('date', 'fecha_fin');
         $obj->set_rule(array(
-            'required' => array('error', 'Date is required!'),
+            'required' => array('error', 'El evento requiere fecha de Finalización!'),
             'date' => array('error', 'Date is invalid!'),
         ));
         $obj->format('Y-m-d');
@@ -78,10 +82,10 @@
         $form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (Y, M, d)');
 
         # Descripcion
-        $form->add('label', 'label_informacion', 'informacion', 'Descripcion:');
+        $form->add('label', 'label_informacion', 'informacion', 'Descripción:');
         $obj = $form->add('textarea', 'informacion');
         $obj->set_rule(array(
-            'required' => array('error', 'Descripcion es requerido!')
+            'required' => array('error', 'Se Requiere Descripción del evento')
         ));
 
         //imagen
@@ -92,6 +96,7 @@
             'upload' => array('../images/imgEventos', $_SESSION['nombre_img'], 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
             'image' => array('error', 'File must be a jpg, png or gif image!'),
             'filesize' => array(102400, 'error', 'File size must not exceed 100Kb!'),
+            'required' => array('error', 'El evento requiere de una Imagen.!!')
         ));
         
         
@@ -127,10 +132,11 @@
 
         <br/>
         <div class="span6 offset3">
-            <h2>Actualizacion de Eventos.</h2>
+            
             <?php
-            if($llave[0]['id_asistente'] == $_SESSION['id_usuario']){
-                $form->render();            
+            if( count($llave)!=0 && $llave[0]['id_asistente'] == $_SESSION['id_usuario']){
+                echo "<h2>Actualizacion de Eventos.</h2>";
+                $form->render();                 
             } else {
                 die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
             }

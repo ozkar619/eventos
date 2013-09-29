@@ -1,4 +1,4 @@
-<?php
+<?php // ADMINISTRADOR 
 
 class ActualizaController extends Modelo {
 
@@ -48,6 +48,18 @@ class ActualizaController extends Modelo {
 
             WHERE `id_evento` =" . $id_evento . ";
         ");
+        return $this->consulta_sql($sql);
+    }
+    
+    
+    function actualiza_asistentes_actividades($campo, $valor, $ids) {
+        parent::Modelo();
+        $sql = ("            
+            UPDATE  `evt_asistentes_actividades` 
+            SET `". $campo. "` = " .$valor. "
+            WHERE `id_asistente_evento` =" .$ids['id_asistente_evento']. " AND 
+                   `id_asistente` = ".$ids['id_asistente']." AND 
+                   `id_actividad` = ".$ids['id_actividad']);
         return $this->consulta_sql($sql);
     }
 

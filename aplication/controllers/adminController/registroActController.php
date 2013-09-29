@@ -1,4 +1,4 @@
-<?php
+<?php // ADMINISTRADOR
 
 class RegistroActController extends Actividades {
 
@@ -18,6 +18,7 @@ class RegistroActController extends Actividades {
         $this->set_fecha_fin($valores['fecha_fin']);
         $this->set_hora_inicio($valores['hora_inicio']);
         $this->set_hora_fin($valores['hora_fin']);
+        $this->set_capacidad($valores['capacidad']);
         $this->set_descripcion($valores['descripcion']);
         $this->set_imagen($valores['imagen']);
         return $this->inserta($this->get_atributos());

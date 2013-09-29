@@ -1,4 +1,4 @@
-<?php
+<?php // ADMINISTRADOR
 
 class AdminController {
 
@@ -166,7 +166,8 @@ class AdminController {
         $evento->db->Execute($sql);
         //die($sql);
     }
-
+    
+    
 }
 
 ?>

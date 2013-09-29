@@ -1,4 +1,4 @@
-<?php session_start();
+<?php session_start(); // ADMINISTRADOR
     include ('../../models/Conexion.php');
     include ('../../models/Modelo.php');
     include ('../../models/Asistente_Tipo_Usuario.php');
@@ -15,14 +15,18 @@
     $id_asistente = $_GET['usr'];
     $arreglo = $admin->consulta_eventos_admin("a.id_asistente = ".$_SESSION['id_usuario']." AND e.id_evento = ".$id_evento);    
     $usuario = $admin->list_users("WHERE id_asistente = ".$id_asistente);
+    $llave = $admin->valida_eventos($id_evento, $_SESSION['nombre'])
 ?>
     <br/><br/>        
     <div class="hero-unit">
+        <?php # Validando Lista de Eventos
+        if ( count($llave)!=0 && $llave[0]['id_asistente'] == $_SESSION['id_usuario'] && count($usuario)!=0 ) :?>
+        
         <form method="POST">
             <legend><p>Asignar a [ <strong><?php echo $usuario[0]['nombre_asistente']?></strong> ] al equipo de STAFF de:</p></legend>
                         <p>
                 <?php foreach ($arreglo as $key => $value) : ?>
-                <input type="radio" name="id_evento" value="<?php echo $arreglo[$key]['id_evento']?>" required="required" /> [ <strong><?php echo $arreglo[$key]['nombre_evento']?></strong> ]<br/>
+                <input checked="checked" type="radio" name="id_evento" value="<?php echo $arreglo[$key]['id_evento']?>" required="required" /> [ <strong><?php echo $arreglo[$key]['nombre_evento']?></strong> ]<br/>
                 <?php endforeach;?>
             </p>
             <br/><br/><input class="btn btn-large btn-success" type="submit" value="Asignar"/>
@@ -65,4 +69,16 @@ if ( (isset($_POST['id_evento'])) && (isset($_POST['id_evento'])== $arreglo[$key
     
     include ('../layouts/footer.php');
 ?>
+    <?php # Denegando Lista de Eventos
+                endif; 
+                if (count($usuario)==0) {
+                    die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+                } else
+                if (count($llave) == 0) {
+                    die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+                } else
+                if ($llave[0]['id_asistente'] != $_SESSION['id_usuario']){                    
+                    die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+                }                    
+            ?>
 </div>        

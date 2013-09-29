@@ -1,4 +1,4 @@
-    <?php session_start();
+    <?php session_start(); // ADMINISTRADOR
     include ('../../models/Conexion.php');
     include ('../../libs/adodb5/adodb-pager.inc.php');
     include ('../../libs/adodb5/adodb.inc.php');
@@ -22,11 +22,11 @@
     <br/><br/>
     <div class="span12 row-fluid">
 
-        <h2>Lista de Actividades</h2>
+        
 
         <?php # Validando Lista de Eventos
-        if ($llave[0]['id_asistente'] == $_SESSION['id_usuario']) :
-            ?>
+        if ( count($llave)!=0 && $llave[0]['id_asistente'] == $_SESSION['id_usuario']) : ?>
+        <h2>Lista de Actividades</h2>
 
             <!-------- Lista de Actividades ( DataTable con Busqueda ) ------------>
             <div class="span11">
@@ -50,6 +50,7 @@
                             <th>Precio</th>                    
                             <th>Fechas</th>
                             <th>Horario</th>
+                            <th>Capacidad</th>
                             <th>Descripcion</th>                    
                             <th>Users</th>
                             <th>Edit</th>
@@ -75,6 +76,7 @@
                                 <td><?php echo $arreglo[$key]['precio'] ?></td>
                                 <td><?php echo $arreglo[$key]['fecha_inicio'] ?>  <strong>al</strong>  <?php echo $arreglo[$key]['fecha_fin'] ?> </td>                            
                                 <td><?php echo $arreglo[$key]['hora_inicio'] ?>  <strong>a</strong>  <?php echo $arreglo[$key]['hora_fin'] ?></td>                            
+                                <td><?php echo $arreglo[$key]['capacidad'] ?></td>
                                 <td><?php echo $arreglo[$key]['descripcion'] ?></td>
                                 <td><center><a href="<?php echo BASEURL . "views/admin/UsuariosAct.php?evt=$id_evento&act=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-user"></i></a></center></td>
                                 <td><center><a href="<?php echo BASEURL . "views/admin/ActActividades.php?evt=$id_evento&act=$id_actividad" ?>" class="btn btn-mini" type="button"><i class="icon-edit"></i></a></center></td>
@@ -104,9 +106,14 @@
             <!------------------------------- Fin Data Table-------------------------------------------------->
 
             <?php # Denegando Lista de Eventos
-                endif; if ($llave[0]['id_asistente'] != $_SESSION['id_usuario'])
+                endif; 
+                if (count($llave) == 0) {
                     die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+                } else
+                if ($llave[0]['id_asistente'] != $_SESSION['id_usuario']){                    
+                    die('<h2>Error 404... Tu Solicitud no ha podido ser atendida. !!!');
+                }                    
             ?>
     </div>
     
-<?php include '../layouts/footer.php'; ?>   
+<?php include '../layouts/footer.php'; ?> 
