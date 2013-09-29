@@ -182,7 +182,7 @@
             if (isset($_POST)) {
                 $_POST['imagen']=$_SESSION['nombre_img'].$_FILES['file']['name']; 
                 if ($actividad->registraActividad($_POST)) {
-                    header("Location: Actividades.php?evt=$id_evento");
+                    header("Location: Actividades.php?evt=".$id_evento);
                     exit();
                 }
             }

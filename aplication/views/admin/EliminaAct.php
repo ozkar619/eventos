@@ -44,8 +44,8 @@
           </strong>]        
           
           
-        <br/><br/><input class="btn btn-large btn-success" type="submit" value="Si,Eliminar"/>
-        <a href="<?php echo "Actividades.php?evt=$id_evento"?>" class="btn btn-large btn-primary" type="button" > No,Regresar </a>
+        <br/><br/><input class="btn btn-large btn-success" type="submit" value="Si, Eliminar"/>
+        <a href="<?php echo "Actividades.php?evt=".$id_evento?>" class="btn btn-large btn-primary" type="button" > No, Regresar </a>
     </form>  
         <?php if ((isset($_POST['confirm'])) && ($_POST['confirm']=="si") ) : 
                         
@@ -58,7 +58,7 @@
             echo 'Eliminado Correctamente<br/>';
             #----------------------------------------------------            
         ?> 
-        <a href="<?php echo "Actividades.php?evt=$id_evento"?>" type="button" class="btn btn-link" >  Regresar a Actividades</a> 
+        <a href="<?php echo "Actividades.php?evt=".$id_evento ?>" type="button" class="btn btn-link" >  Regresar a Actividades</a> 
         <?php endif;    
         
         include ('../layouts/footer.php');?>

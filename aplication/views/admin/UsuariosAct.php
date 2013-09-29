@@ -41,7 +41,7 @@
                     }?> ]
                     
                         <div class="btn-group pull-right">
-                            <a href="<? echo BASEURL . "views/admin/Actividades.php?evt=$id_evento" ?>" class="btn"><i class="icon-chevron-left"></i> Actividades</a>                
+                            <a href="<? echo BASEURL . "views/admin/Actividades.php?evt=".$id_evento ?>" class="btn"><i class="icon-chevron-left"></i> Actividades</a>                
                             <a href="" class="btn" onclick="window.print()">Imprimir</a>
                         </div>
                     </legend><br/>
