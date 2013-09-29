@@ -47,7 +47,6 @@ CREATE TABLE evt_actividades(
     lugar varchar(120) not null,
 	capacidad integer not null,
     precio decimal not null,
-    capacidad int not null,
     descripcion varchar(500) not null,
     fecha_inicio date not null,
     fecha_fin date not null,
@@ -60,7 +59,7 @@ CREATE TABLE evt_actividades(
     constraint evt_actividadesC4 foreign key act_id_tipo_actividad_FK (id_tipo_actividad) references evt_tipos_actividades(id_tipo_actividad),       
     constraint evt_actividadesC5 unique (id_actividad),    
     constraint evt_actividadesC6 check (fecha_inicio < fecha_fin),
-    constraint evt_actividadesC7 check (precio > 0)    
+    constraint evt_actividadesC7 check (precio > 0),    
     constraint evt_actividadesC9 check (capacidad > 0)    
 ) ENGINE=INNODB;
 
