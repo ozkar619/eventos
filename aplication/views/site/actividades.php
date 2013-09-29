@@ -15,17 +15,17 @@ include ('../layouts/header.php');
 // NO SIRVE LA VALIDACION DE VARIABLES PASADAS POR GET
 
 $acti = new asistente_actividadesController();
-$ruta = "../images/imgActividades/";
+$ruta = BASEURL."views/images/imgActividades/";
 
 $id_eve = $_GET['id_eve'];
 $tipo = $_GET['tipo'];
 
 $evento = $acti->regresa_nombre_evento($id_eve);
-$imagen = "../images/imgEventos/" . $acti->regresa_img_evento($id_eve); 
+$imagen = BASEURL."views/images/imgEventos/" . $acti->regresa_img_evento($id_eve); 
 $tip_act = $acti->regresa_tipos_actividad($id_eve);
 $actividad = $acti->regresa_actividad($id_eve, $tipo);
 ?>
-<script src="../bootstrap/js/actividades.js"></script>
+<script src=<?php echo BASEURL.'views/bootstrap/js/actividades.js'?>></script>
 
 <?php if (isset($_SESSION['id_usuario'])) : ?>
     <?php if (isset($_POST['id_usuario'])) : ?>
@@ -39,17 +39,14 @@ $actividad = $acti->regresa_actividad($id_eve, $tipo);
 <?php endif; ?>
 <div class="row-fluid">
 
-    <div class="span11 offset1 padding2">
-        <div Class="span10">
-            <div>
-                <h2> <?php echo "Bienvenido a " . $evento ?></h2>
-            </div>
-
+    <div class="span11 padding">
+        <div class="span11 ">  
+                <h2> <?php echo "Bienvenido a " . $evento ?></h2>    
         </div>
     </div>
 
     <div class="row-fluid  span11">
-        <div class="span4">
+        <div class="span3">
             <div class="">
                 <?php if (isset($_SESSION['id_usuario'])): ?>
                     <?php include ('menuSecion.php'); ?>
@@ -72,7 +69,7 @@ $actividad = $acti->regresa_actividad($id_eve, $tipo);
             </div>
         </div>  
 
-        <div class="span8 image">
+        <div class="span9 image">
             <img class="image" src="<?php echo $imagen ?>"/> 
         </div>
 
@@ -108,7 +105,7 @@ $actividad = $acti->regresa_actividad($id_eve, $tipo);
                         <div id="<?php echo $actividad[$key]['id_actividad']; ?>" class="accordion-body collapse ">               
 
                             <div class="accordion-inner row-fluid">                    
-                                <div class="span8">                        
+                                <div class="span9">                        
                                     <p>
                                     <p> <?php echo "Descripcion : " . $actividad[$key]['descripcion'] ?> </p> 
                                     <p> <?php echo "Del " . $actividad[$key]['fecha_inicio'] . " al " . $actividad[$key]['fecha_fin'] ?> </p> 
@@ -132,7 +129,7 @@ $actividad = $acti->regresa_actividad($id_eve, $tipo);
                                     </p>
                                 </div>                    
                                 <div class="span3 rojo">
-                                    <img src="<?php echo $ruta . $actividad[$key]['imagen'] ?>"/> 
+                                    <img class="image2" src="<?php echo $ruta . $actividad[$key]['imagen'] ?>"/> 
                                 </div>                    
                             </div>
 
