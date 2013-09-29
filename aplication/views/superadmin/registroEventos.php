@@ -71,9 +71,9 @@ $_SESSION['nombre_img']=md5(rand(0, 500));
 $form->add('label', 'label_file', 'file', 'Sube una imagen para el evento');
 $obj = $form->add('file', 'file');
 $obj->set_rule(array(
-    'upload' => array('../images/imgEventos', $_SESSION['nombre_img'], 'error', 'Could not upload file!<br>Check that the "tmp" folder exists inside the "examples" folder and that it is writable'),
+    'upload' => array('../images/imgEventos', $_SESSION['nombre_img'], 'error', 'Could not upload file!'),
     'image' => array('error', 'File must be a jpg, png or gif image!'),
-    'filesize' => array(102400, 'error', 'File size must not exceed 100Kb!'),
+    'filesize' => array(1024000, 'error', 'File size must not exceed 1000Kb!'),
 ));
 
 //submit

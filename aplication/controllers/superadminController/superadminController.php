@@ -147,6 +147,34 @@ WHERE etu.id_evento =".$id_evento;
         $sql="UPDATE  `evt_eventos_admin` SET  `id_asistente` =".$id_asistente." WHERE id_evento_admin=".$id_evento_admin;
         $ea->consulta_sql($sql);
     }
+    
+    public function obtener_nombre_asistente($id_asistente){
+        $usuario=new Usuario();
+        $sql="Select * from evt_asistentes where id_asistente=".$id_asistente;
+        $rs=$usuario->consulta_sql($sql);
+        $arreglo=$rs->GetArray();
+        return $arreglo;
+    }
+    
+    public function obtener_nombre_evento($id_evento){
+        $evento=new Evento();
+        $sql="Select nombre_evento from evt_eventos where id_evento=".$id_evento;
+        $rs=$evento->consulta_sql($sql);
+        $arreglo=$rs->GetArray();
+        return $arreglo;
+    }
+    
+    public function obtener_nombre_evento_usuario($id_evento_admin){
+        $ea=new Eventos_Admin();
+        $sql="SELECT e.nombre_evento, a.nombre_asistente, a.apellido_paterno
+FROM evt_eventos_admin ea
+INNER JOIN evt_eventos e ON ea.id_evento = e.id_evento
+INNER JOIN evt_asistentes a ON ea.id_asistente = a.id_asistente where id_evento_admin=".$id_evento_admin;
+        $rs=$ea->consulta_sql($sql);
+        $arreglo=$rs->GetArray();
+        return $arreglo;
+    }
+    
 }
 
 ?>
