@@ -1,4 +1,6 @@
-<?php ####
+<?php
+
+####
 
 class asistente_actividadesController extends Asistentes_Actividades {
 
@@ -68,6 +70,24 @@ class asistente_actividadesController extends Asistentes_Actividades {
         return true;
     }
 
+    public function checa_disponibilidad($valores) {
+        $sql = "select count(*) from evt_asistentes_actividades where id_actividad = " . $valores['id_actividad'];
+        $rs = $this->consulta_sql($sql);
+        $rows11 = $rs->GetArray();
+
+        $sql = "select capacidad from evt_actividades where id_actividad = " . $valores['id_actividad'];
+        $rs = $this->consulta_sql($sql);
+        $rows22 = $rs->GetArray();
+        
+        $rows1=$rows11[0];
+        $rows2=$rows22[0];  
+        if ($rows1 < $rows2) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function registraUsuario_actividad($valores) {
         parent::Asistentes_Actividades();
 
@@ -76,6 +96,10 @@ class asistente_actividadesController extends Asistentes_Actividades {
         } else {
             if (!$this->checa_cruce_horario($valores)) {
                 return 3;
+            }else{
+                if(!$this->checa_disponibilidad($valores)){
+                    return 4;
+                }
             }
         }
 
@@ -91,7 +115,7 @@ class asistente_actividadesController extends Asistentes_Actividades {
         if ($this->inserta($this->get_atributos())) {
             return 1;
         } else {
-            return 4;
+            return 5;
         }
     }
 

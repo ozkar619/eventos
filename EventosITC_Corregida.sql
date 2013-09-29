@@ -45,6 +45,7 @@ CREATE TABLE evt_actividades(
     id_tipo_actividad integer not null,
     nombre_actividad varchar(120) not null,
     lugar varchar(120) not null,
+	capacidad integer not null,
     precio decimal not null,
     capacidad int not null,
     descripcion varchar(500) not null,

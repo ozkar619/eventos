@@ -11,8 +11,7 @@
         $id_evento = ($_GET['evt']);
         $eventos = new adminController();
         $arreglo = $eventos->edita_evento($id_evento);
-        
-        
+                
         if (count($arreglo) != 0) {
     
 

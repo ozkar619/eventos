@@ -51,7 +51,6 @@
             #                       No Puedo Meterlo en un arreglo :(                        
             $instructor[0]['id_asistente'] => $instructor[0]['nombre_asistente'],
             $instructor[1]['id_asistente'] => $instructor[1]['nombre_asistente'],
-            $instructor[2]['id_asistente'] => $instructor[2]['nombre_asistente'],
           
             #---------------------------------------------------------------------------------------
         ));

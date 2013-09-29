@@ -53,7 +53,7 @@ $ruta = "../images/imgEventos/";
                                         <td><a href="actividades.php?<?php echo 'id_eve=' . $arreglo[$key]['id_evento'] . '&tipo=0' ?>" role="button" class="btn btn-warning" data-toggle="modal" >Actividades »</a>  </td>               
 
                                         <?php if (!isset($_SESSION['id_usuario'])): ?>  
-                                            <td> <h5><span class="label label-important">Registrate o inicia sesion para unirte al evento</span></h5></td>
+                                            <td><a href="<?php echo BASEURL; ?>views/site/registro.php" > <h5><span class="label label-important">Registrate o inicia sesion para unirte al evento</span></h5><a></td>
                                         <?php endif ?> 
                                     </tr>
                                 </div>
