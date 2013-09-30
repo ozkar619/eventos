@@ -53,6 +53,7 @@ $obj->set_rule(array(
 ));
 $obj->format('Y-m-d');
 $obj->direction(1);
+$obj->pair('fecha_fin');
 $form->add('note', 'note_fecha_inicio', 'fecha_inicio', 'Formato de Fecha (AAAA-MM-DD)');
 
 //fecha de fin
@@ -63,7 +64,7 @@ $obj->set_rule(array(
     'date' => array('error', 'Fecha inv&aacute;lida'),
 ));
 $obj->format('Y-m-d');
-$obj->direction(1);
+$obj->direction(true);
 $form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (AAAA-MM-DD)');
 
 //imagen
@@ -92,10 +93,12 @@ if ($form->validate()){
                 if(isset($_POST)){
                    $_POST['imagen']=$_SESSION['nombre_img'].$_FILES['file']['name'];
                    //move_uploaded_file($_FILES["file"]["tmp_name"],"../images/".$_FILES['file']['name']);
-                    if($evento->registraEvento($_POST)){
+                   
+                       if($evento->registraEvento($_POST)){
                         header("Location: registroCorrecto.php");
                         exit();
                     }
+                   
                 }
         } 
         include("../layouts/header.php"); 

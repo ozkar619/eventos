@@ -32,6 +32,22 @@ INNER JOIN evt_eventos e ON ea.id_evento = e.id_evento");
         $arreglo = $rs->GetArray();
         return $arreglo;
     }
+    
+    public function lista_tipos_usuarios() {
+        $tu = new Tipo_Usuario();
+        $sql = ("Select * from  evt_tipos_usuarios");
+        $rs = $tu->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
+    
+    public function lista_tipos_actividades() {
+        $ta = new Tipo_Actividad();
+        $sql = ("Select * from  evt_tipos_actividades");
+        $rs = $ta->consulta_sql($sql);
+        $arreglo = $rs->GetArray();
+        return $arreglo;
+    }
 
     public function consulta_admins() {
         $eventoad = new Eventos_Admin();
@@ -125,27 +141,65 @@ WHERE etu.id_evento =".$id_evento;
         $eventoa->elimina($where);
     }
 
+    public function elimina_actividad($id_tipo_actividad){
+        $actividad=new Actividades();
+        $where="id_tipo_actividad=".$id_tipo_actividad;
+        $actividad->elimina($where);
+    }
+    
+    public function elimina_tipo_actividad($id_tipo_actividad){
+        $ta=new Tipo_Actividad();
+        $where="id_tipo_actividad=".$id_tipo_actividad;
+        $ta->elimina($where);
+    }
+    
     public function elimina_evento_admin($id_evento_admin) {
         $eventoad = new Eventos_Admin();
         $where = "id_evento_admin=" . $id_evento_admin;
         $eventoad->elimina($where);
     }
 
-     public function elimina_asistente_tipo_usuario($id_asistente, $id_tipo_usuario) {
+     public function elimina_asistente_tipo_usuario($id_tipo_usuario, $id_asistente="null") {
         $atu=new Asistente_Tipo_Usuario();
-        $where = "id_asistente=" . $id_asistente." and id_tipo_usuario=".$id_tipo_usuario;
+        if($id_asistente=="null")
+            $where="id_tipo_usuario=".$id_tipo_usuario;
+        else
+            $where = "id_asistente=" . $id_asistente." and id_tipo_usuario=".$id_tipo_usuario;
         $atu->elimina($where);
     }
     
-    public function elimina_evento_tipo_usuario($id_evento, $id_tipo_usuario) {
+    public function elimina_evento_tipo_usuario($id_tipo_usuario, $id_evento="null") {
         $etu=new Eventos_Tipos_Usuarios();
-        $where = "id_evento=" . $id_evento." and id_tipo_usuario=".$id_tipo_usuario;
+        if($id_evento=="null")
+            $where="id_tipo_usuario=".$id_tipo_usuario;
+        else
+            $where = "id_evento=" . $id_evento." and id_tipo_usuario=".$id_tipo_usuario;
         $etu->elimina($where);
     }
+    
+    public function elimina_tipo_usuario($id_tipo_usuario){
+        $tu=new Tipo_Usuario();
+        $where="id_tipo_usuario=".$id_tipo_usuario;
+        $tu->elimina($where);
+    }
+    
     public function actualiza_evento_admin($id_asistente, $id_evento_admin){
         $ea=new Eventos_Admin();
         $sql="UPDATE  `evt_eventos_admin` SET  `id_asistente` =".$id_asistente." WHERE id_evento_admin=".$id_evento_admin;
         $ea->consulta_sql($sql);
+    }
+    
+    public function actualiza_tipo_usuario($id_tipo_usuario, $tipo){
+        $tu=new Tipo_Usuario();
+        $sql="UPDATE evt_tipos_usuarios SET tipo='".$tipo."' WHERE id_tipo_usuario=".$id_tipo_usuario;
+        $tu->consulta_sql($sql);
+        $rs=$tu->consulta_datos();
+    }
+    
+    public function actualiza_tipo_actividad($id_tipo_actividad, $tipo_actividad){
+        $ta=new Tipo_Actividad();
+        $sql="UPDATE evt_tipos_actividades SET tipo_actividad='".$tipo_actividad."' WHERE id_tipo_actividad=".$id_tipo_actividad;
+        $ta->consulta_sql($sql);
     }
     
     public function obtener_nombre_asistente($id_asistente){
@@ -160,6 +214,21 @@ WHERE etu.id_evento =".$id_evento;
         $evento=new Evento();
         $sql="Select nombre_evento from evt_eventos where id_evento=".$id_evento;
         $rs=$evento->consulta_sql($sql);
+        $arreglo=$rs->GetArray();
+        return $arreglo;
+    }
+    
+    public function obtener_nombre_tipo_usuario($id_tipo_usuario){
+        $tu=new Tipo_Usuario();
+        $sql="Select * from evt_tipos_usuarios where id_tipo_usuario=".$id_tipo_usuario;
+        $rs=$tu->consulta_sql($sql);
+        $arreglo=$rs->GetArray();
+        return $arreglo;
+    }
+    public function obtener_nombre_tipo_actividad($id_tipo_actividad){
+        $ta=new Tipo_Actividad();
+        $sql="Select * from evt_tipos_actividades where id_tipo_actividad=".$id_tipo_actividad;
+        $rs=$ta->consulta_sql($sql);
         $arreglo=$rs->GetArray();
         return $arreglo;
     }

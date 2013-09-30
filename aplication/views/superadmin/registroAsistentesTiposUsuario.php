@@ -82,7 +82,7 @@ $rows1=$sa->obtener_nombre_asistente($id_asistente);
     <?php
     $sa=new SuperadminController();
     if ((isset($_POST['id_tipo_usuario1'])) && ($_POST['id_tipo_usuario1'] != 0)){
-        $sa->elimina_asistente_tipo_usuario($id_asistente, $_POST['id_tipo_usuario1']);
+        $sa->elimina_asistente_tipo_usuario($_POST['id_tipo_usuario1'],$id_asistente);
             header("Location: registroAsistentesTiposUsuario.php?id_asistente=".$id_asistente);
             exit();
     }
