@@ -95,6 +95,7 @@
         'date' => array('error', 'Date is invalid!'),
     ));
     $obj->format('Y-m-d');
+    $obj->pair('fecha_fin');
     $obj->direction(1);
     $form->add('note', 'note_fecha_inicio', 'fecha_inicio', 'Formato de Fecha (M, D, Y)');
 
@@ -106,7 +107,7 @@
         'date' => array('error', 'Date is invalid!'),
     ));
     $obj->format('Y-m-d');
-    $obj->direction(1);
+    $obj->direction(true);
     $form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (Y, M, d)');
 
     # Hora Inicio

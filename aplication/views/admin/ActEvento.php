@@ -60,12 +60,13 @@
 
         # Fecha Inicio
         $form->add('label', 'label_fecha_inicio', 'fecha_inicio', 'Fecha Inicio');
-        $obj = $form->add('date', 'fecha_inicio');
+        $obj = $form->add('date', 'fecha_inicio');        
         $obj->set_rule(array(
             'required' => array('error', 'El evento requiere fecha de inicio!'),
             'date' => array('error', 'Date is invalid!'),
         ));
         $obj->format('Y-m-d');
+        $obj->pair('fecha_fin');
         $obj->direction(1);
         $form->add('note', 'note_fecha_inicio', 'fecha_inicio', 'Formato de Fecha (M, D, Y)');
 
@@ -77,7 +78,7 @@
             'date' => array('error', 'Date is invalid!'),
         ));
         $obj->format('Y-m-d');
-        $obj->direction(1);
+        $obj->direction(false);
         $form->add('note', 'note_fecha_fin', 'fecha_fin', 'Formato de Fecha (Y, M, d)');
 
         # Descripcion
