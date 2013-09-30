@@ -82,7 +82,7 @@ $rows1=$sa->obtener_nombre_evento($id_evento);
     <?php
     $sa=new SuperadminController();
     if ((isset($_POST['id_tipo_usuario1'])) && ($_POST['id_tipo_usuario1'] != 0)){
-        $sa->elimina_evento_tipo_usuario($id_evento, $_POST['id_tipo_usuario1']);
+        $sa->elimina_evento_tipo_usuario($_POST['id_tipo_usuario1'],$id_evento);
             header("Location: registroEventosTiposUsuario.php?id_evento=".$id_evento);
             exit();
     }

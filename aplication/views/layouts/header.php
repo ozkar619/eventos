@@ -68,7 +68,7 @@
                                                     <a tabindex="-1" href="<?php echo BASEURL; ?>views/superadmin/registroTiposUsuario.php">Registrar Tipos de Usuario</a>
                                                 </li>
                                                 <li>
-                                                    <a tabindex="-1" href="#">Lista de Tipos de Usuario</a>
+                                                    <a tabindex="-1" href="<?php echo BASEURL; ?>views/superadmin/tiposusuariosuperadmin.php">Lista de Tipos de Usuario</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -93,7 +93,7 @@
                                                     <a tabindex="-1" href="<?php echo BASEURL; ?>views/superadmin/registroTiposActividad.php">Registrar Tipos de Actividad</a>
                                                 </li>
                                                 <li>
-                                                    <a tabindex="-1" href="#">Lista de Tipos de Actividad</a>
+                                                    <a tabindex="-1" href="<?php echo BASEURL; ?>views/superadmin/tiposactividadsuperadmin.php">Lista de Tipos de Actividad</a>
                                                 </li>
                                             </ul>
                                         </li>
