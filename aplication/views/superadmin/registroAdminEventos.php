@@ -43,6 +43,10 @@ $rows1=$superadmin->obtener_nombre_evento($id_evento);
                     }
                     ?>
                 </select>
+                <select name="tipo">
+                    <option value="0">Administrador General</option>
+                    <option value="0">Staff</option>
+                </select>
             </div>
             <div class="span3">
                 <input type="submit" value="Asignar"/>
@@ -53,7 +57,6 @@ $rows1=$superadmin->obtener_nombre_evento($id_evento);
     $ea=new RegistroEvtAdminController();
     if((isset($_POST['id_asistente']))&&($_POST['id_asistente']!=0)){
         $_POST['id_evento']=$id_evento;
-        $_POST['tipo']="admin";
         if($ea->registraEventos_Admin($_POST)){
             header("Location: registroCorrecto.php");
             exit();
