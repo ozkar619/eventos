@@ -4,7 +4,7 @@
 class LoginController extends Usuario{
     
     private $admins = array('oscar@itc.mx','ramon_eduardo14@hotmail.com','maners.011@gmail.com','krauser_csr@hotmail.com');
-    private $superadmins = array('ramone.mendozam@gmail.com');//Correo del superadministrador
+    private $superadmins = array('oscar@itc.mx','ramone.mendozam@gmail.com');//Correo del superadministrador
     public function valida_usuario($email,$password){
         //validar
         $sql = "select * 

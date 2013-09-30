@@ -153,6 +153,7 @@ class AdminController {
     public function consulta_tipos_usuarios( $where = ";" ){
         $eventos = new Modelo();
         $sql = (" SELECT * FROM evt_tipos_usuarios ".$where);                
+        //die($sql);
         $rs = $eventos->consulta_sql($sql);
         $arreglo = $rs->GetArray();
         return $arreglo;

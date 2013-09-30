@@ -15,6 +15,12 @@ class RegistroController extends Usuario{
             $this->set_genero($valores['genero']);
             $this->set_edad($valores['edad']);
             $this->set_nctr_rfc('');
+            
+            if(count($this->errores) > 0 ){
+                return false;
+            }
+            
+            
             return $this->inserta($this->get_atributos());
     }
     

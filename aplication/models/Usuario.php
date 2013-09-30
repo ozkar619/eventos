@@ -6,15 +6,17 @@ class Usuario extends Modelo{
     
     
     public $atributos = array(
-                'nombre_asistente'=>array(),
-                'email'=>array(),
-                'password'=>array(),
-                'apellido_paterno'=>array(),
-                'apellido_materno'=>array(),
-                'genero'=>array(),
-                'edad'=>array(),
-                'nctr_rfc'=>array()
+        'nombre_asistente'=>array(),
+        'email'=>array(),
+        'password'=>array(),
+        'apellido_paterno'=>array(),
+        'apellido_materno'=>array(),
+        'genero'=>array(),
+        'edad'=>array(),
+        'nctr_rfc'=>array()
     );
+    
+    public $errores = array( );
     
     private $nombre_asistente;
     private $apellido_paterno;
@@ -43,14 +45,14 @@ class Usuario extends Modelo{
         return $this->nctr_rfc;
     } 
     public function set_nctr_rfc($valor){
-        $this->nctr_rfc = $valor;
+        $this->nctr_rfc = trim($valor);
     }
     
     public function get_edad(){
         return $this->edad;
     } 
     public function set_edad($valor){
-        $this->edad = $valor;
+        $this->edad = trim($valor);
     }
     
     
@@ -58,7 +60,7 @@ class Usuario extends Modelo{
         return $this->genero;
     } 
     public function set_genero($valor){
-        $this->genero = $valor;
+        $this->genero = trim($valor);
     }
     
     
@@ -66,21 +68,21 @@ class Usuario extends Modelo{
         return $this->apellido_materno;
     } 
     public function set_apellido_materno($valor){
-        $this->apellido_materno = $valor;
+        $this->apellido_materno = trim($valor);
     }
     
     public function get_apellido_paterno(){
         return $this->apellido_paterno;
     } 
     public function set_apellido_paterno($valor){
-        $this->apellido_paterno = $valor;
+        $this->apellido_paterno = trim($valor);
     }
     
     public function get_nombre(){
         return $this->nombre_asistente;
     } 
     public function set_nombre($valor){
-        $this->nombre_asistente = $valor;
+        $this->nombre_asistente = trim($valor);
     }
     
     
@@ -91,7 +93,17 @@ class Usuario extends Modelo{
         
         $rs = $this->consulta_sql("select * from evt_asistentes where email = '$valor'");
         $rows = $rs->GetArray();
-        $this->email = $valor;
+        
+        if(count($rows) > 0){
+            $this->email = "";
+            $this->errores[] = "Este e-mail (".$valor.") ya esta registrado"; 
+        }else{
+            $this->email = trim($valor);
+        }
+        
+        //die("Ya existe: ".count($rows));
+        
+        
         
     } 
     
