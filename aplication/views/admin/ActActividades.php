@@ -15,7 +15,13 @@
     
     $rs3 = $eventos->consulta_tipos_usuarios("WHERE tipo = 'instructor'");
     $id_tipo_usuario = $rs3[0]['id_tipo_usuario'];
-    $instructor = $eventos->instructo($id_tipo_usuario." AND a.id_asistente = ".$id_usuario);
+    
+    
+    $instructor = $eventos->instructo($id_tipo_usuario);
+    $arrInst = array();
+    foreach ($instructor as $key => $value) {        
+          $arrInst [ $value['id_asistente']] = $value['nombre_asistente']." ".$value['apellido_paterno']." ".$value['apellido_materno'] ;
+    }
     
     if (count($instructor)!=0) {
         $id_ins = $instructor[0]['nombre_asistente'];
@@ -52,18 +58,11 @@
 
     //----------------------------------Comienza Form---------------------------------------//
     # id_instructor
-    $form->add('label', 'label_id_instructor', 'id_instructor', 'ID Instructor:');
-    $obj = $form->add('text', 'id_instructor');
-//    $obj->add_options(array(
-//            #---------------------------------------------------------------------------------------
-//            #                       No Puedo Meterlo en un arreglo :(                        
-////            $instructor[0]['id_asistente'] => $instructor[0]['nombre_asistente'],
-////            $instructor[1]['id_asistente'] => $instructor[1]['nombre_asistente'],
-//                      
-//            #---------------------------------------------------------------------------------------
-//        ));
+    $form->add('label', 'label_id_instructor', 'id_instructor', 'Instructor:');
+    $obj = $form->add('select', 'id_instructor');
+    $obj->add_options($arrInst);
     $obj->set_rule(array(
-        'required' => array('error', 'ID es requerido!'),
+        'required' => array('error', 'Instructor es requerido!'),
     ));
 
     # nombre_actividad

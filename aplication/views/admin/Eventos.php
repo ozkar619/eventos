@@ -37,7 +37,7 @@
                         <th>Descripcion</th>                    
                         <th>Actividades</th>
                         <th>Editar</th>
-                        <th>Staff</th>
+                        <!--<th>Staff</th>-->
                     </tr>
                 </thead>
                 <!-- -------------------- -->
@@ -58,7 +58,7 @@
                             <td><?php echo $arreglo[$key]['informacion'] ?></td>
                             <td><center><a class="btn btn-mini" href="<?php echo BASEURL . "views/admin/Actividades.php?evt=".$id_evento ?>" type="button"><?php echo count($numero_actividades) ?>.  <i class="icon-eye-open"></i></a></center></td>
                             <td><center><a href="<?php echo BASEURL . "views/admin/ActEvento.php?evt=".$id_evento ?>" class="btn btn-mini " type="button"><i class="icon-edit"></i></a></center></td>
-                            <td><center><a href="<?php echo BASEURL . "views/admin/staff.php?evt=".$id_evento ?>" class="btn btn-mini btn-success " type="button"><i class="icon-user icon-white"></i></a></center></td>
+                            <!--<td><center><a href="<?php // echo BASEURL . "views/admin/staff.php?evt=".$id_evento ?>" class="btn btn-mini btn-success " type="button"><i class="icon-user icon-white"></i></a></center></td>-->
                         </tr>  
 
 

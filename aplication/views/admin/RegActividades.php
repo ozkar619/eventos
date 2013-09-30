@@ -14,9 +14,20 @@
         $rs3 = $eventos->consulta_tipos_usuarios("WHERE tipo = 'instructor'");
         $id_tipo_usuario = $rs3[0]['id_tipo_usuario'];
         
+        
         $instructor = $eventos->instructo($id_tipo_usuario);
+        $Nombre_instructor= array();
+        foreach ($instructor as $key => $value) {
+            $Nombre_instructor[ $value['id_asistente']] = $value['nombre_asistente']." ".$value['apellido_paterno']." ".$value['apellido_materno'];
+    
+        }        
         
         $tipos_actividades = $eventos->consulta_tipos_actividades();
+        $tipAct = array();
+        foreach ($tipos_actividades as $key => $value) {
+                $tipAct [ $value['id_tipo_actividad']] = $value['tipo_actividad'];
+        }
+        
         $id_evento = ($_GET['evt']); #-> Obtenemos id_evento que fue enviado por parametro                
         $datosActividades = array(
             'id_evento' => $id_evento,
@@ -42,7 +53,6 @@
         $form->auto_fill($datosActividades);
 
 
-        //----------------------------------Comienza Form---------------------------------------//
         # id_evento        
         $obj = $form->add('hidden', 'id_evento');
         $obj->set_rule(array(
@@ -52,14 +62,7 @@
         # Instructor
         $form->add('label', 'label_id_instructor', 'id_instructor', 'Instructor:');
         $obj = $form->add('select', 'id_instructor');
-        $obj->add_options(array(
-            #---------------------------------------------------------------------------------------
-            #                       No Puedo Meterlo en un arreglo :(                        
-            $instructor[0]['id_asistente'] => $instructor[0]['nombre_asistente'],
-//            $instructor[1]['id_asistente'] => $instructor[1]['nombre_asistente'],
-                      
-            #---------------------------------------------------------------------------------------
-        ));
+        $obj->add_options($Nombre_instructor);
         $obj->set_rule(array(
             'required' => array('error', 'ID es requerido!'),
         ));
@@ -67,13 +70,7 @@
         # Tipos de Actividades
         $form->add('label', 'label_id_tipo_actividad', 'id_tipo_actividad', 'Tipo Actividad:');
         $obj = $form->add('select', 'id_tipo_actividad');
-        $obj->add_options(array(
-            #---------------------------------------------------------------------------------------
-            #                       No Puedo Meterlo en un arreglo :(            
-            $tipos_actividades[0]['id_tipo_actividad'] => $tipos_actividades[0]['tipo_actividad'],
-            $tipos_actividades[1]['id_tipo_actividad'] => $tipos_actividades[1]['tipo_actividad'],
-            #---------------------------------------------------------------------------------------
-        ));
+        $obj->add_options($tipAct);
         $obj->set_rule(array(
             'required' => array('error', 'ID es requerido!'),
         ));
