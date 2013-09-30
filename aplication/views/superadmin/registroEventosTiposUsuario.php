@@ -4,6 +4,7 @@ if(!isset($_SESSION['superadmin']))
     header ("Location: ../site/inicio.php");
 include ('../../models/Conexion.php');
 include ('../../models/Modelo.php');
+include ('../../models/Evento.php');
 include ('../../models/Eventos_Tipos_Usuarios.php');
 include ('../../libs/adodb5/adodb-pager.inc.php');
 include ('../../libs/adodb5/adodb.inc.php');
@@ -11,12 +12,14 @@ include ('../../controllers/superadminController/registroEvento_Tipo_UsuarioCont
 include ('../../controllers/superadminController/superadminController.php');
 include("../layouts/header.php");
 $id_evento=$_GET['id_evento'];
+$sa=new SuperadminController();
+$rows1=$sa->obtener_nombre_evento($id_evento);
 ?>
 <div class="container-fluid tabla">
     <!--<div class="row-fluid">a</div>-->
     <div class="row-fluid">
         <div class="span12">
-            <h3>Evento: <?php echo $id_evento ?></h3>
+            <h3>Evento: <?php echo $rows1[0]['nombre_evento'] ?></h3>
         </div>
     </div>
     <div class="row-fluid">
@@ -27,7 +30,7 @@ $id_evento=$_GET['id_evento'];
                 <select name="id_tipo_usuario1">
                     <option value="0">Selecciona un tipo de usuario</option>
                     <?php
-                    $sa=new SuperadminController();
+                    //$sa=new SuperadminController();
                     $rows = $sa->consulta_etus($id_evento);
                     if (count($rows) > 0) {
                         $num = count($rows);

@@ -6,7 +6,7 @@ function modal_reg_act_usu(opc)
             $msj = "Registro correcto";
             break;
         case 2:
-            $msj = "Registro INCORRECTO!!!!!!!, Ya estas registrado";
+            $msj = "Ya estas registrado!!!!!";
             break;
         case 3:
             $msj = "Registro INCORRECTO!!!!!!!,  Cruce de horarios";

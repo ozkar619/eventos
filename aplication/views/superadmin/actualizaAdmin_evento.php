@@ -10,12 +10,14 @@ include ('../../libs/adodb5/adodb.inc.php');
 include ('../../controllers/superadminController/superadminController.php');
 include("../layouts/header.php");
 $id_evento_admin=$_GET['id_evento_admin'];
+$superadmin=new SuperadminController();
+$rows1=$superadmin->obtener_nombre_evento_usuario($id_evento_admin);
 ?>
 <div class="container-fluid tabla">
     <!--<div class="row-fluid">a</div>-->
     <div class="row-fluid">
         <div class="span12">
-            <h3>Selecciona al nuevo administrador del evento</h3>
+            <h3>Selecciona al nuevo administrador del evento <?php echo $rows1[0]['nombre_evento']; ?></h3>
         </div>
     </div>
     <div class="row-fluid">
@@ -26,7 +28,7 @@ $id_evento_admin=$_GET['id_evento_admin'];
                     <option value="0">Selecciona un usuario</option>
                     
                     <?php
-                    $superadmin = new SuperadminController();
+                    //$superadmin = new SuperadminController();
                     $rows = $superadmin->consulta_admins();
 //                    print_r($rows);
                     if (count($rows) > 0) {

@@ -7,30 +7,34 @@ include ('../../models/Modelo.php');
 include ('../../models/Asistentes_Actividades.php');
 include ('../../controllers/siteController/asistenteController.php');
 include ('../layouts/header.php');
-
+?>
+<?php
 if (isset($_SESSION['id_usuario']) && ($_GET['opc'] == 0 || $_GET['opc'] == 1 )) {
     $asist = new asistenteController();
     $actividades = $asist->regresa_actividades_usuario($_SESSION['id_usuario'], $_GET['opc']);
     $nombre = $asist->regresa_nombre($_SESSION['id_usuario']);
 } else {
-//    header('Location:inicio.php');
-//    exit();
-    //ojo  no puedo reedireccionar
-}
+    ?>
+    <!--no puedo reedireccinar-->
+<?php }
 ?>
+
 <?php if (isset($_POST['nombre_actividad'])) : ?>
     <script languaje="javascript">
-        $(document).ready(function() {
+        $(document).ready(function( ) {
             funct_modal('<?php echo $_POST['id_actividad'] ?>', '<?php echo $_POST['id_usuario'] ?>', '<?php echo $_POST['nombre_actividad'] ?>');
         });
     </script>   
 <?php endif; ?>
 
 
-<script src="../bootstrap/js/asistente.js"></script>
+<script src=<?php echo BASEURL.'views/bootstrap/js/asistente.js'?>></script>
 
 <div class="span12">
-    <div class="span11">
+    <div class="span3 padding2">
+        <?php include ('menuSecion.php'); ?>
+    </div>
+    <div class="span8">
         <table class="table table-bordered" >
             <legend class="padding2">Caracteristicas</legend>
             <thead>
@@ -70,7 +74,7 @@ if (isset($_SESSION['id_usuario']) && ($_GET['opc'] == 0 || $_GET['opc'] == 1 ))
             </thead>
 
             <tbody>
-<?php foreach ($actividades as $key => $value) : ?>
+                <?php foreach ($actividades as $key => $value) : ?>
                     <tr>
                         <th class="formato"><?php echo $actividades[$key]['nombre_evento'] ?></th>                    
                         <th><?php echo $actividades[$key]['nombre_actividad'] ?></th>
@@ -78,7 +82,7 @@ if (isset($_SESSION['id_usuario']) && ($_GET['opc'] == 0 || $_GET['opc'] == 1 ))
                             <th>$<?php echo $actividades[$key]['precio'] ?></th>
                         <?php else: ?>
                             <th>Gratis</th>
-    <?php endif; ?>
+                        <?php endif; ?>
 
 
                         <th><?php echo "Del " . $actividades[$key]['fecha_inicio'] . " al " . $actividades[$key]['fecha_fin'] ?></th>                    
@@ -88,17 +92,17 @@ if (isset($_SESSION['id_usuario']) && ($_GET['opc'] == 0 || $_GET['opc'] == 1 ))
                             <th><span class="icon-fire"></span></th> 
                         <?php elseif ((($actividades[$key]['pago'] == 1) && ($actividades[$key]['precio'] > 0)) || (strtotime($actividades[$key]['fecha_inicio']) <= strtotime(date("Y-m-d")))) : ?>
                             <th> <span class="icon-ban-circle"></span> </th> 
-    <?php else: ?>
+                        <?php else: ?>
                     <form method="post">
-                        <input type="hidden" id="id_usuario" name="id_usuario" value=<?php echo $_SESSION['id_usuario']; ?>>
-                        <input type="hidden" id="id_actividad" name="id_actividad" value=<?php echo $actividades[$key]['id_actividad']; ?>>
-                        <input type="hidden" id="nombre_actividad" name="nombre_actividad" value="<?php echo $actividades[$key]['nombre_actividad'] ?>">
+                        <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']; ?>">
+                        <input type="hidden" id="id_actividad" name="id_actividad" value="<?php echo $actividades[$key]['id_actividad']; ?>">
+                        <input type="hidden" id="nombre_actividad" name="nombre_actividad" value="<?php echo $actividades[$key]['nombre_actividad']; ?>">
                         <td><input type="submit" class="btn-large icon-trash" value=""></td>           
                     </form>
 
                 <?php endif ?>
                 </tr>
-<?php endforeach; ?>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>
@@ -107,32 +111,29 @@ if (isset($_SESSION['id_usuario']) && ($_GET['opc'] == 0 || $_GET['opc'] == 1 ))
 
 
 <div id="confirmacion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <div id = "actividad" ></div>
 
-        <form method="post">
+    <form method="post">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div id = "actividad" ></div>
+
             <input type="hidden" id="id_u" name="id_u" >
             <input type="hidden" id="id_a" name="id_a" >
-            <input type="submit" id="id_aa" name="id_aa" value="SI">          
-        </form>
-        <input type="submit" id="id_aa" name="id_aa" value="NO">  
-    </div>
+
+        </div>
+        <div class="modal-footer">
+            <input class="btn-primary" type="submit"  value="SI">    
+            <button class="btn-danger" data-dismiss="modal" aria-hidden="true">No</button>
+        </div>
+    </form>
 </div>
 
-<div id="exit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h2><div>BAJA EXITOSA</div></h2> 
-    </div>
-</div>
 
-<?php
-if (isset($_POST['id_a'])) {
-    $asist->baja_actividad($_POST['id_u'], $_POST['id_a']);
-//    header('Location:asistente.php?opc=' . $_GET['opc']);
-//    exit();
-}
-?>
+<?php if (isset($_POST['id_a'])) : ?>
+    <?php $asist->baja_actividad($_POST['id_u'], $_POST['id_a']); ?>
+    <script type="text/javascript">
+        document.location.reload();
+    </script>
+<?php endif; ?>
 
 <?php include ('../layouts/footer.php'); ?>         
