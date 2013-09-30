@@ -3,10 +3,10 @@
 
 class LoginController extends Usuario{
     
-    private $admins = array('oscar@itc.mx','ramon_eduardo14@hotmail.com','maners.011@gmail.com','krauser_csr@hotmail.com');
-    private $superadmins = array('oscar@itc.mx','ramone.mendozam@gmail.com');//Correo del superadministrador
+    private $superadmins = array('oscar@itc.mx','ramone.mendozam@gmail.com','maners.011@gmail.com','krauser_csr@hotmail.com');//Correo del superadministrador
     public function valida_usuario($email,$password){
         //validar
+        $email=  addslashes($email);
         $sql = "select * 
                 from evt_asistentes 
                 where email = '".$email."' ";
@@ -33,12 +33,21 @@ class LoginController extends Usuario{
         
         $_SESSION['email']=$rows['email'];
         $_SESSION['nombre']=$rows['nombre_asistente'];
-        $_SESSION['roles']=array('admin','maestro');
+        //$_SESSION['roles']=array('admin','maestro');
         $_SESSION['id_usuario'] = $rows['id_asistente'];
         
-        if(in_array($rows['email'],$this->admins))
+        $sql="select asi.email, ae.tipo from `evt_eventos_admin` ea
+join `evt_asistentes` asi on asi.`id_asistente`=ea.`id_asistente`
+where asi.email='".$rows['email']."'";
+        $rs=$this->consulta_sql($sql);
+        $rows1=$rs->GetArray();
+        if(count($rows1)>0)
                 $_SESSION['admin'] = 'isAdmin';
-        if(in_array($rows['email'], $this->superadmins)) 
+       
+        if($rows1[0]['tipo']==1)
+            $_SESSION['staff']='isStaff';
+        
+        if(in_array(trim($rows['email']), $this->superadmins)) 
             $_SESSION['superadmin']='isSuperAdmin';
         return true;
         //header("location: inicio.php");
