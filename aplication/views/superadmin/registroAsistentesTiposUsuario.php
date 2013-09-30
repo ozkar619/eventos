@@ -10,8 +10,18 @@ include ('../../libs/adodb5/adodb-pager.inc.php');
 include ('../../libs/adodb5/adodb.inc.php');
 include ('../../controllers/superadminController/registroAsistente_Tipo_UsuarioController.php');
 include ('../../controllers/superadminController/superadminController.php');
-include("../layouts/header.php");
 $id_asistente=$_GET['id_asistente'];
+    $atu=new RegistroAsistente_Tipo_UsuarioController();
+    if ((isset($_POST['id_tipo_usuario'])) && ($_POST['id_tipo_usuario'] != 0)){
+        $_POST['id_asistente']=$id_asistente;
+        if($atu->registraAsistente_Tipo_Usuario($_POST)){
+            header("Location: registroAsistentesTiposUsuario.php?id_asistente=".$id_asistente);
+            exit();
+        }
+    }
+
+include("../layouts/header.php");
+
 $sa=new SuperadminController();
 $rows1=$sa->obtener_nombre_asistente($id_asistente);
 ?>
@@ -69,16 +79,7 @@ $rows1=$sa->obtener_nombre_asistente($id_asistente);
                 
         </form>
     </div>
-    <?php
-    $atu=new RegistroAsistente_Tipo_UsuarioController();
-    if ((isset($_POST['id_tipo_usuario'])) && ($_POST['id_tipo_usuario'] != 0)){
-        $_POST['id_asistente']=$id_asistente;
-        if($atu->registraAsistente_Tipo_Usuario($_POST)){
-            header("Location: registroAsistentesTiposUsuario.php?id_asistente=".$id_asistente);
-            exit();
-        }
-    }
-    ?>
+    
     <?php
     $sa=new SuperadminController();
     if ((isset($_POST['id_tipo_usuario1'])) && ($_POST['id_tipo_usuario1'] != 0)){

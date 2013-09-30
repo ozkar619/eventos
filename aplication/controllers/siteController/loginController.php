@@ -36,7 +36,7 @@ class LoginController extends Usuario{
         //$_SESSION['roles']=array('admin','maestro');
         $_SESSION['id_usuario'] = $rows['id_asistente'];
         
-        $sql="select asi.email, ae.tipo from `evt_eventos_admin` ea
+        $sql="select asi.email, ea.tipo from `evt_eventos_admin` ea
 join `evt_asistentes` asi on asi.`id_asistente`=ea.`id_asistente`
 where asi.email='".$rows['email']."'";
         $rs=$this->consulta_sql($sql);
